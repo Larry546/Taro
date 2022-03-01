@@ -22,10 +22,6 @@ export default class Index extends PureComponent<any> {
 
     componentDidHide() {}
 
-    goToUser = () => {
-        this.push("/pages/user/index");
-    };
-
     showToast = () => {
         this.toast.show("this is a toast");
     };
@@ -46,9 +42,6 @@ export default class Index extends PureComponent<any> {
                 </AtButton>
                 <AtButton type="primary" onClick={this.showConfirm}>
                     showComfirm
-                </AtButton>
-                <AtButton type="primary" circle={true} onClick={this.goToUser}>
-                    去个人主页
                 </AtButton>
             </View>
         );

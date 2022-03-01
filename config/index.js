@@ -40,6 +40,9 @@ const config = {
     h5: {
         publicPath: "/",
         staticDirectory: "static",
+        devServer: {
+            port: 8086,
+        },
         postcss: {
             autoprefixer: {
                 enable: true,
