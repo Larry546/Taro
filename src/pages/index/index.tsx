@@ -1,18 +1,17 @@
-import { Component } from "react";
+import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
 import { AtButton } from "taro-ui";
-import httpRequest from "../../system/http";
 
-import "taro-ui/dist/style/index.scss";
 import "./index.scss";
 
 definePageConfig({
     navigationBarTitleText: "首页",
 });
 
-export default class Index extends Component {
+export default class Index extends PureComponent<any> {
     componentWillMount() {
-        httpRequest.get("/user/list");
+        // this.http.get("/user/list");
+        console.log("instance", this.instance);
     }
 
     componentDidMount() {}
@@ -23,13 +22,33 @@ export default class Index extends Component {
 
     componentDidHide() {}
 
+    goToUser = () => {
+        this.push("/pages/user/index");
+    };
+
+    showToast = () => {
+        this.toast.show("this is a toast");
+    };
+
+    showConfirm = () => {
+        this.confirm.show({
+            title: "confirm",
+            content: "this is a confirm",
+        });
+    };
+
     render() {
         return (
             <View className="index">
                 <Text>Hello world!</Text>
-                <AtButton type="primary">I need Taro UI</AtButton>
-                <AtButton type="primary" circle={true}>
-                    支持
+                <AtButton type="primary" onClick={this.showToast}>
+                    showToast
+                </AtButton>
+                <AtButton type="primary" onClick={this.showConfirm}>
+                    showComfirm
+                </AtButton>
+                <AtButton type="primary" circle={true} onClick={this.goToUser}>
+                    去个人主页
                 </AtButton>
             </View>
         );

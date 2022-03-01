@@ -20,3 +20,5 @@ export let push = (url: string, replace: boolean = false, fail?: Function, succe
 export let pop = () => {
     Taro.navigateBack();
 };
+
+export let getCurrentInstance = Taro.getCurrentInstance();
