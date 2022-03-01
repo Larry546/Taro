@@ -27,8 +27,8 @@ export default class Index extends PureComponent<any> {
         return (
             <View className="index">
                 <Text>个人主页</Text>
-                <AtButton type="primary" circle={true}>
-                    去首页
+                <AtButton type="secondary" size={"normal"}>
+                    退出登陆
                 </AtButton>
             </View>
         );
