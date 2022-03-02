@@ -1,6 +1,8 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
-import { AtButton } from "taro-ui";
+import { AtButton, AtInput, AtNavBar } from "taro-ui";
+import getEnv from "../../system/tools/environment";
+import { ILoginState } from "./interface";
 
 import "./index.scss";
 
@@ -9,6 +11,14 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
+    state: ILoginState;
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            userAccount: "",
+            userPassword: "",
+        };
+    }
     componentWillMount() {}
 
     componentDidMount() {}
@@ -23,13 +33,63 @@ export default class Index extends PureComponent<any> {
         this.toast.show("this is a toast");
     };
 
+    login = () => {};
+
+    goToSignup = () => {};
+
+    onChangeAccount = (value, evnet) => {
+        this.setState({ userAccount: value });
+    };
+
+    onChangePassword = (value, evnet) => {
+        this.setState({ userPassword: value });
+    };
+
     render() {
         return (
-            <View className="index">
-                <Text>用户登录页</Text>
-                <AtButton type="secondary" size={"normal"} onClick={this.pop}>
-                    返回
-                </AtButton>
+            <View className="login">
+                {getEnv() === "H5" ? (
+                    <View>
+                        <AtNavBar
+                            border={false}
+                            onClickLeftIcon={this.pop}
+                            leftIconType={{ value: "left", prefixClass: "icon", color: "#000000" }}
+                        ></AtNavBar>
+                    </View>
+                ) : null}
+                <View className="login_wrap">
+                    <View className="login_title">
+                        <Text>用户登录页</Text>
+                    </View>
+                    <View className="login_form">
+                        <AtInput
+                            required
+                            placeholder="用户名"
+                            name="userAccount"
+                            type="text"
+                            value={this.state.userAccount}
+                            onChange={this.onChangeAccount}
+                        />
+                        <AtInput
+                            required
+                            placeholder="密码"
+                            name="userPassword"
+                            type="password"
+                            value={this.state.userPassword}
+                            onChange={this.onChangePassword}
+                        />
+                        <View style={{ paddingTop: "20px" }} />
+                        <View className="login_form_button">
+                            <AtButton type="secondary" size={"normal"} onClick={this.login}>
+                                登陆
+                            </AtButton>
+                            <View style={{ paddingTop: "10px" }} />
+                            <AtButton type="secondary" size={"normal"} onClick={this.goToSignup}>
+                                注册
+                            </AtButton>
+                        </View>
+                    </View>
+                </View>
             </View>
         );
     }

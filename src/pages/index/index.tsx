@@ -1,11 +1,10 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
 import { AtButton, AtSearchBar } from "taro-ui";
-
-import "./index.scss";
 import Taro from "@tarojs/taro";
 import { IState } from "./interface";
-import Icon from "../../common/base-component/icon";
+
+import "./index.scss";
 
 definePageConfig({
     navigationBarTitleText: "首页",
@@ -63,7 +62,6 @@ export default class Index extends PureComponent<any> {
                 />
                 <ScrollView scrollY className="index_wrap" style={{ height: "100%" }}>
                     <Text>Hello world!</Text>
-                    <Icon type={"user"} size={20} color={"#2698f7"} />
                     <AtButton type="primary" onClick={this.showToast}>
                         showToast_1
                     </AtButton>

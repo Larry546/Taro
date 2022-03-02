@@ -1,0 +1,23 @@
+.user {
+    padding: 80px 40px;
+    &_header {
+        display: flex;
+        flex-direction: row;
+        &_info {
+            display: flex;
+            flex-direction: column;
+            font-size: 40px;
+            padding: 10px 0 0 40px;
+            &_account {
+                font-size: 20px;
+                color: #c5c5c5;
+            }
+        }
+    }
+    &_login {
+        padding: 0 100px;
+    }
+    &_bottom {
+        padding: 0 100px;
+    }
+}

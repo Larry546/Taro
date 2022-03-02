@@ -1,0 +1,17 @@
+.login {
+    &_wrap {
+        padding: 0 40px;
+        height: 100%;
+    }
+    &_title {
+        padding: 80px 0;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    &_form {
+        &_button {
+            padding: 0 40px;
+        }
+    }
+}
