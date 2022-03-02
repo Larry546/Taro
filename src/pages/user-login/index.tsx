@@ -1,11 +1,10 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
-import { AtButton } from "taro-ui";
 
 import "./index.scss";
 
 definePageConfig({
-    navigationBarTitleText: "收藏",
+    navigationBarTitleText: "用户登录",
 });
 
 export default class Index extends PureComponent<any> {
@@ -26,10 +25,7 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="index">
-                <Text>收藏</Text>
-                <AtButton type="primary" circle={true}>
-                    收藏页
-                </AtButton>
+                <Text>用户登录页</Text>
             </View>
         );
     }

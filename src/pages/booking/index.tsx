@@ -5,7 +5,7 @@ import { AtButton } from "taro-ui";
 import "./index.scss";
 
 definePageConfig({
-    navigationBarTitleText: "收藏",
+    navigationBarTitleText: "订单填写",
 });
 
 export default class Index extends PureComponent<any> {
@@ -26,9 +26,9 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="index">
-                <Text>收藏</Text>
-                <AtButton type="primary" circle={true}>
-                    收藏页
+                <Text>订单填写页</Text>
+                <AtButton type="secondary" size={"normal"}>
+                    提交订单
                 </AtButton>
             </View>
         );
