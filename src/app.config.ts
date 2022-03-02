@@ -26,14 +26,20 @@ export default defineAppConfig({
             {
                 text: "首页",
                 pagePath: "pages/index/index",
+                iconPath: "./assets/tab-bar/home.png",
+                selectedIconPath: "./assets/tab-bar/home-active.png",
             },
             {
                 text: "收藏",
                 pagePath: "pages/favorite/index",
+                iconPath: "./assets/tab-bar/heart.png",
+                selectedIconPath: "./assets/tab-bar/heart-active.png",
             },
             {
                 text: "个人",
                 pagePath: "pages/user/index",
+                iconPath: "./assets/tab-bar/user.png",
+                selectedIconPath: "./assets/tab-bar/user-active.png",
             },
         ],
     },
