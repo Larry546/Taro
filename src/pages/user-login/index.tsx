@@ -35,7 +35,7 @@ export default class Index extends PureComponent<any> {
 
     login = () => {};
 
-    goToSignup = () => {};
+    goToRegister = () => {};
 
     onChangeAccount = (value, evnet) => {
         this.setState({ userAccount: value });
@@ -84,7 +84,7 @@ export default class Index extends PureComponent<any> {
                                 登陆
                             </AtButton>
                             <View style={{ paddingTop: "10px" }} />
-                            <AtButton type="secondary" size={"normal"} onClick={this.goToSignup}>
+                            <AtButton type="secondary" size={"normal"} onClick={this.goToRegister}>
                                 注册
                             </AtButton>
                         </View>
