@@ -3,6 +3,7 @@ import { push, pop, getCurrentInstance } from "../system/router";
 import httpRequest from "../system/http";
 import toast from "./base-component/toast";
 import confirm from "./base-component/confirm";
+import { debounce } from "lodash";
 
 export default class Component<T> extends React.Component<T> {
     http: any;
@@ -13,8 +14,8 @@ export default class Component<T> extends React.Component<T> {
         this.http = httpRequest;
         this.instance = getCurrentInstance;
     }
-    push = push;
-    pop = pop;
+    push = debounce(push, 200);
+    pop = debounce(pop, 200);
     toast = toast;
     confirm = confirm;
 }

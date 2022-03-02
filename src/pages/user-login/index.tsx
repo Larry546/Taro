@@ -1,5 +1,6 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
+import { AtButton } from "taro-ui";
 
 import "./index.scss";
 
@@ -26,6 +27,9 @@ export default class Index extends PureComponent<any> {
         return (
             <View className="index">
                 <Text>用户登录页</Text>
+                <AtButton type="secondary" size={"normal"} onClick={this.pop}>
+                    返回
+                </AtButton>
             </View>
         );
     }
