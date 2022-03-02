@@ -6,7 +6,7 @@ import "./icon.scss";
 const Icon = props => {
     const { type, size, color } = props;
 
-    return <Text className={`iconfont icon-${type}`} style={{ color, fontSize: `${size}px` }} />;
+    return <Text className={`icon icon-${type}`} style={{ color, fontSize: `${size}px` }} />;
 };
 
 export default Icon;
