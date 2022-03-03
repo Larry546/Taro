@@ -72,28 +72,29 @@ export default class Index extends PureComponent<any> {
                         <Text>用户登陆</Text>
                     </View>
                     <View className="login_form">
-                        <AtInput
-                            required={true}
-                            placeholder="用户名"
-                            name="userAccount"
-                            type="text"
-                            value={this.state.userAccount}
-                            onChange={this.onChangeAccount}
-                        />
-                        <AtInput
-                            required={true}
-                            placeholder="密码"
-                            name="userPassword"
-                            type="password"
-                            value={this.state.userPassword}
-                            onChange={this.onChangePassword}
-                        />
-                        <View style={{ paddingTop: "20px" }} />
+                        <View className="login_form_input">
+                            <AtInput
+                                required={true}
+                                placeholder="用户名"
+                                name="userAccount"
+                                type="text"
+                                value={this.state.userAccount}
+                                onChange={this.onChangeAccount}
+                            />
+                            <AtInput
+                                required={true}
+                                placeholder="密码"
+                                name="userPassword"
+                                type="password"
+                                value={this.state.userPassword}
+                                onChange={this.onChangePassword}
+                            />
+                        </View>
                         <View className="login_form_button">
                             <AtButton type={"primary"} size={"normal"} onClick={this.login}>
                                 登陆
                             </AtButton>
-                            <View style={{ paddingTop: "10px" }} />
+                            <View style={{ paddingBottom: "10px" }} />
                             <AtButton type="secondary" size={"normal"} onClick={this.goToRegister}>
                                 注册
                             </AtButton>

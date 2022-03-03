@@ -87,46 +87,46 @@ export default class Index extends PureComponent<any> {
                         <Text>用户注册</Text>
                     </View>
                     <View className="register_form">
-                        <AtInput
-                            required={true}
-                            placeholder="用户名"
-                            name="userAccount"
-                            type="text"
-                            value={this.state.userAccount}
-                            onChange={this.onChangeAccount}
-                        />
-                        <AtInput
-                            required={true}
-                            placeholder="密码"
-                            name="userPassword"
-                            type="password"
-                            value={this.state.userPassword}
-                            onChange={this.onChangePassword}
-                        />
-                        <AtInput
-                            required={true}
-                            placeholder="再次输入密码"
-                            name="userCheckPassword"
-                            type="password"
-                            value={this.state.userCheckPassword}
-                            onChange={this.onChangeCheckPassword}
-                        />
-                        <AtInput
-                            placeholder="昵称(选填)"
-                            name="userNickname"
-                            type="text"
-                            value={this.state.userNickname}
-                            onChange={this.onChangeNickname}
-                        />
-                        <AtInput
-                            placeholder="联系方式(选填)"
-                            name="userContact"
-                            type="text"
-                            value={this.state.userContact}
-                            onChange={this.onChangeContact}
-                        />
-
-                        <View style={{ paddingTop: "20px" }} />
+                        <View className="register_form_input">
+                            <AtInput
+                                required={true}
+                                placeholder="用户名"
+                                name="userAccount"
+                                type="text"
+                                value={this.state.userAccount}
+                                onChange={this.onChangeAccount}
+                            />
+                            <AtInput
+                                required={true}
+                                placeholder="密码"
+                                name="userPassword"
+                                type="password"
+                                value={this.state.userPassword}
+                                onChange={this.onChangePassword}
+                            />
+                            <AtInput
+                                required={true}
+                                placeholder="再次输入密码"
+                                name="userCheckPassword"
+                                type="password"
+                                value={this.state.userCheckPassword}
+                                onChange={this.onChangeCheckPassword}
+                            />
+                            <AtInput
+                                placeholder="昵称(选填)"
+                                name="userNickname"
+                                type="text"
+                                value={this.state.userNickname}
+                                onChange={this.onChangeNickname}
+                            />
+                            <AtInput
+                                placeholder="联系方式(选填)"
+                                name="userContact"
+                                type="text"
+                                value={this.state.userContact}
+                                onChange={this.onChangeContact}
+                            />
+                        </View>
                         <View className="register_form_button">
                             <AtButton type={"primary"} size={"normal"} onClick={this.register}>
                                 注册
