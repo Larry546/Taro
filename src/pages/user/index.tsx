@@ -152,6 +152,7 @@ export default class Index extends PureComponent<any> {
                                 title="浏览历史"
                                 arrow="right"
                                 onClick={this.goToViewList}
+                                disabled={true}
                             />
                             <AtListItem
                                 title="我要合作"
