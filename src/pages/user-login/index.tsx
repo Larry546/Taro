@@ -59,8 +59,9 @@ export default class Index extends PureComponent<any> {
         return (
             <View className="login">
                 {getEnv() === "H5" ? (
-                    <View>
+                    <View className="login_h5NavBar">
                         <AtNavBar
+                            fixed={true}
                             border={false}
                             onClickLeftIcon={this.pop}
                             leftIconType={{ value: "left", prefixClass: "icon", color: "#000000" }}

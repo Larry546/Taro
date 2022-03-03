@@ -1,4 +1,15 @@
 .favorite {
+    height: 100%;
+    &_header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        font-size: 25px;
+        &_text {
+            color: #888888;
+        }
+    }
     &_spot {
         display: flex;
         flex-direction: row;

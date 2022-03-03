@@ -51,6 +51,9 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="favorite">
+                <View className="favorite_header">
+                    <Text className="favorite_header_text">收藏头部内容收藏头部内容</Text>
+                </View>
                 {this.spotList.length ? (
                     <View>
                         <AtList>
@@ -101,7 +104,7 @@ export default class Index extends PureComponent<any> {
                     </View>
                 ) : (
                     <View className="favorite_end">
-                        <Text>收藏为空</Text>
+                        <Text>没有收藏,美好的事物值得收藏</Text>
                     </View>
                 )}
             </View>
