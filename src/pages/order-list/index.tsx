@@ -1,6 +1,6 @@
 import PureComponent from "../../common/pure-component";
-import { View, Text } from "@tarojs/components";
-import { AtList, AtNavBar } from "taro-ui";
+import { View, Text, ScrollView } from "@tarojs/components";
+import { AtButton, AtNavBar } from "taro-ui";
 import getEnv from "../../system/tools/environment";
 import { IOrderInfo } from "./interface";
 
@@ -61,28 +61,73 @@ export default class Index extends PureComponent<any> {
                         ></AtNavBar>
                     </View>
                 ) : null}
-                {this.orderList.length ? (
-                    <View>
+                <ScrollView scrollY>
+                    {this.orderList.length ? (
                         <View>
-                            {this.orderList.map((item, value) => {
-                                // todo
-                                return (
-                                    <View>
-                                        <Text>{item.orderName}</Text>
-                                    </View>
-                                );
-                            })}
-                        </View>
+                            <View>
+                                {this.orderList.map((item, index) => {
+                                    // todo
+                                    return (
+                                        <View className="orderlist_order">
+                                            <View className="orderlist_order_tag">
+                                                <Text>
+                                                    预定日期：{item.orderCreateTime.slice(5, 10)}
+                                                </Text>
+                                            </View>
+                                            <View className="orderlist_order_info">
+                                                <View className="orderlist_order_info_wrap">
+                                                    <View className="orderlist_order_info_text">
+                                                        <View className="orderlist_order_info_text_left">
+                                                            <View className="orderlist_order_info_text_left_name">
+                                                                <Text>{item.orderName}</Text>
+                                                            </View>
+                                                            <View className="orderlist_order_info_text_left_other">
+                                                                <Text>
+                                                                    {item.orderuseTime.slice(5, 10)}{" "}
+                                                                    有效{"  "}1份
+                                                                </Text>
+                                                            </View>
+                                                            <View className="orderlist_order_info_text_left_name">
+                                                                <Text>{item.orderName}</Text>
+                                                            </View>
+                                                            <View className="orderlist_order_info_text_left_other">
+                                                                <Text>
+                                                                    {item.orderuseTime.slice(5, 10)}{" "}
+                                                                    有效{"  "}1份
+                                                                </Text>
+                                                            </View>
+                                                        </View>
 
-                        <View className="orderlist_end" style={{ height: "50px" }}>
-                            <Text>没有更多了</Text>
+                                                        <View className="orderlist_order_info_text_right">
+                                                            <View className="orderlist_order_info_text_right_total">
+                                                                <Text>￥{item.orderTotal}</Text>
+                                                            </View>
+                                                            <View className="orderlist_order_info_text_right_status">
+                                                                <Text>{item.orderStatus}</Text>
+                                                            </View>
+                                                        </View>
+                                                    </View>
+                                                    <View className="orderlist_order_info_button">
+                                                        <AtButton size="small">sss1</AtButton>
+                                                        <AtButton size="small">sss2</AtButton>
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    );
+                                })}
+                            </View>
+
+                            <View className="orderlist_end" style={{ height: "50px" }}>
+                                <Text>没有更多了</Text>
+                            </View>
                         </View>
-                    </View>
-                ) : (
-                    <View className="orderlist_end">
-                        <Text>没有订单</Text>
-                    </View>
-                )}
+                    ) : (
+                        <View className="orderlist_end">
+                            <Text>没有订单</Text>
+                        </View>
+                    )}
+                </ScrollView>
             </View>
         );
     }
