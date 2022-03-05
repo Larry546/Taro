@@ -1,5 +1,13 @@
 .favorite {
     height: 100%;
+    &_wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-color: #f4f4f4;
+    }
     &_header {
         display: flex;
         justify-content: center;
@@ -26,6 +34,8 @@
                 justify-content: center;
                 height: 210px;
                 width: 250px;
+                border-radius: 10px;
+                overflow: hidden;
             }
             &_text {
                 display: flex;

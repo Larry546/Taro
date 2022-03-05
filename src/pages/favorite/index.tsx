@@ -1,5 +1,5 @@
 import PureComponent from "../../common/pure-component";
-import { View, Text } from "@tarojs/components";
+import { View, Text, ScrollView } from "@tarojs/components";
 import { AtList } from "taro-ui";
 import { IFavSpot } from "./interface";
 
@@ -51,62 +51,64 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="favorite">
-                <View className="favorite_header">
-                    <Text className="favorite_header_text">收藏头部内容收藏头部内容</Text>
-                </View>
-                {this.spotList.length ? (
-                    <View>
-                        <AtList>
-                            {this.spotList.map((item, index) => {
-                                return (
-                                    <View className="favorite_spot" key={index}>
-                                        <View
-                                            className="favorite_spot_left"
-                                            onClick={this.goToDetail}
-                                        >
-                                            <Image
-                                                classWrap={"favorite_spot_left_image"}
-                                                url={item.spotImageURL}
-                                                width={"100%"}
-                                                height={"100%"}
-                                            />
-                                            <View className="favorite_spot_left_text">
-                                                <View className="favorite_spot_left_text_title">
-                                                    <Text>{item.spotName}</Text>
-                                                </View>
-                                                <View className="favorite_spot_left_text_score">
-                                                    <Text>
-                                                        {item.spotScore}分 {item.spotCommentNum}
-                                                        人评价
-                                                    </Text>
-                                                </View>
-                                                {item.spotType && item.spotType?.length >= 1 ? (
-                                                    <View className="favorite_spot_left_text_type">
-                                                        <Text>{item.spotType[0]}</Text>
+                <ScrollView scrollY className="favorite_wrap">
+                    <View className="favorite_header">
+                        <Text className="favorite_header_text">收藏头部内容收藏头部内容</Text>
+                    </View>
+                    {this.spotList.length ? (
+                        <View>
+                            <AtList>
+                                {this.spotList.map((item, index) => {
+                                    return (
+                                        <View className="favorite_spot" key={index}>
+                                            <View
+                                                className="favorite_spot_left"
+                                                onClick={this.goToDetail}
+                                            >
+                                                <Image
+                                                    classWrap={"favorite_spot_left_image"}
+                                                    url={item.spotImageURL}
+                                                    width={"100%"}
+                                                    height={"100%"}
+                                                />
+                                                <View className="favorite_spot_left_text">
+                                                    <View className="favorite_spot_left_text_title">
+                                                        <Text>{item.spotName}</Text>
                                                     </View>
-                                                ) : null}
+                                                    <View className="favorite_spot_left_text_score">
+                                                        <Text>
+                                                            {item.spotScore}分 {item.spotCommentNum}
+                                                            人评价
+                                                        </Text>
+                                                    </View>
+                                                    {item.spotType && item.spotType?.length >= 1 ? (
+                                                        <View className="favorite_spot_left_text_type">
+                                                            <Text>{item.spotType[0]}</Text>
+                                                        </View>
+                                                    ) : null}
+                                                </View>
+                                            </View>
+
+                                            <View
+                                                className="favorite_spot_right"
+                                                onClick={this.deleteFav}
+                                            >
+                                                <Icon type={"cuowu"} size={24} color={"red"} />
                                             </View>
                                         </View>
-
-                                        <View
-                                            className="favorite_spot_right"
-                                            onClick={this.deleteFav}
-                                        >
-                                            <Icon type={"cuowu"} size={24} color={"red"} />
-                                        </View>
-                                    </View>
-                                );
-                            })}
-                        </AtList>
-                        <View className="favorite_end" style={{ height: "50px" }}>
-                            <Text>没有更多了</Text>
+                                    );
+                                })}
+                            </AtList>
+                            <View className="favorite_end" style={{ height: "50px" }}>
+                                <Text>没有更多了</Text>
+                            </View>
                         </View>
-                    </View>
-                ) : (
-                    <View className="favorite_end">
-                        <Text>没有收藏,美好的事物值得收藏</Text>
-                    </View>
-                )}
+                    ) : (
+                        <View className="favorite_end">
+                            <Text>没有收藏,美好的事物值得收藏</Text>
+                        </View>
+                    )}
+                </ScrollView>
             </View>
         );
     }
