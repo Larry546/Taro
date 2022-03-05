@@ -2,7 +2,7 @@ import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
 import { AtButton, AtNavBar } from "taro-ui";
 import getEnv from "../../system/tools/environment";
-import { IOrderInfo } from "./interface";
+import { IOrderTime } from "./interface";
 
 import "./index.scss";
 
@@ -11,25 +11,69 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
-    orderList: Array<IOrderInfo>;
+    orderList: Array<IOrderTime>;
     constructor(props: any) {
         super(props);
         this.orderList = [
             {
-                orderId: 1,
-                orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
-                orderTotal: 115,
-                orderStatus: "待支付",
                 orderCreateTime: "2022-03-03",
-                orderuseTime: "2022-03-31",
+                list: [
+                    {
+                        orderId: 1,
+                        orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
+                        orderTotal: 115,
+                        orderStatus: "待支付",
+                        orderCreateTime: "2022-03-03",
+                        orderuseTime: "2022-03-31",
+                        orderTicket: [
+                            {
+                                ticketId: 1,
+                                ticketName: "成人票",
+                                ticketNum: 1,
+                            },
+                            {
+                                ticketId: 2,
+                                ticketName: "儿童票",
+                                ticketNum: 1,
+                            },
+                        ],
+                    },
+                    {
+                        orderId: 1,
+                        orderName: "绍兴柯岩风景区门票",
+                        orderTotal: 115,
+                        orderStatus: "待支付",
+                        orderCreateTime: "2022-03-03",
+                        orderuseTime: "2022-03-31",
+                        orderTicket: [
+                            {
+                                ticketId: 1,
+                                ticketName: "成人票",
+                                ticketNum: 2,
+                            },
+                        ],
+                    },
+                ],
             },
             {
-                orderId: 1,
-                orderName: "绍兴柯岩风景区门票",
-                orderTotal: 115,
-                orderStatus: "待支付",
-                orderCreateTime: "2022-03-03",
-                orderuseTime: "2022-03-31",
+                orderCreateTime: "2022-03-04",
+                list: [
+                    {
+                        orderId: 1,
+                        orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
+                        orderTotal: 115,
+                        orderStatus: "待支付",
+                        orderCreateTime: "2022-03-04",
+                        orderuseTime: "2022-03-31",
+                        orderTicket: [
+                            {
+                                ticketId: 2,
+                                ticketName: "儿童票",
+                                ticketNum: 1,
+                            },
+                        ],
+                    },
+                ],
             },
         ];
     }
@@ -42,10 +86,6 @@ export default class Index extends PureComponent<any> {
     componentDidShow() {}
 
     componentDidHide() {}
-
-    showToast = () => {
-        this.toast.show("this is a toast");
-    };
 
     render() {
         return (
@@ -68,51 +108,82 @@ export default class Index extends PureComponent<any> {
                                 {this.orderList.map((item, index) => {
                                     // todo
                                     return (
-                                        <View className="orderlist_order">
+                                        <View className="orderlist_order" key={index}>
                                             <View className="orderlist_order_tag">
                                                 <Text>
                                                     预定日期：{item.orderCreateTime.slice(5, 10)}
                                                 </Text>
                                             </View>
-                                            <View className="orderlist_order_info">
-                                                <View className="orderlist_order_info_wrap">
-                                                    <View className="orderlist_order_info_text">
-                                                        <View className="orderlist_order_info_text_left">
-                                                            <View className="orderlist_order_info_text_left_name">
-                                                                <Text>{item.orderName}</Text>
+                                            {item.list.map((subitem, subindex) => {
+                                                return (
+                                                    <View
+                                                        className="orderlist_order_info"
+                                                        key={subindex}
+                                                    >
+                                                        <View className="orderlist_order_info_wrap">
+                                                            <View className="orderlist_order_info_text">
+                                                                <View className="orderlist_order_info_text_left">
+                                                                    {subitem.orderTicket.map(
+                                                                        (titem, tindex) => {
+                                                                            return (
+                                                                                <View
+                                                                                    className="orderlist_order_info_text_left_wrap"
+                                                                                    key={tindex}
+                                                                                >
+                                                                                    <View className="orderlist_order_info_text_left_name">
+                                                                                        <Text>
+                                                                                            {subitem.orderName +
+                                                                                                titem.ticketName}
+                                                                                        </Text>
+                                                                                    </View>
+                                                                                    <View className="orderlist_order_info_text_left_other">
+                                                                                        <Text>
+                                                                                            {subitem.orderuseTime.slice(
+                                                                                                5,
+                                                                                                10
+                                                                                            )}{" "}
+                                                                                            有效
+                                                                                            {"  " +
+                                                                                                titem.ticketNum}
+                                                                                            份
+                                                                                        </Text>
+                                                                                    </View>
+                                                                                </View>
+                                                                            );
+                                                                        }
+                                                                    )}
+                                                                </View>
+                                                                <View className="orderlist_order_info_text_right">
+                                                                    <View className="orderlist_order_info_text_right_total">
+                                                                        <Text>
+                                                                            ￥{subitem.orderTotal}
+                                                                        </Text>
+                                                                    </View>
+                                                                    <View className="orderlist_order_info_text_right_status">
+                                                                        <Text>
+                                                                            {subitem.orderStatus}
+                                                                        </Text>
+                                                                    </View>
+                                                                </View>
                                                             </View>
-                                                            <View className="orderlist_order_info_text_left_other">
-                                                                <Text>
-                                                                    {item.orderuseTime.slice(5, 10)}{" "}
-                                                                    有效{"  "}1份
-                                                                </Text>
-                                                            </View>
-                                                            <View className="orderlist_order_info_text_left_name">
-                                                                <Text>{item.orderName}</Text>
-                                                            </View>
-                                                            <View className="orderlist_order_info_text_left_other">
-                                                                <Text>
-                                                                    {item.orderuseTime.slice(5, 10)}{" "}
-                                                                    有效{"  "}1份
-                                                                </Text>
-                                                            </View>
-                                                        </View>
-
-                                                        <View className="orderlist_order_info_text_right">
-                                                            <View className="orderlist_order_info_text_right_total">
-                                                                <Text>￥{item.orderTotal}</Text>
-                                                            </View>
-                                                            <View className="orderlist_order_info_text_right_status">
-                                                                <Text>{item.orderStatus}</Text>
+                                                            <View className="orderlist_order_info_button">
+                                                                <AtButton
+                                                                    className="orderlist_order_info_button_it"
+                                                                    size="small"
+                                                                >
+                                                                    ssssssssssss
+                                                                </AtButton>
+                                                                <AtButton
+                                                                    className="orderlist_order_info_button_it"
+                                                                    size="small"
+                                                                >
+                                                                    sss2
+                                                                </AtButton>
                                                             </View>
                                                         </View>
                                                     </View>
-                                                    <View className="orderlist_order_info_button">
-                                                        <AtButton size="small">sss1</AtButton>
-                                                        <AtButton size="small">sss2</AtButton>
-                                                    </View>
-                                                </View>
-                                            </View>
+                                                );
+                                            })}
                                         </View>
                                     );
                                 })}
