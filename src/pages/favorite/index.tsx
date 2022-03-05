@@ -96,7 +96,11 @@ export default class Index extends PureComponent<any> {
                                                 className="favorite_spot_right"
                                                 onClick={this.deleteFav}
                                             >
-                                                <Icon type={"cuowu"} size={24} color={"red"} />
+                                                <Icon
+                                                    type={"cuowuguanbiquxiao"}
+                                                    size={24}
+                                                    color={"red"}
+                                                />
                                             </View>
                                         </View>
                                     );
