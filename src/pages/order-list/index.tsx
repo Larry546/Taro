@@ -196,7 +196,7 @@ export default class Index extends PureComponent<any> {
                                 })}
                             </View>
 
-                            <View className="orderlist_end" style={{ height: "50px" }}>
+                            <View className="orderlist_end" style={{ height: "30px" }}>
                                 <Text>没有更多了</Text>
                             </View>
                         </View>

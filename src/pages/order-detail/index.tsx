@@ -1,7 +1,7 @@
 import PureComponent from "../../common/pure-component";
 import getEnv from "../../system/tools/environment";
 import { AtButton, AtNavBar } from "taro-ui";
-import { View, Text } from "@tarojs/components";
+import { View, Text, ScrollView } from "@tarojs/components";
 import { IOrderInfo } from "../order-list/interface";
 
 import "./index.scss";
@@ -85,7 +85,7 @@ export default class Index extends PureComponent<any> {
                         ></AtNavBar>
                     </View>
                 ) : null}
-                <View className="orderdetail_info" style={{ top: this.infoTop }}>
+                <ScrollView className="orderdetail_info" style={{ top: this.infoTop }}>
                     <View className="orderdetail_info_wrap">
                         <View className="orderdetail_info_header">
                             <View className="orderdetail_info_header_status">
@@ -181,7 +181,7 @@ export default class Index extends PureComponent<any> {
                             <AtButton size="small">评论</AtButton>
                         </View>
                     </View>
-                </View>
+                </ScrollView>
             </View>
         );
     }
