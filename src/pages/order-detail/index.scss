@@ -1,0 +1,111 @@
+.orderdetail {
+    // padding: 0 20px;
+    &_h5NavBar {
+        padding-bottom: 100px;
+        background-color: #0086f6;
+    }
+    &_info {
+        position: absolute;
+        // top: 95px;
+        left: 0;
+        right: 0;
+        height: calc(100% - 95px);
+        background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0, #f4f4f4),
+            color-stop(0.5, #f4f4f4),
+            color-stop(0.72, #0086f6),
+            color-stop(1, #0086f6)
+        );
+        &_wrap {
+            padding: 0 20px;
+        }
+        &_header {
+            color: #ffffff;
+            margin-bottom: 20px;
+            &_status {
+                font-size: 58px;
+            }
+            &_desc {
+                font-size: 26px;
+            }
+        }
+        &_box {
+            display: flex;
+            flex-direction: row;
+            border-radius: 16px;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            &_wrap {
+                padding: 20px 20px;
+            }
+        }
+        &_total {
+            &_id {
+                color: #999999;
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            &_price {
+                color: #333;
+                font-weight: 500;
+                font-size: 36px;
+            }
+        }
+        &_ticket {
+            font-size: 24px;
+            margin-bottom: 60px;
+            &_name {
+                color: #333;
+                margin-bottom: 10px;
+            }
+            &_useday {
+                margin-bottom: 10px;
+            }
+            &_passenger {
+                width: 100%;
+                border-radius: 16px;
+                background-color: #f8f8f8;
+                box-shadow: 0 3px 8px 1px rgb(0 0 0 / 8%);
+                &_wrap {
+                    margin: 5px 5px;
+                    background-color: #ffffff;
+                    padding: 20px 20px;
+                    display: flex;
+                    flex-direction: row;
+                }
+                &_no {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #999;
+                    margin-right: 20px;
+                }
+                &_info {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 24px;
+                    color: #333;
+                }
+            }
+        }
+        &_spot {
+            color: #333;
+            &_name {
+                font-size: 32px;
+            }
+            &_other {
+                display: flex;
+                flex-direction: column;
+                font-size: 24px;
+                color: #666;
+            }
+        }
+        &_footer {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}
