@@ -1,7 +1,7 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
 import { AtList } from "taro-ui";
-import { IFavSpot } from "./interface";
+import { ISpotInfo } from "../spot-detail/interface";
 
 import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
@@ -13,7 +13,7 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
-    spotList: Array<IFavSpot>;
+    spotList: Array<ISpotInfo>;
 
     constructor(props: any) {
         super(props);
@@ -23,8 +23,8 @@ export default class Index extends PureComponent<any> {
                 spotName: "上海野生动物园",
                 spotImageURL:
                     "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
-                spotScore: 4.4,
-                spotCommentNum: 666,
+                spotRateScore: 4.4,
+                spotRateNum: 666,
                 spotType: ["实时订票", "无需取票", "可定今日"],
             },
             {
@@ -32,8 +32,8 @@ export default class Index extends PureComponent<any> {
                 spotName: "上海野生动物园",
                 spotImageURL:
                     "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
-                spotScore: 4.4,
-                spotCommentNum: 666,
+                spotRateScore: 4.4,
+                spotRateNum: 666,
                 spotType: ["无需取票"],
             },
         ];
@@ -44,7 +44,9 @@ export default class Index extends PureComponent<any> {
 
     componentWillUnmount() {}
 
-    goToDetail = () => {};
+    goToDetail = () => {
+        this.push("/pages/spot-detail/index");
+    };
 
     deleteFav = () => {};
 
@@ -77,7 +79,8 @@ export default class Index extends PureComponent<any> {
                                                     </View>
                                                     <View className="favorite_spot_left_text_score">
                                                         <Text>
-                                                            {item.spotScore}分 {item.spotCommentNum}
+                                                            {item.spotRateScore}分{" "}
+                                                            {item.spotRateNum}
                                                             人评价
                                                         </Text>
                                                     </View>

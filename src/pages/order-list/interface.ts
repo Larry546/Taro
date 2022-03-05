@@ -1,3 +1,5 @@
+import { ITicketInfo } from "../spot-detail/interface";
+
 export interface IOrderTime {
     orderCreateTime: string;
     list: Array<IOrderInfo>;
@@ -10,12 +12,10 @@ export interface IOrderInfo {
     orderStatus: string;
     orderCreateTime: string;
     orderuseTime: string;
-    orderTicket: Array<ITicketInfo>;
+    orderTicket: Array<IOrderTicketInfo>;
 }
 
-export interface ITicketInfo {
-    ticketId: number;
-    ticketName: string;
+export interface IOrderTicketInfo extends ITicketInfo {
     ticketNum: number;
     ticketPassenger?: Array<IPassengerInfo>;
 }

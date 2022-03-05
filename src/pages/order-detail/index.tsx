@@ -3,9 +3,9 @@ import getEnv from "../../system/tools/environment";
 import { AtButton, AtNavBar } from "taro-ui";
 import { View, Text, ScrollView } from "@tarojs/components";
 import { IOrderInfo } from "../order-list/interface";
+import { ISpotInfo } from "../spot-detail/interface";
 
 import "./index.scss";
-import { ISpotInfo } from "./interface";
 
 definePageConfig({
     navigationBarTitleText: "订单详情",
