@@ -1,10 +1,21 @@
 .orderlist {
     padding: 0 20px;
     &_h5NavBar {
-        padding-bottom: 120px;
+        margin-bottom: 100px;
+    }
+    &_wrap {
+        position: absolute;
+        // top: 95px;
+        left: 0;
+        right: 0;
+        height: calc(100% - 95px);
+        background-color: #f4f4f4;
     }
     &_order {
         padding-bottom: 30px;
+        &_wrap {
+            padding: 20px 30px;
+        }
         &_tag {
             display: flex;
             justify-content: center;
@@ -16,14 +27,23 @@
             font-size: 18px;
             margin-bottom: 20px;
         }
+        &_box {
+            display: flex;
+            flex-direction: row;
+            border-radius: 16px;
+            background-color: #f8f8f8;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 8px 1px rgb(0 0 0 / 8%);
+            &_wrap {
+                padding: 20px 20px;
+            }
+        }
         &_info {
             display: flex;
             flex-direction: column;
-            border: 2px solid #73bcfa;
-            border-radius: 40px;
-            margin-bottom: 20px;
             &_wrap {
-                margin: 20px 20px;
+                margin: 5px 5px;
+                background-color: #ffffff;
             }
             &_text {
                 display: flex;

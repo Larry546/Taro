@@ -17,4 +17,13 @@ export interface ITicketInfo {
     ticketId: number;
     ticketName: string;
     ticketNum: number;
+    ticketPassenger?: Array<IPassengerInfo>;
+}
+
+interface IPassengerInfo {
+    passengerId: number;
+    passengerName: string;
+    passengerNumber: string;
+    passengerSex?: string;
+    passengerBirth?: string;
 }

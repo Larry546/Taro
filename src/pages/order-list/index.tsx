@@ -12,8 +12,10 @@ definePageConfig({
 
 export default class Index extends PureComponent<any> {
     orderList: Array<IOrderTime>;
+    top: number;
     constructor(props: any) {
         super(props);
+        this.top = getEnv() === "H5" ? 95 : 0;
         this.orderList = [
             {
                 orderCreateTime: "2022-03-03",
@@ -87,6 +89,10 @@ export default class Index extends PureComponent<any> {
 
     componentDidHide() {}
 
+    goToDetail = () => {
+        this.push("/pages/order-detail/index");
+    };
+
     render() {
         return (
             <View className="orderlist">
@@ -101,9 +107,9 @@ export default class Index extends PureComponent<any> {
                         ></AtNavBar>
                     </View>
                 ) : null}
-                <ScrollView scrollY>
+                <ScrollView scrollY className="orderlist_wrap" style={{ top: this.top }}>
                     {this.orderList.length ? (
-                        <View>
+                        <View className="orderlist_order_wrap">
                             <View>
                                 {this.orderList.map((item, index) => {
                                     // todo
@@ -117,10 +123,11 @@ export default class Index extends PureComponent<any> {
                                             {item.list.map((subitem, subindex) => {
                                                 return (
                                                     <View
-                                                        className="orderlist_order_info"
+                                                        className="orderlist_order_info orderlist_order_box"
                                                         key={subindex}
+                                                        onClick={this.goToDetail}
                                                     >
-                                                        <View className="orderlist_order_info_wrap">
+                                                        <View className="orderlist_order_info_wrap orderlist_order_box_wrap">
                                                             <View className="orderlist_order_info_text">
                                                                 <View className="orderlist_order_info_text_left">
                                                                     {subitem.orderTicket.map(
