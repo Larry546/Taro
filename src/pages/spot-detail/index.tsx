@@ -82,17 +82,27 @@ export default class Index extends PureComponent<any> {
                         <View className="spotdetail_basicInfo_name">
                             <Text>{this.spotInfo.spotName}</Text>
                         </View>
-                        <View className="spotdetail_basicInfo_rate">
-                            <AtRate value={this.spotInfo.spotRateScore} size={15} />
-                            <Text className="spotdetail_basicInfo_rate_num">
-                                {this.spotInfo.spotRateNum}条评价
-                            </Text>
+                        <View className="spotdetail_basicInfo_detail">
+                            <View className="spotdetail_basicInfo_left">
+                                <View className="spotdetail_basicInfo_rate">
+                                    <AtRate value={this.spotInfo.spotRateScore} size={15} />
+                                    <Text className="spotdetail_basicInfo_rate_num">
+                                        {this.spotInfo.spotRateNum}条评价
+                                    </Text>
+                                </View>
+                                <View className="spotdetail_basicInfo_time">
+                                    <Text>
+                                        开园时间：{this.spotInfo.spotOpenhour}-
+                                        {this.spotInfo.spotOffhour}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View className="spotdetail_basicInfo_intro">
+                                <Text>查看简介</Text>
+                                <Icon type={"right"} />
+                            </View>
                         </View>
-                        <View className="spotdetail_basicInfo_time">
-                            <Text>
-                                开园时间：{this.spotInfo.spotOpenhour}-{this.spotInfo.spotOffhour}
-                            </Text>
-                        </View>
+
                         <View className="spotdetail_basicInfo_address">
                             <Text>{this.spotInfo.spotAddress}</Text>
                         </View>
@@ -161,7 +171,17 @@ export default class Index extends PureComponent<any> {
                             <Text>该景点暂无门票可售</Text>
                         </View>
                     )}
+
+                    <View className="spotdetail_recommend">
+                        <View className="spotdetail_recommend_title">
+                            <Text>景点推荐</Text>
+                        </View>
+                        {/* todo */}
+                    </View>
                 </ScrollView>
+                <View className="spotdetail_footer">
+                    <Text>footer</Text>
+                </View>
             </View>
         );
     }

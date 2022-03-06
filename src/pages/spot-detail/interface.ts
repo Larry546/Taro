@@ -5,8 +5,8 @@ export interface ISpotInfo {
     spotAddress?: string;
     spotOpenhour?: string;
     spotOffhour?: string;
-    spotRateScore: number;
-    spotRateNum: number;
+    spotRateScore?: number;
+    spotRateNum?: number;
     spotImageURL?: string;
     spotType?: Array<string>;
     ticketList?: Array<ITicketInfo>;
