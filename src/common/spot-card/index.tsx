@@ -18,8 +18,15 @@ export default class Index extends PureComponent<ISpotCard> {
 
     render() {
         const { index, deleteFav, spotInfo, fromFav = false } = this.props;
-        const { spotImageURL, spotName, spotRateScore, spotRateNum, spotType, ticketList } =
-            spotInfo;
+        const {
+            spotImageURL,
+            spotName,
+            spotRateScore,
+            spotRateNum,
+            spotType,
+            ticketList,
+            spotAddress,
+        } = spotInfo;
         return (
             <View className="spotcard" key={index}>
                 <View className="spotcard_left" onClick={this.goToDetail}>
@@ -38,6 +45,9 @@ export default class Index extends PureComponent<ISpotCard> {
                                 {spotRateScore}分 {spotRateNum}
                                 人评价
                             </Text>
+                        </View>
+                        <View className="spotcard_left_text_address">
+                            <Text>{spotAddress}</Text>
                         </View>
                         {spotType && spotType?.length >= 1 ? (
                             <View className="spotcard_left_text_type">

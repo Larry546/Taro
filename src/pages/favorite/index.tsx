@@ -23,6 +23,7 @@ export default class Index extends PureComponent<any> {
                     "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
                 spotRateScore: 4.4,
                 spotRateNum: 666,
+                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号",
                 spotType: ["实时订票", "无需取票", "可定今日"],
                 ticketList: [
                     {
@@ -46,6 +47,7 @@ export default class Index extends PureComponent<any> {
                     "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
                 spotRateScore: 4.4,
                 spotRateNum: 666,
+                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
                 spotType: ["无需取票"],
             },
         ];
