@@ -3,7 +3,9 @@ import { View, Text, ScrollView, Swiper, SwiperItem } from "@tarojs/components";
 import { AtButton, AtSearchBar } from "taro-ui";
 import Taro from "@tarojs/taro";
 import Image from "../../common/base-component/image";
+import SpotItem from "../../common/spot-item";
 import { IState } from "./interface";
+import { ISpotInfo } from "../spot-detail/interface";
 
 import "./index.scss";
 
@@ -13,11 +15,96 @@ definePageConfig({
 
 export default class Index extends PureComponent<any> {
     state: IState;
+    spotList: Array<ISpotInfo>;
     constructor(props: any) {
         super(props);
         this.state = {
             searchValue: "",
         };
+        this.spotList = [
+            {
+                spotId: 1,
+                spotName: "上海野生动物园1111",
+                spotImageURL:
+                    "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
+                spotRateScore: 4.4,
+                spotRateNum: 666,
+                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号",
+                spotType: ["自然景观", "主题乐园", "动植物园"],
+                spotIntro: "360度欣赏申城的地标。",
+                ticketList: [
+                    {
+                        ticketId: 1,
+                        ticketName: "成人票",
+                        ticketPrice: 99,
+                        ticketRequest: "1.4米以上",
+                    },
+                    {
+                        ticketId: 2,
+                        ticketName: "儿童票票",
+                        ticketPrice: 44,
+                        ticketRequest: "1.0米(含)-1.4米(含)",
+                    },
+                ],
+            },
+            {
+                spotId: 2,
+                spotName: "上海野生动物园2222",
+                spotImageURL:
+                    "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
+                spotRateScore: 4.4,
+                spotRateNum: 666,
+                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
+                spotType: ["动植物园"],
+                spotIntro: "欣赏众多世界名人逼真蜡像。",
+                ticketList: [
+                    {
+                        ticketId: 2,
+                        ticketName: "儿童票票",
+                        ticketPrice: 44,
+                        ticketRequest: "1.0米(含)-1.4米(含)",
+                    },
+                ],
+            },
+            {
+                spotId: 2,
+                spotName: "上海野生动物园333",
+                spotImageURL:
+                    "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
+                spotRateScore: 4.4,
+                spotRateNum: 666,
+                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
+                spotType: ["主题乐园"],
+                spotIntro: "欣赏各种品牌的罕见古董车。",
+                ticketList: [
+                    {
+                        ticketId: 2,
+                        ticketName: "儿童票票",
+                        ticketPrice: 44,
+                        ticketRequest: "1.0米(含)-1.4米(含)",
+                    },
+                ],
+            },
+            {
+                spotId: 2,
+                spotName: "上海野生动物园444",
+                spotImageURL:
+                    "https://youimg1.c-ctrip.com/target/010691200097uy8rk36FE_D_750_420.jpg?proc=autoorient",
+                spotRateScore: 4.4,
+                spotRateNum: 666,
+                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
+                spotType: ["自然景观"],
+                spotIntro: "欣赏众多世界名人逼真蜡像。",
+                ticketList: [
+                    // {
+                    //     ticketId: 2,
+                    //     ticketName: "儿童票票",
+                    //     ticketPrice: 44,
+                    //     ticketRequest: "1.0米(含)-1.4米(含)",
+                    // },
+                ],
+            },
+        ];
     }
     componentWillMount() {
         // this.http.get("/user/list");
@@ -138,6 +225,14 @@ export default class Index extends PureComponent<any> {
                     <View className="index_spot">
                         <View className="index_spot_title">
                             <Text>精选推荐</Text>
+                        </View>
+                        <View className="index_spot_info">
+                            {this.spotList.map((item, index) => {
+                                return <SpotItem index={index} spotInfo={item} />;
+                            })}
+                        </View>
+                        <View className="index_spot_end">
+                            <Text> — 已经到底了! —</Text>
                         </View>
                     </View>
                 </ScrollView>
