@@ -1,10 +1,10 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
-import { AtButton, AtNavBar, AtRate } from "taro-ui";
+import { AtButton, AtFloatLayout, AtNavBar, AtRate } from "taro-ui";
 import getEnv from "../../system/tools/environment";
 import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
-import { ISpotInfo } from "./interface";
+import { ISpotInfo, ISpotState } from "./interface";
 
 import "./index.scss";
 
@@ -13,11 +13,15 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
+    state: ISpotState;
     top: number;
     spotInfo: ISpotInfo;
     constructor(props: any) {
         super(props);
         this.top = getEnv() === "H5" ? 95 : 0;
+        this.state = {
+            introOpen: false,
+        };
         this.spotInfo = {
             spotId: 1,
             spotName: "绍兴柯岩风景区",
@@ -55,6 +59,26 @@ export default class Index extends PureComponent<any> {
     componentDidShow() {}
 
     componentDidHide() {}
+
+    switchIntro = () => {
+        if (this.state.introOpen) {
+            this.onCloseIntro();
+        } else {
+            this.onOpenIntro();
+        }
+    };
+
+    onCloseIntro = () => {
+        this.setState({
+            introOpen: false,
+        });
+    };
+
+    onOpenIntro = () => {
+        this.setState({
+            introOpen: true,
+        });
+    };
 
     render() {
         return (
@@ -99,10 +123,17 @@ export default class Index extends PureComponent<any> {
                                     </Text>
                                 </View>
                             </View>
-                            <View className="spotdetail_basicInfo_intro">
+                            <View className="spotdetail_basicInfo_intro" onClick={this.switchIntro}>
                                 <Text>查看简介</Text>
                                 <Icon type={"right"} />
                             </View>
+                            <AtFloatLayout
+                                scrollY
+                                isOpened={this.state.introOpen}
+                                title={this.spotInfo.spotName + "简介"}
+                            >
+                                <Text>{this.spotInfo.spotIntro}</Text>
+                            </AtFloatLayout>
                         </View>
 
                         <View className="spotdetail_basicInfo_address">

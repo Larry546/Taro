@@ -1,3 +1,7 @@
+export interface ISpotState {
+    introOpen: boolean;
+}
+
 export interface ISpotInfo {
     spotId: number;
     spotName: string;
@@ -9,6 +13,7 @@ export interface ISpotInfo {
     spotRateNum?: number;
     spotImageURL?: string;
     spotType?: Array<string>;
+    spotIntro?: string;
     ticketList?: Array<ITicketInfo>;
 }
 
