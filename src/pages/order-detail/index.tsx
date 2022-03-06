@@ -182,6 +182,9 @@ export default class Index extends PureComponent<any> {
                         </View>
                     </View>
                 </ScrollView>
+                <View className="orderdetail_footer">
+                    <Text>footer</Text>
+                </View>
             </View>
         );
     }
