@@ -50,6 +50,10 @@ export default class Index extends PureComponent<any> {
         console.log("🚀 ~ file: index.tsx ~ line 50 ~ Index ~ value", value);
     };
 
+    showSpotList = () => {
+        this.push("/pages/spot-list/index");
+    };
+
     render() {
         const { searchValue } = this.state;
         return (
@@ -58,7 +62,7 @@ export default class Index extends PureComponent<any> {
                     fixed
                     value={searchValue}
                     onChange={this.onChangeSearchValue}
-                    onActionClick={this.showToast}
+                    onActionClick={this.showSpotList}
                 />
                 <ScrollView scrollY className="index_wrap" style={{ height: "100%" }}>
                     <Text>Hello world!</Text>
