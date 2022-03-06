@@ -2,7 +2,7 @@ import PureComponent from "../../common/pure-component";
 import getEnv from "../../system/tools/environment";
 import { AtButton, AtNavBar } from "taro-ui";
 import { View, Text, ScrollView } from "@tarojs/components";
-import { IOrderInfo } from "../order-list/interface";
+import { IOrderInfo } from "./interface";
 import { ISpotInfo } from "../spot-detail/interface";
 
 import "./index.scss";
