@@ -27,19 +27,21 @@ export default class Index extends PureComponent<any> {
             spotOffhour: "16:00",
             spotRateScore: 4.5,
             spotRateNum: 996,
-            spotType: ["无需取票", "无忧退"],
+            spotType: ["游乐园", "自然风景"],
             ticketList: [
                 {
                     ticketId: 1,
                     ticketName: "成人票",
                     ticketPrice: 99,
                     ticketRequest: "1.4米以上",
+                    ticketTag: ["无需取票", "无忧退"],
                 },
                 {
                     ticketId: 2,
                     ticketName: "儿童票票",
                     ticketPrice: 44,
                     ticketRequest: "1.0米(含)-1.4米(含)",
+                    ticketTag: ["无需取票"],
                 },
             ],
         };
@@ -129,11 +131,10 @@ export default class Index extends PureComponent<any> {
                                                     className="spotdetail_ticketInfo_card_tag"
                                                     style={{ marginBottom: "6px" }}
                                                 >
-                                                    {this.spotInfo.spotType?.map((type, index) => {
+                                                    {item.ticketTag?.map((tag, index) => {
                                                         let isLast =
-                                                            this.spotInfo.spotType &&
-                                                            this.spotInfo.spotType?.length - 1 ===
-                                                                index;
+                                                            item.ticketTag &&
+                                                            item.ticketTag?.length - 1 === index;
                                                         return (
                                                             <View
                                                                 style={{
@@ -142,7 +143,7 @@ export default class Index extends PureComponent<any> {
                                                                         : "#0086f6",
                                                                 }}
                                                             >
-                                                                <Text>{type}</Text>
+                                                                <Text>{tag}</Text>
                                                                 {!isLast ? <Text> | </Text> : null}
                                                             </View>
                                                         );

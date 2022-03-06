@@ -17,4 +17,5 @@ export interface ITicketInfo {
     ticketName: string;
     ticketPrice?: number;
     ticketRequest?: string;
+    ticketTag?: Array<string>;
 }

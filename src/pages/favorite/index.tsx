@@ -24,19 +24,21 @@ export default class Index extends PureComponent<any> {
                 spotRateScore: 4.4,
                 spotRateNum: 666,
                 spotAddress: "浙江省绍兴市柯桥区柯岩大道558号",
-                spotType: ["实时订票", "无需取票", "可定今日"],
+                spotType: ["自然景色", "游乐场"],
                 ticketList: [
                     {
                         ticketId: 1,
                         ticketName: "成人票",
                         ticketPrice: 99,
                         ticketRequest: "1.4米以上",
+                        ticketTag: ["无需取票", "无忧退"],
                     },
                     {
                         ticketId: 2,
                         ticketName: "儿童票票",
                         ticketPrice: 44,
                         ticketRequest: "1.0米(含)-1.4米(含)",
+                        ticketTag: ["无需取票", "无忧退"],
                     },
                 ],
             },
@@ -49,6 +51,15 @@ export default class Index extends PureComponent<any> {
                 spotRateNum: 666,
                 spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
                 spotType: ["无需取票"],
+                ticketList: [
+                    {
+                        ticketId: 1,
+                        ticketName: "成人票",
+                        ticketPrice: 99,
+                        ticketRequest: "1.4米以上",
+                        ticketTag: ["无忧退"],
+                    },
+                ],
             },
         ];
     }

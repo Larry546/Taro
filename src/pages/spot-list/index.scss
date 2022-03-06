@@ -1,0 +1,20 @@
+.spotlist {
+    padding: 0 20px;
+    &_h5NavBar {
+        margin-bottom: 100px;
+    }
+    &_scroll {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: calc(100% - 100px);
+    }
+    &_end {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        font-size: 30px;
+        color: #888;
+    }
+}

@@ -49,9 +49,9 @@ export default class Index extends PureComponent<ISpotCard> {
                         <View className="spotcard_left_text_address">
                             <Text>{spotAddress}</Text>
                         </View>
-                        {spotType && spotType?.length >= 1 ? (
+                        {ticketList && ticketList[0].ticketTag ? (
                             <View className="spotcard_left_text_type">
-                                <Text>{spotType[0]}</Text>
+                                <Text>{ticketList[0].ticketTag[0]}</Text>
                             </View>
                         ) : null}
                     </View>
