@@ -1,8 +1,10 @@
-@import url(../../common/base-component/icon/icon.scss);
-
 .index {
-    position: relative;
     &_wrap {
-        padding: 84px 0 0 0;
+        position: absolute;
+        top: 84px;
+        right: 0;
+        left: 0;
+        height: 100%;
+        background-color: yellow;
     }
 }

@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./common/base-component/icon/icon.scss";
 import "taro-ui/dist/style/index.scss";
 import "./app.scss";
 
