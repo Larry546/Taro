@@ -11,14 +11,13 @@ export default class Index extends PureComponent<ISpotItem> {
     }
 
     render() {
-        const { index, spotInfo } = this.props;
+        const { spotInfo } = this.props;
         const { spotImageURL, spotName, spotIntro, ticketList, spotRateNum } = spotInfo;
         return (
             <View
                 className=" item 
                     item_mleft 
                     item_mright"
-                key={index}
             >
                 <Image url={spotImageURL} classWrap={"item_image"} width={"100%"} height={"100%"} />
 

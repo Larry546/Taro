@@ -228,7 +228,11 @@ export default class Index extends PureComponent<any> {
                         </View>
                         <View className="index_spot_info">
                             {this.spotList.map((item, index) => {
-                                return <SpotItem index={index} spotInfo={item} />;
+                                return (
+                                    <View key={index}>
+                                        <SpotItem spotInfo={item} />
+                                    </View>
+                                );
                             })}
                         </View>
                         <View className="index_spot_end">
