@@ -35,6 +35,12 @@
         &_info {
             display: grid;
             grid-template-columns: repeat(2, 50%);
+            &_mleft:nth-child(even) {
+                margin-left: 6px;
+            }
+            &_mright:nth-child(odd) {
+                margin-right: 6px;
+            }
         }
         &_end {
             display: flex;

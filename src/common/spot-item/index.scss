@@ -12,12 +12,6 @@
         height: 341px;
         position: relative;
     }
-    &_mleft:nth-child(even) {
-        margin-left: 6px;
-    }
-    &_mright:nth-child(odd) {
-        margin-right: 6px;
-    }
     &_bottom {
         display: flex;
         flex-direction: column;
