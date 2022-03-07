@@ -175,15 +175,20 @@ export default class Index extends PureComponent<any> {
                                 </View>
                             </View>
                         </View>
-                        <View className="orderdetail_info_footer">
-                            <AtButton size="small">删除订单</AtButton>
-                            <AtButton size="small">再次预定</AtButton>
-                            <AtButton size="small">评论</AtButton>
-                        </View>
                     </View>
                 </ScrollView>
                 <View className="orderdetail_footer">
-                    <Text>footer</Text>
+                    <View className="orderdetail_footer_buttons">
+                        <View className="orderdetail_footer_button">
+                            <Text>删除订单</Text>
+                        </View>
+                        <View className="orderdetail_footer_button">
+                            <Text>再次预定</Text>
+                        </View>
+                        <View className="orderdetail_footer_button">
+                            <Text>评论</Text>
+                        </View>
+                    </View>
                 </View>
             </View>
         );
