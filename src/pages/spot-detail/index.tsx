@@ -145,10 +145,7 @@ export default class Index extends PureComponent<any> {
                                                 <View className="spotdetail_ticketInfo_card_title">
                                                     <Text>{item.ticketName}</Text>
                                                 </View>
-                                                <View
-                                                    className="spotdetail_ticketInfo_card_tag"
-                                                    style={{ marginBottom: "6px" }}
-                                                >
+                                                <View className="spotdetail_ticketInfo_card_tag">
                                                     {item.ticketTag?.map((tag, index) => {
                                                         let isLast =
                                                             item.ticketTag &&
@@ -161,8 +158,12 @@ export default class Index extends PureComponent<any> {
                                                                         : "#0086f6",
                                                                 }}
                                                             >
-                                                                <Text>{tag}</Text>
-                                                                {!isLast ? <Text> | </Text> : null}
+                                                                <Text>{tag} </Text>
+                                                                {!isLast ? (
+                                                                    <Text style={{ color: "#666" }}>
+                                                                        |{" "}
+                                                                    </Text>
+                                                                ) : null}
                                                             </View>
                                                         );
                                                     })}
