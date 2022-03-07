@@ -2,7 +2,7 @@ import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
 import { AtButton, AtInput, AtNavBar } from "taro-ui";
 import getEnv from "../../system/tools/environment";
-import { IRegisterState } from "./interface";
+import { IRegisterInfo } from "./interface";
 
 import "./index.scss";
 
@@ -11,7 +11,7 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
-    state: IRegisterState;
+    state: IRegisterInfo;
     constructor(props: any) {
         super(props);
         this.state = {

@@ -1,7 +1,5 @@
-export interface IRegisterState {
-    userAccount: string;
-    userPassword: string;
+import { IUserInfo } from "../user-info/interface";
+
+export interface IRegisterInfo extends IUserInfo {
     userCheckPassword: string;
-    userNickname?: string;
-    userContact?: string;
 }

@@ -55,8 +55,9 @@ export default class Index extends PureComponent<any> {
         // this.push("/pages/order-list/index");
     };
 
-    goToUserDetail = () => {
-        if (!this.checkLoginStatus()) return;
+    goToUserInfo = () => {
+        // if (!this.checkLoginStatus()) return;
+        this.push("/pages/user-info/index");
     };
 
     goToPassengerList = () => {
@@ -72,7 +73,7 @@ export default class Index extends PureComponent<any> {
             <View className="user">
                 <View>
                     {this.islogin ? (
-                        <View className="user_header" onClick={this.goToUserDetail}>
+                        <View className="user_header" onClick={this.goToUserInfo}>
                             <View className="user_header_avatar">
                                 <AtAvatar circle text="用户" size="large" />
                             </View>
@@ -142,7 +143,7 @@ export default class Index extends PureComponent<any> {
                             <AtListItem
                                 title="个人信息"
                                 arrow="right"
-                                onClick={this.goToUserDetail}
+                                onClick={this.goToUserInfo}
                             />
                             <AtListItem
                                 title="出行人信息"
