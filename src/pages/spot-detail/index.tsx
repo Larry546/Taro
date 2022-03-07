@@ -1,6 +1,6 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
-import { AtButton, AtFloatLayout, AtNavBar, AtRate } from "taro-ui";
+import { AtFloatLayout, AtNavBar, AtRate } from "taro-ui";
 import getEnv from "../../system/tools/environment";
 import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
@@ -212,7 +212,27 @@ export default class Index extends PureComponent<any> {
                     </View>
                 </ScrollView>
                 <View className="spotdetail_footer">
-                    <Text>footer</Text>
+                    <View className="spotdetail_footer_left">
+                        <View className="spotdetail_footer_left_single">
+                            <View className="spotdetail_footer_left_icon">
+                                <Icon type={"aixin"} size={24} />
+                            </View>
+                            <Text className="spotdetail_footer_left_text">收藏</Text>
+                        </View>
+                        <View className="spotdetail_footer_left_single">
+                            <View className="spotdetail_footer_left_icon">
+                                <Icon type={"pingjia"} size={24} />
+                            </View>
+                            <Text className="spotdetail_footer_left_text">写点评</Text>
+                        </View>
+                    </View>
+                    <View className="spotdetail_footer_right">
+                        <View className="spotdetail_footer_right_wrap">
+                            <View className="spotdetail_footer_right_button">
+                                <Text>立即预定</Text>
+                            </View>
+                        </View>
+                    </View>
                 </View>
             </View>
         );
