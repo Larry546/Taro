@@ -71,6 +71,8 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
+        const { userAccount, userPassword, userCheckPassword, userContact, userNickname } =
+            this.state;
         return (
             <View className="register">
                 <H5NavBar />
@@ -85,7 +87,7 @@ export default class Index extends PureComponent<any> {
                                 placeholder="用户名"
                                 name="userAccount"
                                 type="text"
-                                value={this.state.userAccount}
+                                value={userAccount}
                                 onChange={this.onChangeAccount}
                             />
                             <AtInput
@@ -93,7 +95,7 @@ export default class Index extends PureComponent<any> {
                                 placeholder="密码"
                                 name="userPassword"
                                 type="password"
-                                value={this.state.userPassword}
+                                value={userPassword}
                                 onChange={this.onChangePassword}
                             />
                             <AtInput
@@ -101,21 +103,21 @@ export default class Index extends PureComponent<any> {
                                 placeholder="再次输入密码"
                                 name="userCheckPassword"
                                 type="password"
-                                value={this.state.userCheckPassword}
+                                value={userCheckPassword}
                                 onChange={this.onChangeCheckPassword}
                             />
                             <AtInput
                                 placeholder="昵称(选填)"
                                 name="userNickname"
                                 type="text"
-                                value={this.state.userNickname}
+                                value={userNickname}
                                 onChange={this.onChangeNickname}
                             />
                             <AtInput
                                 placeholder="联系方式(选填)"
                                 name="userContact"
                                 type="text"
-                                value={this.state.userContact}
+                                value={userContact}
                                 onChange={this.onChangeContact}
                             />
                         </View>

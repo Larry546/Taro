@@ -56,6 +56,7 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
+        const { userAccount, userPassword } = this.state;
         return (
             <View className="login">
                 <H5NavBar />
@@ -70,7 +71,7 @@ export default class Index extends PureComponent<any> {
                                 placeholder="用户名"
                                 name="userAccount"
                                 type="text"
-                                value={this.state.userAccount}
+                                value={userAccount}
                                 onChange={this.onChangeAccount}
                             />
                             <AtInput
@@ -78,7 +79,7 @@ export default class Index extends PureComponent<any> {
                                 placeholder="密码"
                                 name="userPassword"
                                 type="password"
-                                value={this.state.userPassword}
+                                value={userPassword}
                                 onChange={this.onChangePassword}
                             />
                         </View>
