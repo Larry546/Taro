@@ -1,7 +1,7 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
-import { AtInput, AtNavBar } from "taro-ui";
-import getEnv from "../../system/tools/environment";
+import { AtInput } from "taro-ui";
+import H5NavBar from "../../common/h5NavBar";
 import { IUserInfo } from "./interface";
 
 import "./index.scss";
@@ -24,16 +24,7 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="userinfo">
-                {getEnv() === "H5" ? (
-                    <View className="userinfo_h5NavBar">
-                        <AtNavBar
-                            fixed={true}
-                            border={false}
-                            onClickLeftIcon={this.pop}
-                            leftIconType={{ value: "left", prefixClass: "icon", color: "#000000" }}
-                        ></AtNavBar>
-                    </View>
-                ) : null}
+                <H5NavBar />
                 <View className="userinfo_info">
                     <View className="userinfo_info_title">
                         <Text>用户信息(暂不支持修改)</Text>

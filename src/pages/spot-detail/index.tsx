@@ -1,7 +1,8 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
-import { AtFloatLayout, AtNavBar, AtRate } from "taro-ui";
+import { AtFloatLayout, AtRate } from "taro-ui";
 import getEnv from "../../system/tools/environment";
+import H5NavBar from "../../common/h5NavBar";
 import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
 import { ISpotInfo, ISpotState } from "./interface";
@@ -62,38 +63,24 @@ export default class Index extends PureComponent<any> {
 
     switchIntro = () => {
         if (this.state.introOpen) {
-            this.onCloseIntro();
+            this.setState({
+                introOpen: false,
+            });
         } else {
-            this.onOpenIntro();
+            this.setState({
+                introOpen: true,
+            });
         }
     };
 
-    onCloseIntro = () => {
-        this.setState({
-            introOpen: false,
-        });
-    };
-
-    onOpenIntro = () => {
-        this.setState({
-            introOpen: true,
-        });
+    goToBooking = () => {
+        this.push("/pages/booking/index");
     };
 
     render() {
         return (
             <View className="spotdetail">
-                {getEnv() === "H5" ? (
-                    <View className="spotdetail_h5NavBar">
-                        <AtNavBar
-                            fixed={true}
-                            border={false}
-                            onClickLeftIcon={this.pop}
-                            leftIconType={{ value: "left", prefixClass: "icon", color: "#000000" }}
-                        ></AtNavBar>
-                    </View>
-                ) : null}
-
+                <H5NavBar />
                 <ScrollView className="spotdetail_wrap" style={{ top: this.top }}>
                     <View className="spotdeail_image">
                         <Image
@@ -227,7 +214,7 @@ export default class Index extends PureComponent<any> {
                         </View>
                     </View>
                     <View className="spotdetail_footer_right">
-                        <View className="spotdetail_footer_right_wrap">
+                        <View className="spotdetail_footer_right_wrap" onClick={this.goToBooking}>
                             <View className="spotdetail_footer_right_button">
                                 <Text>立即预定</Text>
                             </View>

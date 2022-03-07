@@ -1,7 +1,7 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
-import { AtButton, AtInput, AtNavBar } from "taro-ui";
-import getEnv from "../../system/tools/environment";
+import { AtButton, AtInput } from "taro-ui";
+import H5NavBar from "../../common/h5NavBar";
 import { IUserInfo } from "../user-info/interface";
 
 import "./index.scss";
@@ -58,16 +58,7 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="login">
-                {getEnv() === "H5" ? (
-                    <View className="login_h5NavBar">
-                        <AtNavBar
-                            fixed={true}
-                            border={false}
-                            onClickLeftIcon={this.pop}
-                            leftIconType={{ value: "left", prefixClass: "icon", color: "#000000" }}
-                        ></AtNavBar>
-                    </View>
-                ) : null}
+                <H5NavBar />
                 <View className="login_wrap">
                     <View className="login_title">
                         <Text>用户登陆</Text>

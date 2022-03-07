@@ -1,7 +1,8 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
-import { AtButton, AtNavBar } from "taro-ui";
+import { AtButton } from "taro-ui";
 import getEnv from "../../system/tools/environment";
+import H5NavBar from "../../common/h5NavBar";
 import { IOrderTime } from "../order-detail/interface";
 
 import "./index.scss";
@@ -96,17 +97,7 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="orderlist">
-                {getEnv() === "H5" ? (
-                    <View className="orderlist_h5NavBar">
-                        <AtNavBar
-                            fixed={true}
-                            border={false}
-                            title={"订单列表"}
-                            onClickLeftIcon={this.pop}
-                            leftIconType={{ value: "left", prefixClass: "icon", color: "#000000" }}
-                        ></AtNavBar>
-                    </View>
-                ) : null}
+                <H5NavBar title={"订单列表"} />
                 <ScrollView scrollY className="orderlist_wrap" style={{ top: this.top }}>
                     {this.orderList.length ? (
                         <View className="orderlist_order_wrap">

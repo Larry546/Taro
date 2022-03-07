@@ -1,7 +1,7 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
-import { AtButton, AtNavBar } from "taro-ui";
 import getEnv from "../../system/tools/environment";
+import H5NavBar from "../../common/h5NavBar";
 import { ISpotInfo } from "../spot-detail/interface";
 import SpotCard from "../../common/spot-card";
 
@@ -75,17 +75,7 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="spotlist">
-                {getEnv() === "H5" ? (
-                    <View className="spotlist_h5NavBar">
-                        <AtNavBar
-                            fixed={true}
-                            border={false}
-                            title={"景点列表"}
-                            onClickLeftIcon={this.pop}
-                            leftIconType={{ value: "left", prefixClass: "icon", color: "#000000" }}
-                        ></AtNavBar>
-                    </View>
-                ) : null}
+                <H5NavBar title={"景点列表"} />
                 <ScrollView scrollY className="spotlist_scroll" style={{ top: this.top }}>
                     {this.spotList.length ? (
                         <View>
