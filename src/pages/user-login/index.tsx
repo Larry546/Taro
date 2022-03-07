@@ -47,11 +47,11 @@ export default class Index extends PureComponent<any> {
         this.push("/pages/user-register/index", true);
     };
 
-    onChangeAccount = (value, evnet) => {
+    onChangeAccount = value => {
         this.setState({ userAccount: value });
     };
 
-    onChangePassword = (value, evnet) => {
+    onChangePassword = value => {
         this.setState({ userPassword: value });
     };
 

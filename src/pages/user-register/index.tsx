@@ -32,23 +32,23 @@ export default class Index extends PureComponent<any> {
 
     componentDidHide() {}
 
-    onChangeAccount = (value, evnet) => {
+    onChangeAccount = value => {
         this.setState({ userAccount: value });
     };
 
-    onChangePassword = (value, evnet) => {
+    onChangePassword = value => {
         this.setState({ userPassword: value });
     };
 
-    onChangeCheckPassword = (value, evnet) => {
+    onChangeCheckPassword = value => {
         this.setState({ userCheckPassword: value });
     };
 
-    onChangeNickname = (value, evnet) => {
+    onChangeNickname = value => {
         this.setState({ userNickname: value });
     };
 
-    onChangeContact = (value, evnet) => {
+    onChangeContact = value => {
         this.setState({ onChangeContact: value });
     };
 
