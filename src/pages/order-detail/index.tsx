@@ -75,7 +75,7 @@ export default class Index extends PureComponent<any> {
         return (
             <View className="orderdetail">
                 <H5NavBar />
-                <ScrollView className="orderdetail_info" style={{ top: this.infoTop }}>
+                <ScrollView scrollY className="orderdetail_info" style={{ top: this.infoTop }}>
                     <View className="orderdetail_info_wrap">
                         <View className="orderdetail_info_header">
                             <View className="orderdetail_info_header_status">

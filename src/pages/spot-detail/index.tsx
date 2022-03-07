@@ -81,7 +81,7 @@ export default class Index extends PureComponent<any> {
         return (
             <View className="spotdetail">
                 <H5NavBar />
-                <ScrollView className="spotdetail_wrap" style={{ top: this.top }}>
+                <ScrollView scrollY className="spotdetail_wrap" style={{ top: this.top }}>
                     <View className="spotdeail_image">
                         <Image
                             url={

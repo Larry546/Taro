@@ -1,11 +1,10 @@
 .orderdetail {
-    // padding: 0 20px;
     &_info {
         position: absolute;
-        // top: 95px;
         left: 0;
         right: 0;
-        height: calc(100% - 100px);
+        height: calc(100% - 215px);
+        padding-bottom: 120px;
         background-image: -webkit-gradient(
             linear,
             left bottom,
@@ -107,8 +106,8 @@
         position: fixed;
         bottom: 0;
         left: 0;
+        right: 0;
         height: 120px;
-        width: 100%;
         background-color: #ffffff;
         box-shadow: 0 -2px 8px 0 rgb(0 0 0 / 8%);
         font-size: 30px;
