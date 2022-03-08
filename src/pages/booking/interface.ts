@@ -1,3 +1,5 @@
+import { IPassengerInfo } from "../order-detail/interface";
+
 export interface IBookingState {
     calendarOpen: boolean;
     selectedDate: string;
@@ -7,6 +9,6 @@ export interface IBookingState {
         ticketName: string;
         ticketPrice: number;
         ticketNum: number;
-        passengerId?: number;
+        passenger?: Array<IPassengerInfo>;
     }>;
 }
