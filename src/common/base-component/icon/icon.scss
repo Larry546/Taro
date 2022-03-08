@@ -16,6 +16,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-xiezi:before {
+    content: "\e69c";
+}
+
+.icon-xinzeng:before {
+    content: "\e620";
+}
+
 .icon-girl:before {
     content: "\e678";
 }
