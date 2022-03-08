@@ -1,0 +1,42 @@
+.edit {
+    &_item {
+        display: flex;
+        flex-direction: row;
+        margin-left: 32px;
+        padding: 24px 0;
+        border-bottom: 1px solid #eff4f9;
+        font-size: 32px;
+        &_title {
+            color: #333;
+            margin-right: 16px;
+            width: 172px;
+            line-height: 1.5;
+        }
+        &_placeholder {
+            padding-right: 100px;
+            color: #333;
+        }
+    }
+    &_sex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100px;
+        padding: 0 40px;
+        &_margin {
+            padding-left: 30px;
+        }
+    }
+    &_button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 88px;
+        margin: 20px 40px;
+        background-color: #0086f6;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 30px;
+        font-weight: 600;
+    }
+}
