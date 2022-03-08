@@ -3,7 +3,8 @@
         position: absolute;
         left: 0;
         right: 0;
-        padding-bottom: 144px;
+        height: calc(100% - 120px);
+        padding-bottom: 120px;
         background-color: #eceff4;
     }
     &_basicInfo {
@@ -122,6 +123,7 @@
         left: 0;
         height: 120px;
         width: 100%;
+        z-index: 99;
         background-color: #ffffff;
         box-shadow: 0 -2px 8px 0 rgb(0 0 0 / 8%);
         display: flex;

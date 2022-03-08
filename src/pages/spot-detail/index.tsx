@@ -48,20 +48,6 @@ export default class Index extends PureComponent<any> {
                     ticketRequest: "1.0米(含)-1.4米(含)",
                     ticketTag: ["无需取票"],
                 },
-                {
-                    ticketId: 1,
-                    ticketName: "成人票",
-                    ticketPrice: 99,
-                    ticketRequest: "1.4米以上",
-                    ticketTag: ["无需取票", "无忧退"],
-                },
-                {
-                    ticketId: 2,
-                    ticketName: "儿童票票",
-                    ticketPrice: 44,
-                    ticketRequest: "1.0米(含)-1.4米(含)",
-                    ticketTag: ["无需取票"],
-                },
             ],
         };
     }
