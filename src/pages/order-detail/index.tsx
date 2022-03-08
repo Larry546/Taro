@@ -45,8 +45,10 @@ export default class Index extends PureComponent<any> {
                     ticketPassenger: [
                         {
                             passengerId: 1,
-                            passengerName: "小明的撒",
-                            passengerNumber: "123456789",
+                            passengerName:
+                                "小明的撒小明的撒小明的撒小明的撒小明的撒小明的撒小明的撒",
+                            passengerNumber:
+                                "123456789123456789123456789123456789123456789123456789123456789",
                         },
                     ],
                 },
@@ -134,8 +136,18 @@ export default class Index extends PureComponent<any> {
                                                                     "orderdetail_info_ticket_passenger_info"
                                                                 }
                                                             >
-                                                                <Text>{pass.passengerName}</Text>
-                                                                <Text>
+                                                                <Text
+                                                                    className={
+                                                                        "orderdetail_info_ticket_passenger_info_webkit"
+                                                                    }
+                                                                >
+                                                                    {pass.passengerName}
+                                                                </Text>
+                                                                <Text
+                                                                    className={
+                                                                        "orderdetail_info_ticket_passenger_info_webkit"
+                                                                    }
+                                                                >
                                                                     证件号：{pass.passengerNumber}
                                                                 </Text>
                                                             </View>

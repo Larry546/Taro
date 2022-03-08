@@ -79,7 +79,12 @@ export default class Index extends PureComponent<any> {
                 ticketPrice: item.ticketPrice,
                 ticketNum: 0,
                 passenger: [
-                    { passengerId: 1, passengerName: "啊哈", passengerNumber: "123456" },
+                    {
+                        passengerId: 1,
+                        passengerName: "啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈",
+                        passengerNumber:
+                            "123456123456123456123456123456123456123456123456123456123456123456123456123456123456",
+                    },
                     { passengerId: 2, passengerName: "啊哈", passengerNumber: "123456" },
                 ],
             });
@@ -279,8 +284,10 @@ export default class Index extends PureComponent<any> {
                                                                 className="booking_info_passenger_info_single_traveler_info"
                                                                 onClick={() => {}}
                                                             >
-                                                                <Text>{pas.passengerName}</Text>
-                                                                <Text className="booking_info_passenger_info_single_traveler_info_id">
+                                                                <Text className="booking_info_passenger_info_single_traveler_info_webkit">
+                                                                    {pas.passengerName}
+                                                                </Text>
+                                                                <Text className="booking_info_passenger_info_single_traveler_info_webkit booking_info_passenger_info_single_traveler_info_id">
                                                                     证件号：{pas.passengerNumber}
                                                                 </Text>
                                                             </View>
