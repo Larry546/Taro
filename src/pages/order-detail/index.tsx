@@ -150,7 +150,7 @@ export default class Index extends PureComponent<any> {
                         </View>
 
                         <View className="orderdetail_info_box">
-                            <View className="orderdetail_info_box_wrap">
+                            <View className="orderdetail_info_box_wrap" onClick={() => {}}>
                                 <View className="orderdetail_info_spot">
                                     <View className="orderdetail_info_spot_name">
                                         <Text>{this.spotInfo.spotName}</Text>
@@ -169,13 +169,13 @@ export default class Index extends PureComponent<any> {
                 </ScrollView>
                 <View className="orderdetail_footer">
                     <View className="orderdetail_footer_buttons">
-                        <View className="orderdetail_footer_button">
+                        <View className="orderdetail_footer_button" onClick={() => {}}>
                             <Text>删除订单</Text>
                         </View>
-                        <View className="orderdetail_footer_button">
+                        <View className="orderdetail_footer_button" onClick={() => {}}>
                             <Text>再次预定</Text>
                         </View>
-                        <View className="orderdetail_footer_button">
+                        <View className="orderdetail_footer_button" onClick={() => {}}>
                             <Text>评论</Text>
                         </View>
                     </View>

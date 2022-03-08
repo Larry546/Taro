@@ -168,7 +168,10 @@ export default class Index extends PureComponent<any> {
                                                         );
                                                     })}
                                                 </View>
-                                                <View className="spotdetail_ticketInfo_card_tag">
+                                                <View
+                                                    className="spotdetail_ticketInfo_card_tag"
+                                                    onClick={() => {}}
+                                                >
                                                     <Text>官方 | 购买须知 </Text>
                                                     <Icon type={"right"} />
                                                 </View>
@@ -201,13 +204,13 @@ export default class Index extends PureComponent<any> {
                 </ScrollView>
                 <View className="spotdetail_footer">
                     <View className="spotdetail_footer_left">
-                        <View className="spotdetail_footer_left_single">
+                        <View className="spotdetail_footer_left_single" onClick={() => {}}>
                             <View className="spotdetail_footer_left_icon">
                                 <Icon type={"aixin"} size={24} />
                             </View>
                             <Text className="spotdetail_footer_left_text">收藏</Text>
                         </View>
-                        <View className="spotdetail_footer_left_single">
+                        <View className="spotdetail_footer_left_single" onClick={() => {}}>
                             <View className="spotdetail_footer_left_icon">
                                 <Icon type={"pingjia"} size={24} />
                             </View>

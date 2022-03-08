@@ -168,12 +168,14 @@ export default class Index extends PureComponent<any> {
                                                                 <AtButton
                                                                     className="orderlist_order_info_button_it"
                                                                     size="small"
+                                                                    onClick={() => {}}
                                                                 >
                                                                     ssssssssssss
                                                                 </AtButton>
                                                                 <AtButton
                                                                     className="orderlist_order_info_button_it"
                                                                     size="small"
+                                                                    onClick={() => {}}
                                                                 >
                                                                     sss2
                                                                 </AtButton>

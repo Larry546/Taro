@@ -143,7 +143,7 @@ export default class Index extends PureComponent<any> {
                 />
                 <ScrollView scrollY className="index_wrap">
                     <View className="index_gridNav">
-                        <View className="index_gridNav_single">
+                        <View className="index_gridNav_single" onClick={() => {}}>
                             <Image
                                 url={"https://dimg04.c-ctrip.com/images/0304z120008ohe11bB97D.png"}
                                 width={"60px"}
@@ -151,7 +151,7 @@ export default class Index extends PureComponent<any> {
                             />
                             <Text>主题乐园</Text>
                         </View>
-                        <View className="index_gridNav_single">
+                        <View className="index_gridNav_single" onClick={() => {}}>
                             <Image
                                 url={"https://dimg04.c-ctrip.com/images/030101200099hcq9362E8.png"}
                                 width={"60px"}
@@ -159,7 +159,7 @@ export default class Index extends PureComponent<any> {
                             />
                             <Text>动植物园</Text>
                         </View>
-                        <View className="index_gridNav_single">
+                        <View className="index_gridNav_single" onClick={() => {}}>
                             <Image
                                 url={"https://dimg04.c-ctrip.com/images/03049120008oheygoE687.png"}
                                 width={"60px"}
@@ -167,7 +167,7 @@ export default class Index extends PureComponent<any> {
                             />
                             <Text>自然风光</Text>
                         </View>
-                        <View className="index_gridNav_single">
+                        <View className="index_gridNav_single" onClick={() => {}}>
                             <Image
                                 url={"https://dimg04.c-ctrip.com/images/03059120008ohf43y51A1.png"}
                                 width={"60px"}
@@ -175,7 +175,7 @@ export default class Index extends PureComponent<any> {
                             />
                             <Text>城市观光</Text>
                         </View>
-                        <View className="index_gridNav_single">
+                        <View className="index_gridNav_single" onClick={() => {}}>
                             <Image
                                 url={"https://dimg04.c-ctrip.com/images/0301j120008ohf3fp769A.png"}
                                 width={"60px"}
@@ -232,6 +232,7 @@ export default class Index extends PureComponent<any> {
                                     <View
                                         className="index_spot_info_mleft index_spot_info_mright"
                                         key={index}
+                                        onClick={() => {}}
                                     >
                                         <SpotItem spotInfo={item} />
                                     </View>
