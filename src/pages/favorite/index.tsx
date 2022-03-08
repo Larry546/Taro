@@ -89,12 +89,14 @@ export default class Index extends PureComponent<any> {
                             <AtList>
                                 {this.spotList.map((item, index) => {
                                     return (
-                                        <SpotCard
-                                            index={index}
-                                            deleteFav={this.deleteFav}
-                                            spotInfo={item}
-                                            fromFav={true}
-                                        />
+                                        <View key={index}>
+                                            <SpotCard
+                                                index={index}
+                                                deleteFav={this.deleteFav}
+                                                spotInfo={item}
+                                                fromFav={true}
+                                            />
+                                        </View>
                                     );
                                 })}
                             </AtList>
