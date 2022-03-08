@@ -252,11 +252,6 @@ export default class Index extends PureComponent<any> {
                     <View className="booking_info_passenger">
                         <View className="booking_info_passenger_header">
                             <Text className="booking_info_passenger_header_title">出行信息</Text>
-                            <View className="booking_info_passenger_header_append">
-                                <Text>需选择</Text>
-                                <Text style={{ color: "#f60" }}> 2 </Text>
-                                <Text>位出行人</Text>
-                            </View>
                         </View>
                         <View className="booking_info_passenger_info">
                             {orderTicketList?.map((item, index) => {
