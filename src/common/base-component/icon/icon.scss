@@ -16,6 +16,22 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-girl:before {
+    content: "\e678";
+}
+
+.icon-boy:before {
+    content: "\e679";
+}
+
+.icon-list-choice-:before {
+    content: "\e6b0";
+}
+
+.icon-list-choice-1:before {
+    content: "\e6b1";
+}
+
 .icon-close-circle:before {
     content: "\e77d";
 }
