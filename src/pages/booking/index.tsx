@@ -141,6 +141,13 @@ export default class Index extends PureComponent<any> {
         }
     };
 
+    getTotal = () => {
+        const { orderTicketList } = this.state;
+        let total = 0;
+        orderTicketList?.map(item => (total = total + item.ticketNum * item.ticketPrice));
+        return total;
+    };
+
     render() {
         const { selectedDate, calendarOpen, orderTicketList } = this.state;
         return (
@@ -340,7 +347,17 @@ export default class Index extends PureComponent<any> {
                     />
                 </ScrollView>
                 <View className="booking_footer">
-                    <Text>总额</Text>
+                    <View className="booking_footer_total">
+                        <View className="booking_footer_total_title">
+                            <Text>总额：</Text>
+                        </View>
+                        <View className="booking_footer_total_price">
+                            <Text>￥{this.getTotal()}</Text>
+                        </View>
+                    </View>
+                    <View className="booking_footer_submit" onClick={() => {}}>
+                        <Text>提交订单</Text>
+                    </View>
                 </View>
             </View>
         );
