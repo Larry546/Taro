@@ -20,7 +20,7 @@ export interface IOrderTicketInfo extends ITicketInfo {
     ticketPassenger?: Array<IPassengerInfo>;
 }
 
-interface IPassengerInfo {
+export interface IPassengerInfo {
     passengerId: number;
     passengerName: string;
     passengerNumber: string;
