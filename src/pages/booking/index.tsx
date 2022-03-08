@@ -8,6 +8,7 @@ import Image from "../..//common/base-component/image";
 import { ISpotInfo } from "../spot-detail/interface";
 import { IBookingState } from "./interface";
 import TravelerEdit from "../../common/traveler/edit";
+import TravelerList from "../../common/traveler/list";
 
 import "./index.scss";
 
@@ -318,6 +319,10 @@ export default class Index extends PureComponent<any> {
                                         >
                                             <Icon type={"right"} size={24} color={"#bbb"} />
                                         </View>
+                                        <AtFloatLayout scrollY isOpened={true} title={"游客列表"}>
+                                            {/* <TravelerEdit passengerInfo={{}} /> */}
+                                            <TravelerList />
+                                        </AtFloatLayout>
                                     </View>
                                 ) : null;
                             })}
@@ -342,9 +347,6 @@ export default class Index extends PureComponent<any> {
                         height={"100%"}
                         classWrap={"booking_info_mindtour"}
                     />
-                    <AtFloatLayout scrollY isOpened={true} title={"编辑游客"}>
-                        <TravelerEdit passengerInfo={{}} />
-                    </AtFloatLayout>
                 </ScrollView>
                 <View className="booking_footer">
                     <View className="booking_footer_total">

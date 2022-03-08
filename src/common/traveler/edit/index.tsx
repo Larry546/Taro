@@ -58,7 +58,7 @@ export default class Index extends PureComponent<IEdit> {
                         </View>
                     </Picker>
                 </View>
-                <View className="edit_button">
+                <View className="edit_button" onClick={() => {}}>
                     <Text>保存</Text>
                 </View>
             </View>

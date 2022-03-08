@@ -1,0 +1,83 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    &_add {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 88px;
+        margin: 20px 40px;
+        font-size: 34px;
+        border-radius: 10px;
+        border: 1px solid #0086f6;
+        color: #666;
+        &_icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 20px;
+        }
+    }
+    &_traveler {
+        border-radius: 16px;
+        background-color: #f8f8f8;
+        box-shadow: 0 3px 8px 1px rgb(0 0 0 / 8%);
+        margin-bottom: 20px;
+        &_wrap {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 5px;
+            background-color: #ffffff;
+            padding: 20px 30px;
+        }
+        &_left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        &_icon {
+            margin-right: 40px;
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgba(0, 134, 246, 0.8);
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &_circle {
+                width: 14px;
+                height: 14px;
+                border-radius: 14px;
+                background: rgba(0, 134, 246, 0.2);
+            }
+        }
+        &_info {
+            display: flex;
+            flex-direction: column;
+            padding-right: 100px;
+            flex: 1;
+            &_name {
+                font-size: 32px;
+                color: #333;
+            }
+            &_id {
+                font-size: 28px;
+                color: #999;
+            }
+            &_webkit {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+                text-overflow: ellipsis;
+            }
+        }
+        &_edit {
+            padding-left: 50px;
+        }
+    }
+}
