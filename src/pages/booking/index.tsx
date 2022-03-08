@@ -7,6 +7,7 @@ import Icon from "../../common/base-component/icon";
 import Image from "../..//common/base-component/image";
 import { ISpotInfo } from "../spot-detail/interface";
 import { IBookingState } from "./interface";
+import TravelerEdit from "../../common/traveler/edit";
 
 import "./index.scss";
 
@@ -329,6 +330,7 @@ export default class Index extends PureComponent<any> {
                                 <AtInput
                                     placeholder={"用于生成订单"}
                                     name={"contact"}
+                                    type={"number"}
                                     onChange={this.onChangeContact}
                                 />
                             </View>
@@ -340,6 +342,9 @@ export default class Index extends PureComponent<any> {
                         height={"100%"}
                         classWrap={"booking_info_mindtour"}
                     />
+                    <AtFloatLayout scrollY isOpened={true} title={"编辑游客"}>
+                        <TravelerEdit passengerInfo={{}} />
+                    </AtFloatLayout>
                 </ScrollView>
                 <View className="booking_footer">
                     <View className="booking_footer_total">

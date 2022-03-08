@@ -21,9 +21,9 @@ export interface IOrderTicketInfo extends ITicketInfo {
 }
 
 export interface IPassengerInfo {
-    passengerId: number;
-    passengerName: string;
-    passengerNumber: string;
+    passengerId?: number;
+    passengerName?: string;
+    passengerNumber?: string;
     passengerSex?: string;
     passengerBirth?: string;
 }
