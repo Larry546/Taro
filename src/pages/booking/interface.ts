@@ -1,4 +1,4 @@
-import { IPassengerInfo } from "../order-detail/interface";
+import { IPassengerInfo } from "../../common/traveler/edit/interface";
 
 export interface IBookingState {
     calendarOpen: boolean;

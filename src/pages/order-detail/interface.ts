@@ -1,4 +1,5 @@
 import { ITicketInfo } from "../spot-detail/interface";
+import { IPassengerInfo } from "../../common/traveler/edit/interface";
 
 export interface IOrderTime {
     orderCreateTime: string;
@@ -18,12 +19,4 @@ export interface IOrderInfo {
 export interface IOrderTicketInfo extends ITicketInfo {
     ticketNum: number;
     ticketPassenger?: Array<IPassengerInfo>;
-}
-
-export interface IPassengerInfo {
-    passengerId?: number;
-    passengerName?: string;
-    passengerNumber?: string;
-    passengerSex?: string;
-    passengerBirth?: string;
 }
