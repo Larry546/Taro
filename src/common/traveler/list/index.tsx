@@ -99,6 +99,9 @@ export default class Index extends PureComponent<any> {
                         );
                     })}
                 </View>
+                <View className="list_end">
+                    <Text>已展示所有常用出行人</Text>
+                </View>
             </View>
         );
     }
