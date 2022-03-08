@@ -3,8 +3,8 @@
         position: absolute;
         right: 0;
         left: 0;
-        height: calc(100% - 215px);
         background-color: #eef1f6;
+        height: calc(100% - 120px);
         padding-bottom: 120px;
         &_spot {
             background-color: #0086f6;
@@ -117,6 +117,48 @@
                     color: #666;
                 }
             }
+            &_info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                &_single {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    border-bottom: 1px solid #eee;
+                    font-size: 30px;
+                    color: #666;
+                    &_right {
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1;
+                    }
+                    &_rest {
+                        margin-left: 50px;
+                        padding: 20px 0;
+                        color: #bbb;
+                    }
+                    &_traveler {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        margin-left: 50px;
+                        padding: 20px 0;
+                        border-bottom: 1px solid #eee;
+                        &_icon {
+                            margin-right: 50px;
+                        }
+                        &_info {
+                            display: flex;
+                            flex-direction: column;
+                            color: #333;
+                            &_id {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
             &_contact {
                 display: flex;
                 flex-direction: row;
@@ -148,5 +190,6 @@
         height: 120px;
         background-color: #fff;
         box-shadow: rgb(0 0 0 / 8%) -16px -16px 16px 2px;
+        z-index: 99;
     }
 }

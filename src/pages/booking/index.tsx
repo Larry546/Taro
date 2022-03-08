@@ -51,7 +51,7 @@ export default class Index extends PureComponent<any> {
         };
         this.state = {
             calendarOpen: false,
-            selectedDate: new Date().toLocaleDateString(),
+            selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
             contact: "",
         };
         this.initTicketList();
@@ -78,6 +78,10 @@ export default class Index extends PureComponent<any> {
                 ticketName: item.ticketName,
                 ticketPrice: item.ticketPrice,
                 ticketNum: 0,
+                passenger: [
+                    { passengerId: 1, passengerName: "啊哈", passengerNumber: "123456" },
+                    { passengerId: 2, passengerName: "啊哈", passengerNumber: "123456" },
+                ],
             });
         });
 
@@ -108,6 +112,14 @@ export default class Index extends PureComponent<any> {
         return orderTicketList?.find(item => item.ticketId === id);
     };
 
+    getCount = item => {
+        if (!item.passenger) {
+            return item.ticketNum;
+        } else {
+            return item.ticketNum - item.passenger.length;
+        }
+    };
+
     changeTicketNum = (value, id) => {
         const { orderTicketList } = this.state;
         let index = orderTicketList?.findIndex(item => item.ticketId === id);
@@ -125,7 +137,7 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
-        const { selectedDate, calendarOpen } = this.state;
+        const { selectedDate, calendarOpen, orderTicketList } = this.state;
         return (
             <View className="booking">
                 <H5NavBar title={"订单填写"} />
@@ -148,7 +160,10 @@ export default class Index extends PureComponent<any> {
                                 >
                                     <Text>{selectedDate}</Text>
                                 </View>
-                                <AtFloatLayout isOpened={calendarOpen}>
+                                <AtFloatLayout
+                                    isOpened={calendarOpen}
+                                    onClose={this.onCloseCalendar}
+                                >
                                     <AtCalendar
                                         format={"YYYY/MM/DD"}
                                         minDate={new Date().toLocaleDateString()}
@@ -230,6 +245,72 @@ export default class Index extends PureComponent<any> {
                                 <Text style={{ color: "#f60" }}> 2 </Text>
                                 <Text>位出行人</Text>
                             </View>
+                        </View>
+                        <View className="booking_info_passenger_info">
+                            {orderTicketList?.map((item, index) => {
+                                return item.ticketNum !== 0 ? (
+                                    <View
+                                        className="booking_info_passenger_info_single"
+                                        key={index}
+                                    >
+                                        <View className="booking_info_passenger_info_single_name">
+                                            <Text>{item.ticketName}</Text>
+                                        </View>
+                                        <View className="booking_info_passenger_info_single_right">
+                                            <View className="booking_info_passenger_info_single_travelers">
+                                                {item.passenger?.map((pas, index) => {
+                                                    return (
+                                                        <View
+                                                            className="booking_info_passenger_info_single_traveler"
+                                                            key={index}
+                                                        >
+                                                            <View
+                                                                className="booking_info_passenger_info_single_traveler_icon"
+                                                                onClick={() => {}}
+                                                            >
+                                                                <Icon
+                                                                    type={"close-circle"}
+                                                                    color={"#bbb"}
+                                                                    size={20}
+                                                                />
+                                                            </View>
+
+                                                            <View
+                                                                className="booking_info_passenger_info_single_traveler_info"
+                                                                onClick={() => {}}
+                                                            >
+                                                                <Text>{pas.passengerName}</Text>
+                                                                <Text className="booking_info_passenger_info_single_traveler_info_id">
+                                                                    证件号：{pas.passengerNumber}
+                                                                </Text>
+                                                            </View>
+                                                        </View>
+                                                    );
+                                                })}
+                                            </View>
+                                            {!item.passenger ||
+                                            item.ticketNum > item.passenger?.length ? (
+                                                <View
+                                                    className="booking_info_passenger_info_single_rest"
+                                                    onClick={() => {}}
+                                                >
+                                                    <Text>还需添加 </Text>
+                                                    <Text style={{ color: "#f60" }}>
+                                                        {this.getCount(item)}
+                                                    </Text>
+                                                    <Text> 位{item.ticketName}</Text>
+                                                </View>
+                                            ) : null}
+                                        </View>
+                                        <View
+                                            className="booking_info_passenger_info_single_icon"
+                                            onClick={() => {}}
+                                        >
+                                            <Icon type={"right"} size={24} color={"#bbb"} />
+                                        </View>
+                                    </View>
+                                ) : null;
+                            })}
                         </View>
                         <View className="booking_info_passenger_contact">
                             <View className="booking_info_passenger_contact_title">
