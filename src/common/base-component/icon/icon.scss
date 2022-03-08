@@ -16,6 +16,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-close-circle:before {
+    content: "\e77d";
+}
+
 .icon-shuangxiajiantou-:before {
     content: "\e629";
 }
