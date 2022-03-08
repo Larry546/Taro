@@ -1,6 +1,6 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView, Swiper, SwiperItem } from "@tarojs/components";
-import { AtButton, AtSearchBar } from "taro-ui";
+import { AtSearchBar } from "taro-ui";
 import Taro from "@tarojs/taro";
 import Image from "../../common/base-component/image";
 import SpotItem from "../../common/spot-item";
