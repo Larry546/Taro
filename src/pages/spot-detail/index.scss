@@ -1,11 +1,9 @@
 .spotdetail {
     &_wrap {
         position: absolute;
-        // top: 95px;
         left: 0;
         right: 0;
-        height: calc(100% - 215px);
-        padding-bottom: 120px;
+        padding-bottom: 144px;
         background-color: #eceff4;
     }
     &_basicInfo {
