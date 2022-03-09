@@ -10,7 +10,13 @@ export default class Index extends PureComponent<IEdit> {
     state: IEdit;
     constructor(props: IEdit) {
         super(props);
-        this.state = this.props;
+        this.state = {
+            passengerInfo: props.passengerInfo,
+        };
+    }
+
+    componentWillReceiveProps(nextProps: IEdit) {
+        this.setState({ passengerInfo: nextProps.passengerInfo });
     }
 
     render() {

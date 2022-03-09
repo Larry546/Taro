@@ -53,6 +53,7 @@ export default class Index extends PureComponent<any> {
         };
         this.state = {
             calendarOpen: false,
+            listOpen: false,
             selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
             contact: "",
         };
@@ -103,6 +104,14 @@ export default class Index extends PureComponent<any> {
         this.setState({ calendarOpen: false });
     };
 
+    onOpenList = ticketInfo => {
+        this.setState({ listOpen: true, currentTicket: ticketInfo });
+    };
+
+    onCloseList = () => {
+        this.setState({ listOpen: false });
+    };
+
     onDayClick = res => {
         console.log("🚀 ~ file: index.tsx ~ line 70 ~ Index ~ res", res);
         this.setState({ selectedDate: res && res.value });
@@ -151,7 +160,7 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
-        const { selectedDate, calendarOpen, orderTicketList } = this.state;
+        const { selectedDate, calendarOpen, listOpen, orderTicketList, currentTicket } = this.state;
         return (
             <View className="booking">
                 <H5NavBar title={"订单填写"} />
@@ -286,7 +295,9 @@ export default class Index extends PureComponent<any> {
 
                                                             <View
                                                                 className="booking_info_passenger_info_single_traveler_info"
-                                                                onClick={() => {}}
+                                                                onClick={() => {
+                                                                    this.onOpenList(item);
+                                                                }}
                                                             >
                                                                 <Text className="booking_info_passenger_info_single_traveler_info_webkit">
                                                                     {pas.passengerName}
@@ -303,7 +314,9 @@ export default class Index extends PureComponent<any> {
                                             item.ticketNum > item.passenger?.length ? (
                                                 <View
                                                     className="booking_info_passenger_info_single_rest"
-                                                    onClick={() => {}}
+                                                    onClick={() => {
+                                                        this.onOpenList(item);
+                                                    }}
                                                 >
                                                     <Text>还需添加 </Text>
                                                     <Text style={{ color: "#f60" }}>
@@ -315,17 +328,23 @@ export default class Index extends PureComponent<any> {
                                         </View>
                                         <View
                                             className="booking_info_passenger_info_single_icon"
-                                            onClick={() => {}}
+                                            onClick={() => {
+                                                this.onOpenList(item);
+                                            }}
                                         >
                                             <Icon type={"right"} size={24} color={"#bbb"} />
                                         </View>
-                                        <AtFloatLayout scrollY isOpened={true} title={"游客列表"}>
-                                            {/* <TravelerEdit passengerInfo={{}} /> */}
-                                            <TravelerList />
-                                        </AtFloatLayout>
                                     </View>
                                 ) : null;
                             })}
+                            <AtFloatLayout
+                                scrollY
+                                isOpened={listOpen}
+                                title={"游客列表"}
+                                onClose={this.onCloseList}
+                            >
+                                <TravelerList orderTicketInfo={currentTicket} />
+                            </AtFloatLayout>
                         </View>
                         <View className="booking_info_passenger_contact">
                             <View className="booking_info_passenger_contact_title">

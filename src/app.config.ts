@@ -6,6 +6,7 @@ export default defineAppConfig({
         "pages/user-info/index",
         "pages/user-login/index",
         "pages/user-register/index",
+        "pages/traveler-list/index",
         "pages/order-list/index",
         "pages/order-detail/index",
         "pages/spot-list/index",

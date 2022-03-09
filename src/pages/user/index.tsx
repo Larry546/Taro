@@ -61,7 +61,8 @@ export default class Index extends PureComponent<any> {
     };
 
     goToPassengerList = () => {
-        if (!this.checkLoginStatus()) return;
+        // if (!this.checkLoginStatus()) return;
+        this.push("/pages/traveler-list/index");
     };
 
     goToViewList = () => {};
