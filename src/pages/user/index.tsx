@@ -1,6 +1,6 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
-import { AtButton, AtGrid, AtDivider, AtList, AtListItem, AtAvatar } from "taro-ui";
+import { AtButton, AtGrid, AtList, AtListItem, AtAvatar } from "taro-ui";
 
 import "../../common/base-component/icon/icon.scss";
 import "./index.scss";
@@ -28,7 +28,7 @@ export default class Index extends PureComponent<any> {
     componentDidHide() {}
 
     getLoginStatus = () => {
-        this.islogin = false;
+        this.islogin = true;
     };
 
     goToLogin = () => {
@@ -72,26 +72,24 @@ export default class Index extends PureComponent<any> {
     render() {
         return (
             <View className="user">
-                <View>
-                    {this.islogin ? (
-                        <View className="user_header" onClick={this.goToUserInfo}>
-                            <View className="user_header_avatar">
-                                <AtAvatar circle text="用户" size="large" />
+                <View className="user_wrap">
+                    <View className="user_header">
+                        {this.islogin ? (
+                            <View className="user_header_logined" onClick={this.goToUserInfo}>
+                                <View className="user_header_avatar">
+                                    <AtAvatar circle text="用户" size="large" />
+                                </View>
+                                <View className="user_header_info">
+                                    <Text>UserName</Text>
+                                    <Text className="user_header_info_account">账号：</Text>
+                                </View>
                             </View>
-                            <View className="user_header_info">
-                                <Text>UserName</Text>
-                                <Text className="user_header_info_account">账号：</Text>
+                        ) : (
+                            <View className="user_login" onClick={this.goToLogin}>
+                                <Text>登陆/注册</Text>
                             </View>
-                        </View>
-                    ) : (
-                        <View className="user_login">
-                            <AtButton type="secondary" size={"normal"} onClick={this.goToLogin}>
-                                登陆/注册
-                            </AtButton>
-                        </View>
-                    )}
-
-                    <AtDivider />
+                        )}
+                    </View>
 
                     <View className="user_grid">
                         <AtGrid
@@ -137,8 +135,6 @@ export default class Index extends PureComponent<any> {
                         />
                     </View>
 
-                    <AtDivider />
-
                     <View className="user_list">
                         <AtList hasBorder={false}>
                             <AtListItem
@@ -168,7 +164,6 @@ export default class Index extends PureComponent<any> {
 
                     {this.islogin ? (
                         <View>
-                            <AtDivider />
                             <View className="user_bottom">
                                 <AtButton type="secondary" size={"normal"} onClick={this.logout}>
                                     退出登陆
