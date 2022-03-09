@@ -1,9 +1,11 @@
-import { ITicketInfo } from "../spot-detail/interface";
-import { IPassengerInfo } from "../../common/traveler/edit/interface";
+import { IPassengerInfo } from "src/common/traveler/edit/interface";
+import { IOrderTicketInfo } from "../booking/interface";
+import { ISpotInfo } from "../spot-detail/interface";
 
-export interface IOrderTime {
-    orderCreateTime: string;
-    list: Array<IOrderInfo>;
+export interface IOrderDetailState {
+    passengerlist: Array<IPassengerInfo>;
+    orderInfo: IOrderInfo;
+    spotInfo: ISpotInfo;
 }
 
 export interface IOrderInfo {
@@ -14,9 +16,4 @@ export interface IOrderInfo {
     orderCreateTime: string;
     orderuseTime: string;
     orderTicket: Array<IOrderTicketInfo>;
-}
-
-export interface IOrderTicketInfo extends ITicketInfo {
-    ticketNum: number;
-    ticketPassenger?: Array<IPassengerInfo>;
 }
