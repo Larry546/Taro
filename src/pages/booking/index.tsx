@@ -137,7 +137,9 @@ export default class Index extends PureComponent<any> {
 
     changeTicketNum = (value, id) => {
         const { orderTicketList } = this.state;
-        let index = orderTicketList?.findIndex(item => item.ticketId === id);
+        let index = orderTicketList?.findIndex(item => {
+            return item.ticketId === id;
+        });
         if (typeof index != "undefined" && orderTicketList) {
             let newList = orderTicketList;
             let newItem = newList[index];
@@ -172,17 +174,36 @@ export default class Index extends PureComponent<any> {
         } else if (ticketNum > passengerNum) {
             currentTicket?.passenger?.push(pass);
             let index = orderTicketList?.findIndex(item => {
-                item.ticketId === currentTicket?.ticketId;
+                return item.ticketId === currentTicket?.ticketId;
             });
             let newList = orderTicketList;
             newList && typeof index != "undefined" && (newList[index] = currentTicket);
             this.setState((prevState: IBookingState) => {
                 return {
                     ...prevState,
-                    currentTicket,
+                    orderTicketList: newList,
                 };
             });
         }
+    };
+
+    unSeletctTraveler = (ticketInfo, pass) => {
+        let passIndex = ticketInfo.passenger.findIndex(item => {
+            return item.passengerId === pass.passengerId;
+        });
+        ticketInfo.passenger.splice(passIndex, 1);
+        const { orderTicketList } = this.state;
+        let newList = orderTicketList;
+        let ticketIndex = newList?.findIndex(item => {
+            return item.ticketId == ticketInfo.ticketId;
+        });
+        newList && typeof ticketIndex != "undefined" && (newList[ticketIndex] = ticketInfo);
+        this.setState((prev: IBookingState) => {
+            return {
+                ...prev,
+                orderTicketList: newList,
+            };
+        });
     };
 
     render() {
@@ -310,7 +331,12 @@ export default class Index extends PureComponent<any> {
                                                         >
                                                             <View
                                                                 className="booking_info_passenger_info_single_traveler_icon"
-                                                                onClick={() => {}}
+                                                                onClick={() => {
+                                                                    this.unSeletctTraveler(
+                                                                        item,
+                                                                        pas
+                                                                    );
+                                                                }}
                                                             >
                                                                 <Icon
                                                                     type={"close-circle"}
