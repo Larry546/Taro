@@ -20,7 +20,7 @@ export interface ISpotInfo {
 export interface ITicketInfo {
     ticketId: number;
     ticketName: string;
-    ticketPrice?: number;
+    ticketPrice: number;
     ticketRequest?: string;
     ticketTag?: Array<string>;
 }

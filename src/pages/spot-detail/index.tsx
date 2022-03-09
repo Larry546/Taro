@@ -207,7 +207,8 @@ export default class Index extends PureComponent<any> {
                     <View className="spotdetail_footer_left">
                         <View className="spotdetail_footer_left_single" onClick={() => {}}>
                             <View className="spotdetail_footer_left_icon">
-                                <Icon type={"aixin"} size={24} />
+                                {/* <Icon type={"aixin"} size={24} /> */}
+                                <Icon type={"aixin_shixin"} size={24} color={"#f5190a"} />
                             </View>
                             <Text className="spotdetail_footer_left_text">收藏</Text>
                         </View>
