@@ -9,4 +9,5 @@ export interface IListProps {
 export interface IListState {
     editOpened: boolean;
     currentPassenger: IPassengerInfo;
+    passengerlist: Array<IPassengerInfo>;
 }

@@ -1,5 +1,6 @@
-export interface IEdit {
+export interface IEditProps {
     passengerInfo: IPassengerInfo;
+    onSave: Function;
 }
 
 export interface IPassengerInfo {
