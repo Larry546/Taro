@@ -93,7 +93,7 @@ export default class Index extends PureComponent<any> {
             ],
             orderInfo: {
                 orderId: 1,
-                orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
+                orderSpotname: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
                 orderTotal: 115,
                 orderStatus: "待支付",
                 orderCreateTime: "2022-03-03",
@@ -118,7 +118,6 @@ export default class Index extends PureComponent<any> {
             spotInfo: {
                 spotId: 1,
                 spotName: "绍兴柯岩风景区",
-                spotCity: "绍兴",
                 spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
                 spotOpenhour: "8:00",
                 spotOffhour: "16:00",
@@ -184,7 +183,7 @@ export default class Index extends PureComponent<any> {
                                         <View className="orderdetail_info_ticket" key={index}>
                                             <View className="orderdetail_info_ticket_name">
                                                 <Text>
-                                                    {orderInfo.orderName + item.ticketName}x
+                                                    {orderInfo.orderSpotname + item.ticketName}x
                                                     {item.ticketNum}份
                                                 </Text>
                                             </View>

@@ -10,7 +10,7 @@ export interface IOrderDetailState {
 
 export interface IOrderInfo {
     orderId: number;
-    orderName: string; //景点名+票名拼接
+    orderSpotname: string; //景点名
     orderTotal: number;
     orderStatus: string;
     orderCreateTime: string;

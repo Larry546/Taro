@@ -26,7 +26,6 @@ export default class Index extends PureComponent<any> {
         this.spotInfo = {
             spotId: 1,
             spotName: "绍兴柯岩风景区",
-            spotCity: "绍兴",
             spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
             spotOpenhour: "8:00",
             spotOffhour: "16:00",
