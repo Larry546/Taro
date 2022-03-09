@@ -1,6 +1,6 @@
 # Taro
 
-Final Design of Taro+ React client frontend
+Final Design of Taro + React client frontend
 
 ## 运行说明
 
