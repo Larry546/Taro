@@ -2,7 +2,7 @@ import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
 import { AtInput } from "taro-ui";
 import H5NavBar from "../../common/h5NavBar";
-import { IUserInfo, IUserInfoState } from "./interface";
+import { IUserInfoState } from "./interface";
 
 import "./index.scss";
 
