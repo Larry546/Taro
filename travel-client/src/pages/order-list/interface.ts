@@ -5,6 +5,6 @@ export interface IOrderListState {
 }
 
 export interface IOrderTime {
-    orderCreateTime: string;
+    orderCreatetime: string;
     list: Array<IOrderInfo>;
 }

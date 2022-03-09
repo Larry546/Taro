@@ -20,15 +20,15 @@ export default class Index extends PureComponent<any> {
         this.state = {
             orderList: [
                 {
-                    orderCreateTime: "2022-03-03",
+                    orderCreatetime: "2022-03-03",
                     list: [
                         {
                             orderId: 1,
-                            orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
+                            orderSpotname: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
                             orderTotal: 115,
                             orderStatus: "待支付",
-                            orderCreateTime: "2022-03-03",
-                            orderuseTime: "2022-03-31",
+                            orderCreatetime: "2022-03-03",
+                            orderUsetime: "2022-03-31",
                             orderTicket: [
                                 {
                                     ticketId: 1,
@@ -46,11 +46,11 @@ export default class Index extends PureComponent<any> {
                         },
                         {
                             orderId: 1,
-                            orderName: "绍兴柯岩风景区门票",
+                            orderSpotname: "绍兴柯岩风景区门票",
                             orderTotal: 115,
                             orderStatus: "待支付",
-                            orderCreateTime: "2022-03-03",
-                            orderuseTime: "2022-03-31",
+                            orderCreatetime: "2022-03-03",
+                            orderUsetime: "2022-03-31",
                             orderTicket: [
                                 {
                                     ticketId: 1,
@@ -63,15 +63,15 @@ export default class Index extends PureComponent<any> {
                     ],
                 },
                 {
-                    orderCreateTime: "2022-03-04",
+                    orderCreatetime: "2022-03-04",
                     list: [
                         {
                             orderId: 1,
-                            orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
+                            orderSpotname: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
                             orderTotal: 115,
                             orderStatus: "待支付",
-                            orderCreateTime: "2022-03-04",
-                            orderuseTime: "2022-03-31",
+                            orderCreatetime: "2022-03-04",
+                            orderUsetime: "2022-03-31",
                             orderTicket: [
                                 {
                                     ticketId: 2,
@@ -115,7 +115,7 @@ export default class Index extends PureComponent<any> {
                                         <View className="orderlist_order" key={index}>
                                             <View className="orderlist_order_tag">
                                                 <Text>
-                                                    预定日期：{item.orderCreateTime.slice(5, 10)}
+                                                    预定日期：{item.orderCreatetime.slice(5, 10)}
                                                 </Text>
                                             </View>
                                             {item.list.map((subitem, subindex) => {
@@ -137,13 +137,13 @@ export default class Index extends PureComponent<any> {
                                                                                 >
                                                                                     <View className="orderlist_order_info_text_left_name">
                                                                                         <Text>
-                                                                                            {subitem.orderName +
+                                                                                            {subitem.orderSpotname +
                                                                                                 titem.ticketName}
                                                                                         </Text>
                                                                                     </View>
                                                                                     <View className="orderlist_order_info_text_left_other">
                                                                                         <Text>
-                                                                                            {subitem.orderuseTime.slice(
+                                                                                            {subitem.orderUsetime.slice(
                                                                                                 5,
                                                                                                 10
                                                                                             )}{" "}

@@ -96,8 +96,8 @@ export default class Index extends PureComponent<any> {
                 orderSpotname: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
                 orderTotal: 115,
                 orderStatus: "待支付",
-                orderCreateTime: "2022-03-03",
-                orderuseTime: "2022-03-31",
+                orderCreatetime: "2022-03-03",
+                orderUsetime: "2022-03-31",
                 orderTicket: [
                     {
                         ticketId: 1,
@@ -192,7 +192,7 @@ export default class Index extends PureComponent<any> {
                                                     使用日期{"    "}
                                                 </Text>
                                                 <Text style={{ color: "#ff7700" }}>
-                                                    {orderInfo.orderuseTime}
+                                                    {orderInfo.orderUsetime}
                                                 </Text>
                                             </View>
                                             {item.passenger?.map((passid, pindex) => {

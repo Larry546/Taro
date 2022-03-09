@@ -13,7 +13,7 @@ export interface IOrderInfo {
     orderSpotname: string; //景点名
     orderTotal: number;
     orderStatus: string;
-    orderCreateTime: string;
-    orderuseTime: string;
+    orderCreatetime: string;
+    orderUsetime: string;
     orderTicket: Array<IOrderTicketInfo>;
 }

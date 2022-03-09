@@ -25,13 +25,13 @@ export default class Index extends PureComponent<any> {
                 spotOpenhour: "8:00",
                 spotOffhour: "16:00",
             },
-            rate: 0,
-            edit: "",
+            commentRate: 0,
+            commentText: "",
         };
     }
 
     render() {
-        const { spotInfo, rate, edit } = this.state;
+        const { spotInfo, commentRate, commentText } = this.state;
         return (
             <View className="comment">
                 <H5NavBar title={"点评"} />
@@ -51,9 +51,9 @@ export default class Index extends PureComponent<any> {
                         <View>
                             <AtRate
                                 size={24}
-                                value={rate}
+                                value={commentRate}
                                 onChange={value => {
-                                    this.setState({ rate: value });
+                                    this.setState({ commentRate: value });
                                 }}
                             />
                         </View>
@@ -63,9 +63,9 @@ export default class Index extends PureComponent<any> {
                     </View>
                     <View className="comment_edit">
                         <AtTextarea
-                            value={edit}
+                            value={commentText}
                             onChange={res => {
-                                this.setState({ edit: res });
+                                this.setState({ commentText: res });
                             }}
                             placeholder={"发表评价，旅途亮点，温馨TIPS。"}
                             height={200}
