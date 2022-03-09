@@ -1,6 +1,5 @@
 import React from "react";
 import { Text } from "@tarojs/components";
-import "./icon.scss";
 
 //https://www.iconfont.cn/
 const Icon = props => {

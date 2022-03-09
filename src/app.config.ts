@@ -11,6 +11,7 @@ export default defineAppConfig({
         "pages/order-detail/index",
         "pages/spot-list/index",
         "pages/spot-detail/index",
+        "pages/comment/index",
         "pages/booking/index",
     ],
     window: {
