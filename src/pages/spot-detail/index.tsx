@@ -157,6 +157,7 @@ export default class Index extends PureComponent<any> {
                                                                         ? "#666"
                                                                         : "#0086f6",
                                                                 }}
+                                                                key={index}
                                                             >
                                                                 <Text>{tag} </Text>
                                                                 {!isLast ? (
