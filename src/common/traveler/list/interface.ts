@@ -1,7 +1,7 @@
 import { IPassengerInfo } from "../edit/interface";
 import { IOrderTicketInfo } from "src/pages/booking/interface";
 
-export interface IListProp {
+export interface IListProps {
     orderTicketInfo?: IOrderTicketInfo;
     selectTraveler?: Function;
 }

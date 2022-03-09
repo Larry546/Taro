@@ -4,14 +4,14 @@ import Icon from "../../base-component/icon";
 import { IPassengerInfo } from "../edit/interface";
 import { AtFloatLayout } from "taro-ui";
 import TravelerEdit from "../edit";
-import { IListProp, IListState } from "./interface";
+import { IListProps, IListState } from "./interface";
 
 import "./index.scss";
 
-export default class Index extends PureComponent<any> {
+export default class Index extends PureComponent<IListProps> {
     state: IListState;
     passengerlist: Array<IPassengerInfo>;
-    constructor(props: any) {
+    constructor(props: IListProps) {
         super(props);
         this.state = {
             editOpened: false,
@@ -90,10 +90,6 @@ export default class Index extends PureComponent<any> {
                 passengerBirth: "1988-01-01",
             },
         ];
-    }
-
-    componentWillReceiveProps(nextProps: IListProp) {
-        // this.setState({orderTicketInfo: nextProps.orderTicketInfo})
     }
 
     onOpenEdit = item => {

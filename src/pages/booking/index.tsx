@@ -7,7 +7,6 @@ import Icon from "../../common/base-component/icon";
 import Image from "../..//common/base-component/image";
 import { ISpotInfo } from "../spot-detail/interface";
 import { IBookingState } from "./interface";
-import TravelerEdit from "../../common/traveler/edit";
 import TravelerList from "../../common/traveler/list";
 
 import "./index.scss";
@@ -160,7 +159,6 @@ export default class Index extends PureComponent<any> {
     };
 
     onSelectTraveler = pass => {
-        console.log("🚀 ~ file: index.tsx ~ line 163 ~ Index ~ pass", pass);
         const { currentTicket, orderTicketList } = this.state;
         let ticketNum = currentTicket?.ticketNum;
         let passengerNum = currentTicket?.passenger?.length || 0;
