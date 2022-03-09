@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from "@tarojs/components";
 import { AtButton } from "taro-ui";
 import getEnv from "../../system/tools/environment";
 import H5NavBar from "../../common/h5NavBar";
-import { IOrderTime } from "../order-detail/interface";
+import { IOrderListState } from "./interface";
 
 import "./index.scss";
 
@@ -12,73 +12,79 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
-    orderList: Array<IOrderTime>;
+    state: IOrderListState;
     top: number;
     constructor(props: any) {
         super(props);
         this.top = getEnv() === "H5" ? 95 : 0;
-        this.orderList = [
-            {
-                orderCreateTime: "2022-03-03",
-                list: [
-                    {
-                        orderId: 1,
-                        orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
-                        orderTotal: 115,
-                        orderStatus: "待支付",
-                        orderCreateTime: "2022-03-03",
-                        orderuseTime: "2022-03-31",
-                        orderTicket: [
-                            {
-                                ticketId: 1,
-                                ticketName: "成人票",
-                                ticketNum: 1,
-                            },
-                            {
-                                ticketId: 2,
-                                ticketName: "儿童票",
-                                ticketNum: 1,
-                            },
-                        ],
-                    },
-                    {
-                        orderId: 1,
-                        orderName: "绍兴柯岩风景区门票",
-                        orderTotal: 115,
-                        orderStatus: "待支付",
-                        orderCreateTime: "2022-03-03",
-                        orderuseTime: "2022-03-31",
-                        orderTicket: [
-                            {
-                                ticketId: 1,
-                                ticketName: "成人票",
-                                ticketNum: 2,
-                            },
-                        ],
-                    },
-                ],
-            },
-            {
-                orderCreateTime: "2022-03-04",
-                list: [
-                    {
-                        orderId: 1,
-                        orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
-                        orderTotal: 115,
-                        orderStatus: "待支付",
-                        orderCreateTime: "2022-03-04",
-                        orderuseTime: "2022-03-31",
-                        orderTicket: [
-                            {
-                                ticketId: 2,
-                                ticketName: "儿童票",
-                                ticketNum: 1,
-                            },
-                        ],
-                    },
-                ],
-            },
-        ];
+        this.state = {
+            orderList: [
+                {
+                    orderCreateTime: "2022-03-03",
+                    list: [
+                        {
+                            orderId: 1,
+                            orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
+                            orderTotal: 115,
+                            orderStatus: "待支付",
+                            orderCreateTime: "2022-03-03",
+                            orderuseTime: "2022-03-31",
+                            orderTicket: [
+                                {
+                                    ticketId: 1,
+                                    ticketName: "成人票",
+                                    ticketPrice: 99,
+                                    ticketNum: 1,
+                                },
+                                {
+                                    ticketId: 2,
+                                    ticketName: "儿童票",
+                                    ticketPrice: 44,
+                                    ticketNum: 1,
+                                },
+                            ],
+                        },
+                        {
+                            orderId: 1,
+                            orderName: "绍兴柯岩风景区门票",
+                            orderTotal: 115,
+                            orderStatus: "待支付",
+                            orderCreateTime: "2022-03-03",
+                            orderuseTime: "2022-03-31",
+                            orderTicket: [
+                                {
+                                    ticketId: 1,
+                                    ticketName: "成人票",
+                                    ticketPrice: 99,
+                                    ticketNum: 2,
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    orderCreateTime: "2022-03-04",
+                    list: [
+                        {
+                            orderId: 1,
+                            orderName: "绍兴柯岩风景区门票绍兴柯岩风景区门票",
+                            orderTotal: 115,
+                            orderStatus: "待支付",
+                            orderCreateTime: "2022-03-04",
+                            orderuseTime: "2022-03-31",
+                            orderTicket: [
+                                {
+                                    ticketId: 2,
+                                    ticketName: "儿童票",
+                                    ticketPrice: 44,
+                                    ticketNum: 1,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        };
     }
     componentWillMount() {}
 
@@ -95,14 +101,15 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
+        const { orderList } = this.state;
         return (
             <View className="orderlist">
                 <H5NavBar title={"订单列表"} />
                 <ScrollView scrollY className="orderlist_wrap" style={{ top: this.top }}>
-                    {this.orderList.length ? (
+                    {orderList.length ? (
                         <View className="orderlist_order_wrap">
                             <View>
-                                {this.orderList.map((item, index) => {
+                                {orderList.map((item, index) => {
                                     // todo
                                     return (
                                         <View className="orderlist_order" key={index}>
@@ -170,7 +177,7 @@ export default class Index extends PureComponent<any> {
                                                                     size="small"
                                                                     onClick={() => {}}
                                                                 >
-                                                                    ssssssssssss
+                                                                    查看详情
                                                                 </AtButton>
                                                                 <AtButton
                                                                     className="orderlist_order_info_button_it"
