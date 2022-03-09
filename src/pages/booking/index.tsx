@@ -8,6 +8,7 @@ import Image from "../..//common/base-component/image";
 import { ISpotInfo } from "../spot-detail/interface";
 import { IBookingState } from "./interface";
 import TravelerList from "../../common/traveler/list";
+import { IPassengerInfo } from "src/common/traveler/edit/interface";
 
 import "./index.scss";
 
@@ -55,6 +56,79 @@ export default class Index extends PureComponent<any> {
             listOpen: false,
             selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
             contact: "",
+            passengerlist: [
+                {
+                    passengerId: 1,
+                    passengerName: "啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈",
+                    passengerNumber:
+                        "123456123456123456123456123456123456123456123456123456123456123456123456123456123456",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 2,
+                    passengerName: "哈哈1",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 3,
+                    passengerName: "哈2哈",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 4,
+                    passengerName: "哈哈3",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 5,
+                    passengerName: "哈4哈",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 6,
+                    passengerName: "哈rr哈",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 7,
+                    passengerName: "哈ss哈",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 8,
+                    passengerName: "哈xx哈",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 9,
+                    passengerName: "哈aa哈",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+                {
+                    passengerId: 10,
+                    passengerName: "哈gg哈",
+                    passengerNumber: "123",
+                    passengerSex: "F",
+                    passengerBirth: "1988-01-01",
+                },
+            ],
         };
         this.initTicketList();
         console.log(
@@ -80,15 +154,7 @@ export default class Index extends PureComponent<any> {
                 ticketName: item.ticketName,
                 ticketPrice: item.ticketPrice,
                 ticketNum: 0,
-                passenger: [
-                    {
-                        passengerId: 1,
-                        passengerName: "啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈",
-                        passengerNumber:
-                            "123456123456123456123456123456123456123456123456123456123456123456123456123456123456",
-                    },
-                    { passengerId: 2, passengerName: "啊哈", passengerNumber: "123456" },
-                ],
+                passenger: [1, 2],
             });
         });
 
@@ -160,11 +226,25 @@ export default class Index extends PureComponent<any> {
         return total;
     };
 
+    getPass = id => {
+        const { passengerlist } = this.state;
+        let pass: IPassengerInfo = {
+            passengerName: "",
+            passengerNumber: "",
+        };
+        passengerlist.forEach(item => {
+            if (item.passengerId == id) {
+                pass = item;
+            }
+        });
+        return pass;
+    };
+
     onSelectTraveler = pass => {
         const { currentTicket, orderTicketList } = this.state;
         let ticketNum = currentTicket?.ticketNum;
         let passengerNum = currentTicket?.passenger?.length || 0;
-        if (!ticketNum || !currentTicket || currentTicket.passenger?.includes(pass)) {
+        if (!ticketNum || !currentTicket || currentTicket.passenger?.includes(pass.passengerId)) {
             return;
         }
         if (ticketNum === passengerNum) {
@@ -172,7 +252,7 @@ export default class Index extends PureComponent<any> {
                 `你已经选择了${currentTicket?.ticketNum}位${currentTicket?.ticketName}`
             );
         } else if (ticketNum > passengerNum) {
-            currentTicket?.passenger?.push(pass);
+            currentTicket?.passenger?.push(pass.passengerId);
             let index = orderTicketList?.findIndex(item => {
                 return item.ticketId === currentTicket?.ticketId;
             });
@@ -184,12 +264,13 @@ export default class Index extends PureComponent<any> {
                     orderTicketList: newList,
                 };
             });
+            this.onCloseList();
         }
     };
 
-    unSeletctTraveler = (ticketInfo, pass) => {
-        let passIndex = ticketInfo.passenger.findIndex(item => {
-            return item.passengerId === pass.passengerId;
+    unSeletctTraveler = (ticketInfo, passid) => {
+        let passIndex = ticketInfo.passenger.findIndex(id => {
+            return id === passid;
         });
         ticketInfo.passenger.splice(passIndex, 1);
         const { orderTicketList } = this.state;
@@ -323,7 +404,7 @@ export default class Index extends PureComponent<any> {
                                         </View>
                                         <View className="booking_info_passenger_info_single_right">
                                             <View className="booking_info_passenger_info_single_travelers">
-                                                {item.passenger?.map((pas, index) => {
+                                                {item.passenger?.map((pasid, index) => {
                                                     return (
                                                         <View
                                                             className="booking_info_passenger_info_single_traveler"
@@ -334,7 +415,7 @@ export default class Index extends PureComponent<any> {
                                                                 onClick={() => {
                                                                     this.unSeletctTraveler(
                                                                         item,
-                                                                        pas
+                                                                        pasid
                                                                     );
                                                                 }}
                                                             >
@@ -352,10 +433,17 @@ export default class Index extends PureComponent<any> {
                                                                 }}
                                                             >
                                                                 <Text className="booking_info_passenger_info_single_traveler_info_webkit">
-                                                                    {pas.passengerName}
+                                                                    {
+                                                                        this.getPass(pasid)
+                                                                            .passengerName
+                                                                    }
                                                                 </Text>
                                                                 <Text className="booking_info_passenger_info_single_traveler_info_webkit booking_info_passenger_info_single_traveler_info_id">
-                                                                    证件号：{pas.passengerNumber}
+                                                                    证件号：
+                                                                    {
+                                                                        this.getPass(pasid)
+                                                                            .passengerNumber
+                                                                    }
                                                                 </Text>
                                                             </View>
                                                         </View>

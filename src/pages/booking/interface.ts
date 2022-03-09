@@ -1,4 +1,5 @@
-import { IPassengerInfo } from "../../common/traveler/edit/interface";
+import { IPassengerInfo } from "src/common/traveler/edit/interface";
+import { ITicketInfo } from "../spot-detail/interface";
 
 export interface IBookingState {
     calendarOpen: boolean;
@@ -7,12 +8,10 @@ export interface IBookingState {
     contact: string;
     orderTicketList?: Array<IOrderTicketInfo>;
     currentTicket?: IOrderTicketInfo;
+    passengerlist: Array<IPassengerInfo>;
 }
 
-export interface IOrderTicketInfo {
-    ticketId: number;
-    ticketName: string;
-    ticketPrice: number;
+export interface IOrderTicketInfo extends ITicketInfo {
     ticketNum: number;
-    passenger?: Array<IPassengerInfo>;
+    passenger?: Array<number>;
 }
