@@ -159,6 +159,34 @@ export default class Index extends PureComponent<any> {
         return total;
     };
 
+    onSelectTraveler = pass => {
+        console.log("🚀 ~ file: index.tsx ~ line 163 ~ Index ~ pass", pass);
+        const { currentTicket, orderTicketList } = this.state;
+        let ticketNum = currentTicket?.ticketNum;
+        let passengerNum = currentTicket?.passenger?.length || 0;
+        if (!ticketNum || !currentTicket || currentTicket.passenger?.includes(pass)) {
+            return;
+        }
+        if (ticketNum === passengerNum) {
+            this.toast.show(
+                `你已经选择了${currentTicket?.ticketNum}位${currentTicket?.ticketName}`
+            );
+        } else if (ticketNum > passengerNum) {
+            currentTicket?.passenger?.push(pass);
+            let index = orderTicketList?.findIndex(item => {
+                item.ticketId === currentTicket?.ticketId;
+            });
+            let newList = orderTicketList;
+            newList && typeof index != "undefined" && (newList[index] = currentTicket);
+            this.setState((prevState: IBookingState) => {
+                return {
+                    ...prevState,
+                    currentTicket,
+                };
+            });
+        }
+    };
+
     render() {
         const { selectedDate, calendarOpen, listOpen, orderTicketList, currentTicket } = this.state;
         return (
@@ -343,7 +371,10 @@ export default class Index extends PureComponent<any> {
                                 title={"游客列表"}
                                 onClose={this.onCloseList}
                             >
-                                <TravelerList orderTicketInfo={currentTicket} />
+                                <TravelerList
+                                    orderTicketInfo={currentTicket}
+                                    selectTraveler={this.onSelectTraveler}
+                                />
                             </AtFloatLayout>
                         </View>
                         <View className="booking_info_passenger_contact">

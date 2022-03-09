@@ -104,6 +104,15 @@ export default class Index extends PureComponent<any> {
         this.setState({ editOpened: false });
     };
 
+    onSelect = pass => {
+        const { selectTraveler } = this.props;
+        if (selectTraveler) {
+            selectTraveler(pass);
+        } else {
+            this.onOpenEdit(pass);
+        }
+    };
+
     render() {
         const { orderTicketInfo } = this.props;
         const { currentPassenger, editOpened } = this.state;
@@ -125,7 +134,12 @@ export default class Index extends PureComponent<any> {
                         return (
                             <View className="list_traveler" key={index}>
                                 <View className="list_traveler_wrap">
-                                    <View className="list_traveler_left" onClick={() => {}}>
+                                    <View
+                                        className="list_traveler_left"
+                                        onClick={() => {
+                                            this.onSelect(item);
+                                        }}
+                                    >
                                         {orderTicketInfo?.ticketId ? (
                                             <View className="list_traveler_icon">
                                                 <View className="list_traveler_icon_circle" />
