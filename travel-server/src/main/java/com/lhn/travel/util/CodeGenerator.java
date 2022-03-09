@@ -11,7 +11,7 @@ public class CodeGenerator {
     }
 
     private static void generate() {
-        String[] tables = {"t_user", "t_passenger", "t_spot", "t_ticket", "t_order", "t_orderdetail", "t_comment"};
+        String[] tables = {"t_user", "t_passenger", "t_spot", "t_ticket", "t_order", "t_orderdetail", "t_comment", "t_favorite"};
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/travel", "root", "123456")
                 .globalConfig(builder -> {
                     builder.author("lhn") // 设置作者
