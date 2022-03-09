@@ -115,15 +115,15 @@ export default class Index extends PureComponent<IListProps> {
         let newList = passengerlist;
         if (passIndex === -1) {
             // 请求接口增加出行人，并进行更新state
-            this.setState({});
+
+            newList.push(pass);
         } else {
             newList[passIndex] = pass;
             // todo 请求接口更新出行人
-
-            this.setState({
-                passengerlist: newList,
-            });
         }
+        this.setState({
+            passengerlist: newList,
+        });
         this.onCloseEdit();
     };
 
