@@ -1,7 +1,6 @@
 import PureComponent from "../../pure-component";
 import { View, Text } from "@tarojs/components";
 import Icon from "../../base-component/icon";
-import { IPassengerInfo } from "../edit/interface";
 import { AtFloatLayout } from "taro-ui";
 import TravelerEdit from "../edit";
 import { IListProps, IListState } from "./interface";
