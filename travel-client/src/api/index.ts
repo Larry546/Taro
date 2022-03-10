@@ -23,3 +23,11 @@ export function getOrderList(target, orderIndex) {
 export function getOrderTicket(target, orderId) {
     return target.http.get(`/ticket/listByOrder/${orderId}`);
 }
+
+export function getSpotInfo(target, spotId) {
+    return target.http.get(`/spot/find/${spotId}`);
+}
+
+export function getOrderInfo(target, orderId) {
+    return target.http.get(`/order/find/${orderId}`);
+}

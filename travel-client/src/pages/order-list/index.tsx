@@ -79,8 +79,8 @@ export default class Index extends PureComponent<any> {
         });
     };
 
-    goToDetail = () => {
-        this.push("/pages/order-detail/index");
+    goToDetail = order => {
+        this.push(`/pages/order-detail/index?orderId=${order.orderId}&spotId=${order.spotId}`);
     };
 
     render() {
@@ -106,7 +106,7 @@ export default class Index extends PureComponent<any> {
                                                     <View
                                                         className="orderlist_order_info orderlist_order_box"
                                                         key={subindex}
-                                                        onClick={this.goToDetail}
+                                                        onClick={() => this.goToDetail(subitem)}
                                                     >
                                                         <View className="orderlist_order_info_wrap orderlist_order_box_wrap">
                                                             <View className="orderlist_order_info_text">

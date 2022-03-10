@@ -3,9 +3,9 @@ import { IOrderTicketInfo } from "../booking/interface";
 import { ISpotInfo } from "../spot-detail/interface";
 
 export interface IOrderDetailState {
-    passengerlist: Array<IPassengerInfo>;
-    orderInfo: IOrderInfo;
-    spotInfo: ISpotInfo;
+    passengerlist?: Array<IPassengerInfo>;
+    orderInfo?: IOrderInfo;
+    spotInfo?: ISpotInfo;
 }
 
 export interface IOrderInfo {
