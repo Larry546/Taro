@@ -33,7 +33,7 @@ export default class Index extends PureComponent<any> {
     };
 
     goToLogin = () => {
-        this.push("/pages/user-login/index");
+        this.push("/pages/user-login/index", "redirectTo");
     };
 
     checkLoginStatus = () => {
