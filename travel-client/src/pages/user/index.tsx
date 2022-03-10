@@ -45,6 +45,8 @@ export default class Index extends PureComponent<any> {
                 btnCallBack: [this.goToLogin],
             });
             return false;
+        } else {
+            return true;
         }
     };
 

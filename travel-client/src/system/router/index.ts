@@ -2,7 +2,7 @@ import Taro from "@tarojs/taro";
 
 export let push = (
     url: string,
-    method: string = "redirectTo",
+    method: string = "navigateTo",
     fail?: Function,
     success?: Function
 ) => {

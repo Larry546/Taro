@@ -3,6 +3,8 @@ import { View, Text } from "@tarojs/components";
 import { AtInput } from "taro-ui";
 import H5NavBar from "../../common/h5NavBar";
 import { IUserInfoState } from "./interface";
+import { getUser } from "../../system/tools/user";
+import { getUserInfo } from "../../api";
 
 import "./index.scss";
 
@@ -15,16 +17,23 @@ export default class Index extends PureComponent<any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            userInfo: {
-                userId: 1,
-                userAccount: "123",
-                userPassword: "123456",
-            },
+            userInfo: {},
         };
+        this.getUserInfo();
     }
 
+    getUserInfo = async () => {
+        let uid = getUser();
+        let response = await getUserInfo(this, uid);
+        console.log("🚀 ~ file: index.tsx ~ line 25 ~ Index ~ getUserInfo= ~ response", response);
+        this.setState({
+            userInfo: response,
+        });
+    };
+
     render() {
-        const { userInfo } = this.state;
+        const { userInfo = {} } = this.state;
+        const { userAccount = "", userNickname = "", userContact = "" } = userInfo;
         return (
             <View className="userinfo">
                 <H5NavBar />
@@ -40,7 +49,7 @@ export default class Index extends PureComponent<any> {
                                 title={"用户名"}
                                 name="userAccount"
                                 type="text"
-                                value={userInfo.userAccount}
+                                value={userAccount || ""}
                                 onChange={() => {}}
                             />
                             <AtInput
@@ -49,7 +58,7 @@ export default class Index extends PureComponent<any> {
                                 title={"密码"}
                                 name="userPassword"
                                 type="password"
-                                value={userInfo.userPassword}
+                                value={"******"}
                                 onChange={() => {}}
                             />
                             <AtInput
@@ -57,7 +66,7 @@ export default class Index extends PureComponent<any> {
                                 title={"昵称"}
                                 name="userNickname"
                                 type="text"
-                                value={userInfo.userNickname || ""}
+                                value={userNickname || ""}
                                 onChange={() => {}}
                             />
                             <AtInput
@@ -65,7 +74,7 @@ export default class Index extends PureComponent<any> {
                                 title={"联系方式"}
                                 name="userContact"
                                 type="text"
-                                value={userInfo.userContact || ""}
+                                value={userContact || ""}
                                 onChange={() => {}}
                             />
                         </View>

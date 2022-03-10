@@ -1,11 +1,11 @@
 export interface IUserInfoState {
-    userInfo: IUserInfo;
+    userInfo?: IUserInfo;
 }
 
 export interface IUserInfo {
     userId?: number;
-    userAccount: string;
-    userPassword: string;
+    userAccount?: string;
+    userPassword?: string;
     userNickname?: string;
     userContact?: string;
 }
