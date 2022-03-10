@@ -15,5 +15,6 @@ export interface IOrderInfo {
     orderStatus: string;
     orderCreatetime: string;
     orderUsetime: string;
-    orderTicket: Array<IOrderTicketInfo>;
+    orderTicket?: Array<IOrderTicketInfo>;
+    spotId?: number;
 }

@@ -178,69 +178,71 @@ export default class Index extends PureComponent<any> {
                         </View>
                         <View className="orderdetail_info_box">
                             <View className="orderdetail_info_box_wrap">
-                                {orderInfo.orderTicket.map((item, index) => {
-                                    return (
-                                        <View className="orderdetail_info_ticket" key={index}>
-                                            <View className="orderdetail_info_ticket_name">
-                                                <Text>
-                                                    {orderInfo.orderSpotname + item.ticketName}x
-                                                    {item.ticketNum}份
-                                                </Text>
-                                            </View>
-                                            <View className="orderdetail_info_ticket_useday">
-                                                <Text style={{ color: "#999999" }}>
-                                                    使用日期{"    "}
-                                                </Text>
-                                                <Text style={{ color: "#ff7700" }}>
-                                                    {orderInfo.orderUsetime}
-                                                </Text>
-                                            </View>
-                                            {item.passenger?.map((passid, pindex) => {
-                                                return (
-                                                    <View
-                                                        className="orderdetail_info_ticket_passenger"
-                                                        key={pindex}
-                                                    >
-                                                        <View className="orderdetail_info_ticket_passenger_wrap">
-                                                            <View className="orderdetail_info_ticket_passenger_no">
-                                                                <Text>
-                                                                    {item.ticketName} {pindex + 1}
-                                                                </Text>
-                                                            </View>
-                                                            <View
-                                                                className={
-                                                                    "orderdetail_info_ticket_passenger_info"
-                                                                }
-                                                            >
-                                                                <Text
+                                {orderInfo.orderTicket &&
+                                    orderInfo.orderTicket.map((item, index) => {
+                                        return (
+                                            <View className="orderdetail_info_ticket" key={index}>
+                                                <View className="orderdetail_info_ticket_name">
+                                                    <Text>
+                                                        {orderInfo.orderSpotname + item.ticketName}x
+                                                        {item.ticketNum}份
+                                                    </Text>
+                                                </View>
+                                                <View className="orderdetail_info_ticket_useday">
+                                                    <Text style={{ color: "#999999" }}>
+                                                        使用日期{"    "}
+                                                    </Text>
+                                                    <Text style={{ color: "#ff7700" }}>
+                                                        {orderInfo.orderUsetime}
+                                                    </Text>
+                                                </View>
+                                                {item.passenger?.map((passid, pindex) => {
+                                                    return (
+                                                        <View
+                                                            className="orderdetail_info_ticket_passenger"
+                                                            key={pindex}
+                                                        >
+                                                            <View className="orderdetail_info_ticket_passenger_wrap">
+                                                                <View className="orderdetail_info_ticket_passenger_no">
+                                                                    <Text>
+                                                                        {item.ticketName}{" "}
+                                                                        {pindex + 1}
+                                                                    </Text>
+                                                                </View>
+                                                                <View
                                                                     className={
-                                                                        "orderdetail_info_ticket_passenger_info_webkit"
+                                                                        "orderdetail_info_ticket_passenger_info"
                                                                     }
                                                                 >
-                                                                    {
-                                                                        this.getPass(passid)
-                                                                            .passengerName
-                                                                    }
-                                                                </Text>
-                                                                <Text
-                                                                    className={
-                                                                        "orderdetail_info_ticket_passenger_info_webkit"
-                                                                    }
-                                                                >
-                                                                    证件号：
-                                                                    {
-                                                                        this.getPass(passid)
-                                                                            .passengerNumber
-                                                                    }
-                                                                </Text>
+                                                                    <Text
+                                                                        className={
+                                                                            "orderdetail_info_ticket_passenger_info_webkit"
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            this.getPass(passid)
+                                                                                .passengerName
+                                                                        }
+                                                                    </Text>
+                                                                    <Text
+                                                                        className={
+                                                                            "orderdetail_info_ticket_passenger_info_webkit"
+                                                                        }
+                                                                    >
+                                                                        证件号：
+                                                                        {
+                                                                            this.getPass(passid)
+                                                                                .passengerNumber
+                                                                        }
+                                                                    </Text>
+                                                                </View>
                                                             </View>
                                                         </View>
-                                                    </View>
-                                                );
-                                            })}
-                                        </View>
-                                    );
-                                })}
+                                                    );
+                                                })}
+                                            </View>
+                                        );
+                                    })}
                             </View>
                         </View>
 
