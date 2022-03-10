@@ -1,5 +1,5 @@
 import PureComponent from "../../common/pure-component";
-import { View, Text, ScrollView } from "@tarojs/components";
+import { View, ScrollView } from "@tarojs/components";
 import TravelerList from "../../common/traveler/list";
 import H5NavBar from "../../common/h5NavBar";
 

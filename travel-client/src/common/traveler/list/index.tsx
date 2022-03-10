@@ -4,6 +4,8 @@ import Icon from "../../base-component/icon";
 import { AtFloatLayout } from "taro-ui";
 import TravelerEdit from "../edit";
 import { IListProps, IListState } from "./interface";
+import { getUser } from "../../../system/tools/user";
+import { getPassengerList } from "../../../api";
 
 import "./index.scss";
 
@@ -14,81 +16,17 @@ export default class Index extends PureComponent<IListProps> {
         this.state = {
             editOpened: false,
             currentPassenger: {},
-            passengerlist: [
-                {
-                    passengerId: 1,
-                    passengerName: "啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈",
-                    passengerNumber:
-                        "123456123456123456123456123456123456123456123456123456123456123456123456123456123456",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 2,
-                    passengerName: "哈哈1",
-                    passengerNumber: "123",
-                    passengerSex: "M",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 3,
-                    passengerName: "哈2哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 4,
-                    passengerName: "哈哈3",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 5,
-                    passengerName: "哈4哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 6,
-                    passengerName: "哈rr哈",
-                    passengerNumber: "123",
-                    passengerSex: "M",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 7,
-                    passengerName: "哈ss哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 8,
-                    passengerName: "哈xx哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 9,
-                    passengerName: "哈aa哈",
-                    passengerNumber: "123",
-                    passengerSex: "M",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 10,
-                    passengerName: "哈gg哈",
-                    passengerNumber: "123",
-                    passengerSex: "M",
-                    passengerBirth: "1988-01-01",
-                },
-            ],
         };
+        this.getList();
     }
+
+    getList = async () => {
+        let uid = getUser();
+        let response = await getPassengerList(this, uid);
+        this.setState({
+            passengerlist: response,
+        });
+    };
 
     onOpenEdit = item => {
         this.setState({ editOpened: true, currentPassenger: item });
@@ -109,10 +47,13 @@ export default class Index extends PureComponent<IListProps> {
 
     saveTraveler = pass => {
         const { passengerlist } = this.state;
-        let passIndex = passengerlist.findIndex(item => {
-            return item.passengerId === pass.passengerId;
-        });
-        let newList = passengerlist;
+        let passIndex = -1;
+        if (passengerlist) {
+            passIndex = passengerlist.findIndex(item => {
+                return item.passengerId === pass.passengerId;
+            });
+        }
+        let newList = passengerlist || [];
         if (passIndex === -1) {
             // 请求接口增加出行人，并进行更新state
 
@@ -144,43 +85,44 @@ export default class Index extends PureComponent<IListProps> {
                     <Text>新增游客</Text>
                 </View>
                 <View className="list_travelers">
-                    {passengerlist.map((item, index) => {
-                        return (
-                            <View className="list_traveler" key={index}>
-                                <View className="list_traveler_wrap">
-                                    <View
-                                        className="list_traveler_left"
-                                        onClick={() => {
-                                            this.onSelect(item);
-                                        }}
-                                    >
-                                        {orderTicketInfo?.ticketId ? (
-                                            <View className="list_traveler_icon">
-                                                <View className="list_traveler_icon_circle" />
+                    {passengerlist &&
+                        passengerlist.map((item, index) => {
+                            return (
+                                <View className="list_traveler" key={index}>
+                                    <View className="list_traveler_wrap">
+                                        <View
+                                            className="list_traveler_left"
+                                            onClick={() => {
+                                                this.onSelect(item);
+                                            }}
+                                        >
+                                            {orderTicketInfo?.ticketId ? (
+                                                <View className="list_traveler_icon">
+                                                    <View className="list_traveler_icon_circle" />
+                                                </View>
+                                            ) : null}
+                                            <View className="list_traveler_info">
+                                                <Text className="list_traveler_info_name list_traveler_info_webkit">
+                                                    {item.passengerName}
+                                                </Text>
+                                                <Text className="list_traveler_info_id list_traveler_info_webkit">
+                                                    证件号：
+                                                    {item.passengerNumber}
+                                                </Text>
                                             </View>
-                                        ) : null}
-                                        <View className="list_traveler_info">
-                                            <Text className="list_traveler_info_name list_traveler_info_webkit">
-                                                {item.passengerName}
-                                            </Text>
-                                            <Text className="list_traveler_info_id list_traveler_info_webkit">
-                                                证件号：
-                                                {item.passengerNumber}
-                                            </Text>
+                                        </View>
+                                        <View
+                                            className="list_traveler_edit"
+                                            onClick={() => {
+                                                this.onOpenEdit(item);
+                                            }}
+                                        >
+                                            <Icon type={"xiezi"} color={"#0086f6"} size={28} />
                                         </View>
                                     </View>
-                                    <View
-                                        className="list_traveler_edit"
-                                        onClick={() => {
-                                            this.onOpenEdit(item);
-                                        }}
-                                    >
-                                        <Icon type={"xiezi"} color={"#0086f6"} size={28} />
-                                    </View>
                                 </View>
-                            </View>
-                        );
-                    })}
+                            );
+                        })}
                     <AtFloatLayout
                         title={currentPassenger.passengerId ? "编辑出行人" : "新增出行人"}
                         isOpened={editOpened}

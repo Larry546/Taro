@@ -5,3 +5,7 @@ export function login(target, loginInfo) {
 export function getUserInfo(target, uid) {
     return target.http.get(`/user/find/${uid}`);
 }
+
+export function getPassengerList(target, uid) {
+    return target.http.get(`/passenger/listByUser/${uid}`);
+}
