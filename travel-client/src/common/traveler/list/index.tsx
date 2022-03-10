@@ -4,7 +4,6 @@ import Icon from "../../base-component/icon";
 import { AtFloatLayout } from "taro-ui";
 import TravelerEdit from "../edit";
 import { IListProps, IListState } from "./interface";
-import { getUser } from "../../../system/tools/user";
 import { getPassengerList } from "../../../api";
 
 import "./index.scss";
@@ -21,8 +20,7 @@ export default class Index extends PureComponent<IListProps> {
     }
 
     getList = async () => {
-        let uid = getUser();
-        let response = await getPassengerList(this, uid);
+        let response = await getPassengerList(this);
         this.setState({
             passengerlist: response,
         });

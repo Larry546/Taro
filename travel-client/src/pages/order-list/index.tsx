@@ -86,15 +86,6 @@ export default class Index extends PureComponent<any> {
             ],
         };
     }
-    componentWillMount() {}
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
-    componentDidShow() {}
-
-    componentDidHide() {}
 
     goToDetail = () => {
         this.push("/pages/order-detail/index");
@@ -115,7 +106,8 @@ export default class Index extends PureComponent<any> {
                                         <View className="orderlist_order" key={index}>
                                             <View className="orderlist_order_tag">
                                                 <Text>
-                                                    预定日期：{item.orderCreatetime.slice(5, 10)}
+                                                    预定日期：
+                                                    {item.orderCreatetime.slice(5, 10)}
                                                 </Text>
                                             </View>
                                             {item.list.map((subitem, subindex) => {

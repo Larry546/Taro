@@ -3,7 +3,6 @@ import { View, Text } from "@tarojs/components";
 import { AtInput } from "taro-ui";
 import H5NavBar from "../../common/h5NavBar";
 import { IUserInfoState } from "./interface";
-import { getUser } from "../../system/tools/user";
 import { getUserInfo } from "../../api";
 
 import "./index.scss";
@@ -19,13 +18,11 @@ export default class Index extends PureComponent<any> {
         this.state = {
             userInfo: {},
         };
-        this.getUserInfo();
+        this.getInfo();
     }
 
-    getUserInfo = async () => {
-        let uid = getUser();
-        let response = await getUserInfo(this, uid);
-        console.log("🚀 ~ file: index.tsx ~ line 25 ~ Index ~ getUserInfo= ~ response", response);
+    getInfo = async () => {
+        let response = await getUserInfo(this);
         this.setState({
             userInfo: response,
         });
