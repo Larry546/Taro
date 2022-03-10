@@ -5,5 +5,5 @@ export const setUser = uid => {
 };
 
 export const getUser = () => {
-    Taro.getStorageSync("uid");
+    return Taro.getStorageSync("uid");
 };

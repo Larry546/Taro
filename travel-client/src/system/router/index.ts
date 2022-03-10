@@ -1,6 +1,11 @@
 import Taro from "@tarojs/taro";
 
-export let push = (url: string, replace: boolean = false, fail?: Function, success?: Function) => {
+export let push = (
+    url: string,
+    method: string = "redirectTo",
+    fail?: Function,
+    success?: Function
+) => {
     let option = {
         url: url,
         success: function () {
@@ -10,10 +15,12 @@ export let push = (url: string, replace: boolean = false, fail?: Function, succe
             fail && fail();
         },
     };
-    if (replace) {
+    if (method === "redirectTo") {
         Taro.redirectTo(option);
-    } else {
+    } else if (method === "navigateTo") {
         Taro.navigateTo(option);
+    } else if (method === "reLaunch") {
+        Taro.reLaunch(option);
     }
 };
 

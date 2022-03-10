@@ -1,8 +1,10 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
 import { AtButton, AtGrid, AtList, AtListItem, AtAvatar } from "taro-ui";
+import { IUserState } from "./interfacet";
+import { getUser, setUser } from "../../system/tools/user";
+import { getUserInfo } from "../../api";
 
-import "../../common/base-component/icon/icon.scss";
 import "./index.scss";
 
 definePageConfig({
@@ -10,25 +12,24 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
-    islogin: boolean;
+    state: IUserState;
 
     constructor(props: any) {
         super(props);
-        this.getLoginStatus();
+        this.state = {
+            uid: getUser(),
+        };
+        if (this.state.uid) {
+            this.getUserInfo();
+        }
     }
 
-    componentWillMount() {}
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
-    componentDidShow() {}
-
-    componentDidHide() {}
-
-    getLoginStatus = () => {
-        this.islogin = true;
+    getUserInfo = async () => {
+        const { uid } = this.state;
+        let response = await getUserInfo(this, uid);
+        this.setState({
+            userInfo: response,
+        });
     };
 
     goToLogin = () => {
@@ -36,7 +37,8 @@ export default class Index extends PureComponent<any> {
     };
 
     checkLoginStatus = () => {
-        if (!this.islogin) {
+        const { uid } = this.state;
+        if (!uid) {
             this.confirm.show({
                 content: "请先登录",
                 btnOK: ["返回", "去登陆"],
@@ -47,41 +49,54 @@ export default class Index extends PureComponent<any> {
     };
 
     goToOrderList = res => {
-        // if (!this.checkLoginStatus()) return;
+        if (!this.checkLoginStatus()) return;
         this.push("/pages/order-list/index");
 
         console.log("🚀 ~ file: index.tsx ~ line 32 ~ Index ~ res", res);
-
-        // this.push("/pages/order-list/index");
     };
 
     goToUserInfo = () => {
-        // if (!this.checkLoginStatus()) return;
+        if (!this.checkLoginStatus()) return;
         this.push("/pages/user-info/index");
     };
 
     goToPassengerList = () => {
-        // if (!this.checkLoginStatus()) return;
+        if (!this.checkLoginStatus()) return;
         this.push("/pages/traveler-list/index");
     };
 
     goToViewList = () => {};
 
-    logout = () => {};
+    logout = () => {
+        this.setState({
+            uid: "",
+            userInfo: {},
+        });
+        setUser("");
+    };
 
     render() {
+        const { uid, userInfo } = this.state;
         return (
             <View className="user">
                 <View className="user_wrap">
                     <View className="user_header">
-                        {this.islogin ? (
+                        {uid ? (
                             <View className="user_header_logined" onClick={this.goToUserInfo}>
                                 <View className="user_header_avatar">
-                                    <AtAvatar circle text="用户" size="large" />
+                                    <AtAvatar
+                                        circle
+                                        text={userInfo?.userNickname || `用户${userInfo?.userId}`}
+                                        size="large"
+                                    />
                                 </View>
                                 <View className="user_header_info">
-                                    <Text>UserName</Text>
-                                    <Text className="user_header_info_account">账号：</Text>
+                                    <Text>
+                                        {userInfo?.userNickname || `用户${userInfo?.userId}`}
+                                    </Text>
+                                    <Text className="user_header_info_account">
+                                        账号：{userInfo?.userAccount}
+                                    </Text>
                                 </View>
                             </View>
                         ) : (
@@ -162,7 +177,7 @@ export default class Index extends PureComponent<any> {
                         </AtList>
                     </View>
 
-                    {this.islogin ? (
+                    {uid ? (
                         <View>
                             <View className="user_bottom">
                                 <AtButton type="secondary" size={"normal"} onClick={this.logout}>

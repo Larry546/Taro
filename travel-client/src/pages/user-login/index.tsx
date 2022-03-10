@@ -40,7 +40,7 @@ export default class Index extends PureComponent<any> {
         let response = await login(this, loginInfo);
         if (response && response.code === 1) {
             setUser(response.uid);
-            this.push("/pages/user/index", true);
+            this.push("/pages/user/index", "reLaunch");
         } else if (response && response.code === 0) {
             this.toast.show(response.msg);
         } else {
@@ -49,7 +49,7 @@ export default class Index extends PureComponent<any> {
     };
 
     goToRegister = () => {
-        this.push("/pages/user-register/index", true);
+        this.push("/pages/user-register/index", "navigateTo");
     };
 
     onChangeAccount = value => {
