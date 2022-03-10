@@ -12,8 +12,12 @@ export function getPassengerList(target) {
     return target.http.get(`/passenger/listByUser/${getUser()}`);
 }
 
-export function getOrderList(target) {
-    return target.http.get(`/order/listByUser/${getUser()}`);
+export function getOrderList(target, orderIndex) {
+    let data = {
+        uid: getUser(),
+        type: orderIndex,
+    };
+    return target.http.get("/order/listByUser", data);
 }
 
 export function getOrderTicket(target, orderId) {

@@ -51,9 +51,7 @@ export default class Index extends PureComponent<any> {
 
     goToOrderList = res => {
         if (!this.checkLoginStatus()) return;
-        this.push("/pages/order-list/index");
-
-        console.log("🚀 ~ file: index.tsx ~ line 32 ~ Index ~ res", res);
+        this.push(`/pages/order-list/index?orderIndex=${res.index}`);
     };
 
     goToUserInfo = () => {

@@ -7,6 +7,7 @@ import { IOrderListState, IOrderTime } from "./interface";
 import { getOrderList, getOrderTicket } from "../../api";
 import { IOrderInfo } from "../order-detail/interface";
 import { IOrderTicketInfo } from "../booking/interface";
+import { getCurrentInstance } from "../../system/router";
 
 import "./index.scss";
 
@@ -15,6 +16,7 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
+    orderIndex: number;
     state: IOrderListState;
     top: number;
     constructor(props: any) {
@@ -23,11 +25,18 @@ export default class Index extends PureComponent<any> {
         this.state = {
             orderList: [],
         };
+        this.orderIndex = this.getParams();
         this.getList();
     }
 
+    getParams = () => {
+        const instance: any = getCurrentInstance;
+        const data = instance.router.params;
+        return data.orderIndex;
+    };
+
     getList = async () => {
-        let response = await getOrderList(this);
+        let response = await getOrderList(this, this.orderIndex);
         let res = response;
         let orderList: Array<IOrderTime> = [];
         for (let item of res) {
