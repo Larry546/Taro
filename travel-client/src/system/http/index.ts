@@ -16,7 +16,7 @@ class httpRequest {
             method: method,
             header: {
                 "content-type": contentType,
-                Authorization: Taro.getStorageSync("Authorization"),
+                // Authorization: Taro.getStorageSync("Authorization"),
             },
         };
         return Taro.request(option);

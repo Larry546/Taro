@@ -3,6 +3,8 @@ import { View, Text } from "@tarojs/components";
 import { AtButton, AtInput } from "taro-ui";
 import H5NavBar from "../../common/h5NavBar";
 import { IUserInfo } from "../user-info/interface";
+import { login } from "../../api/index";
+import { setUser } from "../../system/tools/user";
 
 import "./index.scss";
 
@@ -19,17 +21,8 @@ export default class Index extends PureComponent<any> {
             userPassword: "",
         };
     }
-    componentWillMount() {}
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
-    componentDidShow() {}
-
-    componentDidHide() {}
-
-    login = () => {
+    login = async () => {
         const { userAccount, userPassword } = this.state;
         let cuserAccount = String(userAccount).replace(/-| /g, "");
         let cuserPassword = String(userPassword).replace(/-| /g, "");
@@ -40,7 +33,19 @@ export default class Index extends PureComponent<any> {
             this.toast.show("密码不能为空！");
             return;
         }
-        // todo
+        let loginInfo = {
+            userAccount: userAccount,
+            userPassword: userPassword,
+        };
+        let response = await login(this, loginInfo);
+        if (response && response.code === 1) {
+            setUser(response.uid);
+            this.push("/pages/user/index", true);
+        } else if (response && response.code === 0) {
+            this.toast.show(response.msg);
+        } else {
+            this.toast.show("网络不给力，请稍后重试!");
+        }
     };
 
     goToRegister = () => {
