@@ -18,6 +18,8 @@ spring:
       filter:
         wall:
           enabled: true
+          config:
+            comment-allow: true
         stat:
           enabled: true
 
@@ -29,6 +31,7 @@ spring:
         enabled: true
         login-username: admin
         login-password: 123456
+
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:

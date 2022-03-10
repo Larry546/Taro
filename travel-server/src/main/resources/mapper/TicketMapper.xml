@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhn.travel.mapper.TicketMapper">
+
+    <select id="findByOrder" resultType="map">
+        select t_ticket.ticket_id         as ticketId,
+               ticket_name                as ticketName,
+               ticket_price               as ticketPrice,
+               ticket_request             as ticketRequest,
+               ticket_tag                 as ticketTag,
+               t_orderdetail.passenger_id as passengerId
+        from t_ticket,
+             t_orderdetail,
+             t_order
+        where t_order.order_id = t_orderdetail.order_id
+          and t_orderdetail.ticket_id = t_ticket.ticket_id
+          and t_ticket.spot_id = t_order.spot_id
+          and t_order.order_id = ${id}
+    </select>
+</mapper>

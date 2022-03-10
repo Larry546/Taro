@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhn.travel.mapper.OrderMapper">
+    <select id="findByUser" resultType="map">
+        select order_id         AS orderId,
+               spot_name        AS orderSpotname,
+               order_total      AS orderTotal,
+               order_status     AS orderStatus,
+               order_createtime AS orderCreatetime,
+               order_usetime    AS orderUsetime,
+               t_order.spot_id  AS spotId
+        from t_order,
+             t_spot
+        WHERE t_order.spot_id = t_spot.spot_id
+          and t_order.user_id = ${id}
+    </select>
+</mapper>
