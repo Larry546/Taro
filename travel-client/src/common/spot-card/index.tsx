@@ -13,7 +13,8 @@ export default class Index extends PureComponent<ISpotCard> {
     }
 
     goToDetail = () => {
-        this.push("/pages/spot-detail/index");
+        const { spotId } = this.props.spotInfo;
+        this.push(`/pages/spot-detail/index?spotId=${spotId}`);
     };
 
     render() {

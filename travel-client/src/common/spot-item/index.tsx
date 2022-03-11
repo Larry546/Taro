@@ -11,7 +11,8 @@ export default class Index extends PureComponent<ISpotItem> {
     }
 
     goToDetail = () => {
-        this.push("/pages/spot-detail/index");
+        const { spotId } = this.props.spotInfo;
+        this.push(`/pages/spot-detail/index?spotId=${spotId}`);
     };
 
     render() {
