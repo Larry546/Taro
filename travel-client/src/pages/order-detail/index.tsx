@@ -113,9 +113,7 @@ export default class Index extends PureComponent<any> {
                                     <Text>{orderInfo.orderStatus}</Text>
                                 </View>
                                 <View className="orderdetail_info_header_desc">
-                                    <Text>
-                                        很抱歉，由于订单超时未支付已自动取消，建议您再次预订
-                                    </Text>
+                                    <Text>库存有限，请尽快完成付款</Text>
                                 </View>
                             </View>
                             <View className="orderdetail_info_total orderdetail_info_box">
@@ -229,11 +227,14 @@ export default class Index extends PureComponent<any> {
                         <View className="orderdetail_footer_button" onClick={() => {}}>
                             <Text>删除订单</Text>
                         </View>
-                        <View className="orderdetail_footer_button" onClick={this.goToDetail}>
-                            <Text>再次预定</Text>
-                        </View>
                         <View className="orderdetail_footer_button" onClick={this.goToComment}>
                             <Text>点评景点</Text>
+                        </View>
+                        <View
+                            className="orderdetail_footer_button orderdetail_footer_button_order"
+                            onClick={this.goToDetail}
+                        >
+                            <Text>再次预定</Text>
                         </View>
                     </View>
                 </View>

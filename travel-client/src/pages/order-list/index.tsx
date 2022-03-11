@@ -159,23 +159,20 @@ export default class Index extends PureComponent<any> {
                                                                 </View>
                                                             </View>
                                                             <View className="orderlist_order_info_button">
-                                                                <AtButton
+                                                                <View
                                                                     className="orderlist_order_info_button_it"
-                                                                    size="small"
                                                                     onClick={() =>
                                                                         this.goToDetail(subitem)
                                                                     }
                                                                 >
                                                                     查看详情
-                                                                </AtButton>
-                                                                <AtButton
-                                                                    className="orderlist_order_info_button_it"
-                                                                    type={"primary"}
-                                                                    size="small"
+                                                                </View>
+                                                                <View
+                                                                    className="orderlist_order_info_button_it orderlist_order_info_button_pay"
                                                                     onClick={() => {}}
                                                                 >
                                                                     去支付
-                                                                </AtButton>
+                                                                </View>
                                                             </View>
                                                         </View>
                                                     </View>

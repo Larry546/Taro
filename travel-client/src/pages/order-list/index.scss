@@ -71,8 +71,6 @@
                         font-weight: 600;
                         color: #ff6600;
                     }
-                    &_status {
-                    }
                 }
             }
             &_button {
@@ -80,10 +78,19 @@
                 flex-direction: row;
                 justify-content: flex-end;
                 width: 100%;
+                font-size: 30px;
+                color: #333;
                 &_it {
-                    // background-color: #ff6600;
+                    border-radius: 10px;
+                    border: 1px solid #ccc;
+                    padding: 8px 20px;
                     margin: 0;
                     margin-left: 20px;
+                }
+                &_pay {
+                    border: 0px;
+                    background-image: linear-gradient(to right, #ffa50a, #f70);
+                    color: #fff;
                 }
             }
         }
