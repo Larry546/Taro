@@ -1,6 +1,5 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
-import { AtButton } from "taro-ui";
 import getEnv from "../../system/tools/environment";
 import H5NavBar from "../../common/h5NavBar";
 import { IOrderListState, IOrderTime } from "./interface";
