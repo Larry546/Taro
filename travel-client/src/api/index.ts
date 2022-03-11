@@ -5,6 +5,10 @@ export function login(target, loginInfo) {
 }
 
 export function getUserInfo(target) {
+    let uid = getUser();
+    if (!uid) {
+        return {};
+    }
     return target.http.get(`/user/find/${getUser()}`);
 }
 

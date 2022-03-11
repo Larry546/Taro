@@ -8,7 +8,7 @@ import Image from "../..//common/base-component/image";
 import { IBookingState } from "./interface";
 import TravelerList from "../../common/traveler/list";
 import { IPassengerInfo } from "src/common/traveler/edit/interface";
-import { getPassengerList, getSpotInfo, getSpotTicket } from "../../api";
+import { getPassengerList, getSpotInfo, getSpotTicket, getUserInfo } from "../../api";
 
 import "./index.scss";
 
@@ -27,7 +27,6 @@ export default class Index extends PureComponent<any> {
             calendarOpen: false,
             listOpen: false,
             selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
-            contact: "",
         };
         this.getParams();
         this.getInitState();
@@ -43,6 +42,7 @@ export default class Index extends PureComponent<any> {
         let passlist = await getPassengerList(this);
         let info = await getSpotInfo(this, this.spotId);
         let ticketList = await getSpotTicket(this, this.spotId);
+        let userInfo = await getUserInfo(this);
         for (let ticket of ticketList) {
             let tag = ticket.ticketTag;
             ticket.ticketTag = tag.split(" ");
@@ -51,6 +51,7 @@ export default class Index extends PureComponent<any> {
         this.setState({
             passengerlist: passlist,
             spotInfo: info,
+            contact: userInfo.userContact || "",
         });
         this.initTicketList();
     };
@@ -198,8 +199,15 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
-        const { selectedDate, calendarOpen, listOpen, orderTicketList, currentTicket, spotInfo } =
-            this.state;
+        const {
+            selectedDate,
+            calendarOpen,
+            listOpen,
+            orderTicketList,
+            currentTicket,
+            spotInfo,
+            contact,
+        } = this.state;
         return (
             <View className="booking">
                 <H5NavBar title={"订单填写"} />
@@ -411,6 +419,7 @@ export default class Index extends PureComponent<any> {
                                     placeholder={"用于生成订单"}
                                     name={"contact"}
                                     type={"number"}
+                                    value={contact}
                                     onChange={this.onChangeContact}
                                 />
                             </View>

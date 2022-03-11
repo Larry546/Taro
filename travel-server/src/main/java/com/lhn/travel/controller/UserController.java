@@ -21,39 +21,39 @@ import java.util.Map;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/user" )
+@RequestMapping("/user")
 public class UserController {
 
     @Resource
     private IUserService userService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody User user) {
         return userService.saveOrUpdate(user);
     }
 
-    @DeleteMapping("/delete/{id}" )
+    @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return userService.removeById(id);
     }
 
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<User> findAll() {
         return userService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public User findOne(@PathVariable Integer id) {
         return userService.getById(id);
     }
 
-    @GetMapping("/page" )
+    @GetMapping("/page")
     public Page<User> findPage(@RequestParam Integer pageNum,
                                @RequestParam Integer pageSize) {
         return userService.page(new Page<>(pageNum, pageSize));
     }
 
-    @PostMapping("/login" )
+    @PostMapping("/login")
     public Map login(@RequestBody User user) throws JSONException {
         Map map = new HashMap<>();
 
@@ -63,15 +63,13 @@ public class UserController {
         Integer res = userService.veritypswd(account, password);
         if (res != null) {
             map.put("code", 1);
-            map.put("msg", "登陆成功" );
+            map.put("msg", "登陆成功");
             map.put("uid", res);
         } else {
             map.put("code", 0);
-            map.put("msg", "用户名或密码错误!" );
+            map.put("msg", "用户名或密码错误!");
         }
         return map;
     }
-
-
 }
 
