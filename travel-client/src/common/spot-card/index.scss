@@ -27,6 +27,11 @@
             flex: 1;
             &_title {
                 font-size: 40px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
             }
             &_score {
                 font-size: 20px;

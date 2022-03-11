@@ -105,10 +105,14 @@ export default class Index extends PureComponent<any> {
                                                     <View
                                                         className="orderlist_order_info orderlist_order_box"
                                                         key={subindex}
-                                                        onClick={() => this.goToDetail(subitem)}
                                                     >
                                                         <View className="orderlist_order_info_wrap orderlist_order_box_wrap">
-                                                            <View className="orderlist_order_info_text">
+                                                            <View
+                                                                className="orderlist_order_info_text"
+                                                                onClick={() =>
+                                                                    this.goToDetail(subitem)
+                                                                }
+                                                            >
                                                                 <View className="orderlist_order_info_text_left">
                                                                     {subitem.orderTicket &&
                                                                         subitem.orderTicket.map(
@@ -158,16 +162,19 @@ export default class Index extends PureComponent<any> {
                                                                 <AtButton
                                                                     className="orderlist_order_info_button_it"
                                                                     size="small"
-                                                                    onClick={() => {}}
+                                                                    onClick={() =>
+                                                                        this.goToDetail(subitem)
+                                                                    }
                                                                 >
                                                                     查看详情
                                                                 </AtButton>
                                                                 <AtButton
                                                                     className="orderlist_order_info_button_it"
+                                                                    type={"primary"}
                                                                     size="small"
                                                                     onClick={() => {}}
                                                                 >
-                                                                    sss2
+                                                                    去支付
                                                                 </AtButton>
                                                             </View>
                                                         </View>
