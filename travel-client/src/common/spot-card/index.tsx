@@ -19,7 +19,7 @@ export default class Index extends PureComponent<ISpotCard> {
     render() {
         const { index, deleteFav, spotInfo, fromFav = false } = this.props;
         const {
-            spotImageURL,
+            spotImageurl,
             spotName,
             spotRateScore,
             spotRateNum,
@@ -32,7 +32,7 @@ export default class Index extends PureComponent<ISpotCard> {
                 <View className="spotcard_left" onClick={this.goToDetail}>
                     <Image
                         classWrap={"spotcard_left_image"}
-                        url={spotImageURL}
+                        url={spotImageurl}
                         width={"100%"}
                         height={"100%"}
                     />

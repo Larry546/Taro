@@ -16,10 +16,10 @@ export default class Index extends PureComponent<ISpotItem> {
 
     render() {
         const { spotInfo } = this.props;
-        const { spotImageURL, spotName, spotIntro, ticketList, spotRateNum } = spotInfo;
+        const { spotImageurl, spotName, spotIntro, ticketList, spotRateNum } = spotInfo;
         return (
             <View className="item" onClick={this.goToDetail}>
-                <Image url={spotImageURL} classWrap={"item_image"} width={"100%"} height={"100%"} />
+                <Image url={spotImageurl} classWrap={"item_image"} width={"100%"} height={"100%"} />
 
                 <View className="item_bottom">
                     <View className="item_bottom_name">

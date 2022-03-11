@@ -19,7 +19,7 @@ export default class Index extends PureComponent<any> {
             {
                 spotId: 1,
                 spotName: "上海野生动物园",
-                spotImageURL:
+                spotImageurl:
                     "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
                 spotRateScore: 4.4,
                 spotRateNum: 666,
@@ -45,7 +45,7 @@ export default class Index extends PureComponent<any> {
             {
                 spotId: 2,
                 spotName: "上海野生动物园",
-                spotImageURL:
+                spotImageurl:
                     "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
                 spotRateScore: 4.4,
                 spotRateNum: 666,

@@ -10,7 +10,7 @@ export interface ISpotInfo {
     spotOffhour?: string;
     spotRateScore?: number;
     spotRateNum?: number;
-    spotImageURL?: string;
+    spotImageurl?: string;
     spotType?: Array<string>;
     spotIntro?: string;
     ticketList?: Array<ITicketInfo>;
