@@ -16,6 +16,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-toTop:before {
+    content: "\e63d";
+}
+
 .icon-xiezi:before {
     content: "\e69c";
 }
