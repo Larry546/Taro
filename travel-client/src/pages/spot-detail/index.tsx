@@ -134,7 +134,9 @@ export default class Index extends PureComponent<any> {
                                     isOpened={introOpen}
                                     title={spotInfo.spotName + "简介"}
                                 >
-                                    <Text>{spotInfo.spotIntro}</Text>
+                                    <View className="spotdetail_poplayer">
+                                        <Text>{spotInfo.spotIntro}</Text>
+                                    </View>
                                 </AtFloatLayout>
                             </View>
 
@@ -218,7 +220,9 @@ export default class Index extends PureComponent<any> {
                                     onClose={this.closeRequest}
                                     title={`${ticket.ticketName}购买要求`}
                                 >
-                                    <Text>{ticket.ticketRequest || "无"}</Text>
+                                    <View className="spotdetail_poplayer">
+                                        <Text>{ticket.ticketRequest || "无"}</Text>
+                                    </View>
                                 </AtFloatLayout>
                             </View>
                         </View>
