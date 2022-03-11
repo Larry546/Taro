@@ -1,7 +1,6 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
 import { AtButton, AtInput } from "taro-ui";
-import H5NavBar from "../../common/h5NavBar";
 import { IUserInfo } from "../user-info/interface";
 import { login } from "../../api/index";
 import { setUser } from "../../system/tools/user";
@@ -52,6 +51,10 @@ export default class Index extends PureComponent<any> {
         this.push("/pages/user-register/index", "navigateTo");
     };
 
+    goToIndex = () => {
+        this.push("/pages/index/index", "reLaunch");
+    };
+
     onChangeAccount = value => {
         this.setState({ userAccount: value });
     };
@@ -64,7 +67,6 @@ export default class Index extends PureComponent<any> {
         const { userAccount, userPassword } = this.state;
         return (
             <View className="login">
-                <H5NavBar />
                 <View className="login_wrap">
                     <View className="login_title">
                         <Text>用户登陆</Text>
@@ -95,6 +97,10 @@ export default class Index extends PureComponent<any> {
                             <View style={{ paddingBottom: "10px" }} />
                             <AtButton type="secondary" size={"normal"} onClick={this.goToRegister}>
                                 注册
+                            </AtButton>
+                            <View style={{ paddingBottom: "10px" }} />
+                            <AtButton type="secondary" size={"normal"} onClick={this.goToIndex}>
+                                返回首页
                             </AtButton>
                         </View>
                     </View>

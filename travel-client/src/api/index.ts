@@ -41,7 +41,11 @@ export function getSpotTicket(target, spotId) {
 }
 
 export function getUserFav(target) {
-    return target.http.get(`/spot/listByUser/${getUser()}`);
+    let uid = getUser();
+    if (!uid) {
+        return;
+    }
+    return target.http.get(`/spot/listByUser/${uid}`);
 }
 
 export function getSpotRate(target, spotId) {
@@ -49,8 +53,12 @@ export function getSpotRate(target, spotId) {
 }
 
 export function isUserFav(target, spotId) {
+    let uid = getUser();
+    if (!uid) {
+        return false;
+    }
     let data = {
-        uid: getUser(),
+        uid: uid,
         spotId: spotId,
     };
     return target.http.get("/favorite/isFav", data);

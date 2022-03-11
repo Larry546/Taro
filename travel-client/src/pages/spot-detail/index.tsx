@@ -53,7 +53,6 @@ export default class Index extends PureComponent<any> {
 
     getFav = async () => {
         let isFav = await isUserFav(this, this.spotId);
-        console.log("🚀 ~ file: index.tsx ~ line 56 ~ Index ~ getFav= ~ isFav", isFav);
         this.setState({
             isFav: isFav,
         });
