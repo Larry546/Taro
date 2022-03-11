@@ -41,6 +41,7 @@ const config = {
         publicPath: "/",
         staticDirectory: "static",
         devServer: {
+            host: "localhost",
             port: 8086,
         },
         postcss: {

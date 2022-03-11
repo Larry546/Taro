@@ -7,6 +7,7 @@ import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
 import { ISpotState } from "./interface";
 import { getSpotInfo, getSpotRate, getSpotTicket, isUserFav } from "../../api";
+import { getUser } from "../../system/tools/user";
 
 import "./index.scss";
 
@@ -73,7 +74,20 @@ export default class Index extends PureComponent<any> {
     };
 
     goToBooking = () => {
-        this.push(`/pages/booking/index?spotId=${this.spotId}`);
+        if (!getUser()) {
+            this.confirm.show({
+                content: "请先登录",
+                btnOK: ["返回", "去登陆"],
+                btnCallBack: [this.goToLogin],
+            });
+            return;
+        } else {
+            this.push(`/pages/booking/index?spotId=${this.spotId}`);
+        }
+    };
+
+    goToLogin = () => {
+        this.push("/pages/user-login/index", "redirectTo");
     };
 
     openRequest = res => {
