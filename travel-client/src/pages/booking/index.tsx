@@ -28,6 +28,8 @@ export default class Index extends PureComponent<any> {
             listOpen: false,
             selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
             contact: "",
+            requestOpen: false,
+            requestTicket: {},
         };
         this.getParams();
         this.getInitState();
@@ -197,9 +199,31 @@ export default class Index extends PureComponent<any> {
         });
     };
 
+    OnOpenRequest = item => {
+        this.setState({
+            requestOpen: true,
+            requestTicket: item,
+        });
+    };
+
+    onCloseRequest = () => {
+        this.setState({
+            requestOpen: false,
+            requestTicket: {},
+        });
+    };
+
     render() {
-        const { selectedDate, calendarOpen, listOpen, orderTicketList, currentTicket, spotInfo } =
-            this.state;
+        const {
+            selectedDate,
+            calendarOpen,
+            listOpen,
+            orderTicketList,
+            currentTicket,
+            spotInfo,
+            requestOpen,
+            requestTicket,
+        } = this.state;
         return (
             <View className="booking">
                 <H5NavBar title={"订单填写"} />
@@ -272,7 +296,12 @@ export default class Index extends PureComponent<any> {
                                                             "适用人群：" + item.ticketRequest}
                                                     </Text>
                                                 </View>
-                                                <View className="booking_info_spot_sku_ticket_tline">
+                                                <View
+                                                    className="booking_info_spot_sku_ticket_tline"
+                                                    onClick={() => {
+                                                        this.OnOpenRequest(item);
+                                                    }}
+                                                >
                                                     {item.ticketTag?.map((tag, index) => {
                                                         return (
                                                             <View
@@ -297,6 +326,13 @@ export default class Index extends PureComponent<any> {
                                             </View>
                                         );
                                     })}
+                                <AtFloatLayout
+                                    isOpened={requestOpen}
+                                    title={`${requestTicket.ticketName}购买要求`}
+                                    onClose={this.onCloseRequest}
+                                >
+                                    <Text>{requestTicket.ticketRequest || "无"}</Text>
+                                </AtFloatLayout>
                             </View>
                         </View>
                     </View>
