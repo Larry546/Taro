@@ -29,7 +29,7 @@ export default class Index extends PureComponent<ISpotItem> {
 
                     {spotIntro ? (
                         <View className="item_bottom_tag">
-                            <Text>{spotIntro.substring(0, spotIntro.indexOf("。"))}</Text>
+                            <Text>{spotIntro}</Text>
                         </View>
                     ) : null}
 
