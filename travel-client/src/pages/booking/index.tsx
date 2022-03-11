@@ -26,6 +26,7 @@ export default class Index extends PureComponent<any> {
         this.state = {
             calendarOpen: false,
             listOpen: false,
+            detailOpen: false,
             selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
         };
         this.getParams();
@@ -198,6 +199,14 @@ export default class Index extends PureComponent<any> {
         });
     };
 
+    onOpenDetail = () => {
+        this.setState({ detailOpen: true });
+    };
+
+    onCloseDetail = () => {
+        this.setState({ detailOpen: false });
+    };
+
     render() {
         const {
             selectedDate,
@@ -207,6 +216,7 @@ export default class Index extends PureComponent<any> {
             currentTicket,
             spotInfo,
             contact,
+            detailOpen,
         } = this.state;
         return (
             <View className="booking">
@@ -440,7 +450,7 @@ export default class Index extends PureComponent<any> {
                         <View className="booking_footer_total_price">
                             <Text>￥{this.getTotal()}</Text>
                         </View>
-                        <View className="booking_footer_total_detail" onClick={() => {}}>
+                        <View className="booking_footer_total_detail" onClick={this.onOpenDetail}>
                             <Text>明细</Text>
                             <Icon type={"toTop"} />
                         </View>
@@ -449,6 +459,35 @@ export default class Index extends PureComponent<any> {
                         <Text>提交订单</Text>
                     </View>
                 </View>
+                <AtFloatLayout
+                    isOpened={detailOpen}
+                    onClose={this.onCloseDetail}
+                    title={"费用明细"}
+                    scrollY
+                >
+                    <View className="booking_detail">
+                        <View className="booking_detail_title">
+                            <Text>{spotInfo && spotInfo.spotName}</Text>
+                        </View>
+                        <View className="booking_detail_tickets">
+                            {orderTicketList &&
+                                orderTicketList.map((item, index) => {
+                                    return item.ticketNum ? (
+                                        <View className="booking_detail_ticket" key={index}>
+                                            <Text>{item.ticketName}</Text>
+                                            <Text>
+                                                ￥{item.ticketPrice} x{item.ticketNum}
+                                            </Text>
+                                        </View>
+                                    ) : null;
+                                })}
+                        </View>
+                        <View className="booking_detail_total">
+                            <Text className="booking_detail_total_title">订单总额（在线支付）</Text>
+                            <Text className="booking_detail_total_price">￥{this.getTotal()}</Text>
+                        </View>
+                    </View>
+                </AtFloatLayout>
             </View>
         );
     }
