@@ -257,7 +257,16 @@ export default class Index extends PureComponent<any> {
                         </View>
                     </View>
                     <View className="spotdetail_footer_right">
-                        <View className="spotdetail_footer_right_wrap" onClick={this.goToBooking}>
+                        <View
+                            className="spotdetail_footer_right_wrap"
+                            onClick={() => {
+                                if (spotInfo && spotInfo.ticketList?.length) {
+                                    this.goToBooking();
+                                } else {
+                                    this.toast.show("该景点暂无门票可售！");
+                                }
+                            }}
+                        >
                             <View className="spotdetail_footer_right_button">
                                 <Text>立即预定</Text>
                             </View>
