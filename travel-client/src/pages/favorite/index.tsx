@@ -51,7 +51,7 @@ export default class Index extends PureComponent<any> {
             <View className="favorite">
                 <ScrollView scrollY className="favorite_wrap">
                     <View className="favorite_header">
-                        <Text className="favorite_header_text">收藏头部内容收藏头部内容</Text>
+                        <Text className="favorite_header_text">我收藏的景点</Text>
                     </View>
                     {spotList && spotList.length ? (
                         <View>
@@ -60,7 +60,6 @@ export default class Index extends PureComponent<any> {
                                     return (
                                         <View key={index}>
                                             <SpotCard
-                                                index={index}
                                                 deleteFav={this.deleteFav}
                                                 spotInfo={item}
                                                 fromFav={true}

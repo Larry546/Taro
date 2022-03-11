@@ -32,7 +32,6 @@ export default class Index extends PureComponent<any> {
     getParams = () => {
         const instance: any = this.instance;
         const data = instance.router.params;
-        console.log("🚀 ~ file: index.tsx ~ line 35 ~ Index ~ data", data);
         if (data) {
             if (data.type) {
                 this.type = true;

@@ -39,13 +39,13 @@ export default class Index extends PureComponent<any> {
 
     getInfo = async () => {
         let response = await getSpotInfo(this, this.spotId);
-        let ticketList = await getSpotTicket(this, response.spotId);
+        let ticketList = await getSpotTicket(this, this.spotId);
         for (let ticket of ticketList) {
             let tag = ticket.ticketTag;
             ticket.ticketTag = tag.split(" ");
         }
         response.ticketList = ticketList;
-        let spotRate = await getSpotRate(this, response.spotId);
+        let spotRate = await getSpotRate(this, this.spotId);
         response.spotRateNum = spotRate && spotRate.spotRateNum;
         response.spotRateScore = spotRate && spotRate.spotRateScore;
         this.setState({
@@ -73,7 +73,7 @@ export default class Index extends PureComponent<any> {
     };
 
     goToBooking = () => {
-        this.push("/pages/booking/index");
+        this.push(`/pages/booking/index?spotId=${this.spotId}`);
     };
 
     openRequest = res => {

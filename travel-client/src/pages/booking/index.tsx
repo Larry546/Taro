@@ -5,10 +5,10 @@ import H5NavBar from "../../common/h5NavBar";
 import getEnv from "../../system/tools/environment";
 import Icon from "../../common/base-component/icon";
 import Image from "../..//common/base-component/image";
-import { ISpotInfo } from "../spot-detail/interface";
 import { IBookingState } from "./interface";
 import TravelerList from "../../common/traveler/list";
 import { IPassengerInfo } from "src/common/traveler/edit/interface";
+import { getPassengerList, getSpotInfo, getSpotTicket } from "../../api";
 
 import "./index.scss";
 
@@ -17,146 +17,58 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
+    spotId: number;
     top: number;
     state: IBookingState;
-    spotInfo: ISpotInfo;
     constructor(props: any) {
         super(props);
         this.top = getEnv() === "H5" ? 95 : 0;
-        this.spotInfo = {
-            spotId: 1,
-            spotName: "绍兴柯岩风景区",
-            spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
-            spotOpenhour: "8:00",
-            spotOffhour: "16:00",
-            spotRateScore: 4.5,
-            spotRateNum: 996,
-            spotType: ["游乐园", "自然风景"],
-            ticketList: [
-                {
-                    ticketId: 1,
-                    ticketName: "成人票",
-                    ticketPrice: 99,
-                    ticketRequest:
-                        "1.4米以上1.4米以上1.4米以上1.4米以上1.4米以上1.4米以上1.4米以上1.4米以上",
-                    ticketTag: ["无需取票", "无忧退"],
-                },
-                {
-                    ticketId: 2,
-                    ticketName: "儿童票票",
-                    ticketPrice: 44,
-                    ticketRequest: "1.0米(含)-1.4米(含)1.0米(含)-1.4米(含)",
-                    ticketTag: ["无需取票"],
-                },
-            ],
-        };
         this.state = {
             calendarOpen: false,
             listOpen: false,
             selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
             contact: "",
-            passengerlist: [
-                {
-                    passengerId: 1,
-                    passengerName: "啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈啊哈",
-                    passengerNumber:
-                        "123456123456123456123456123456123456123456123456123456123456123456123456123456123456",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 2,
-                    passengerName: "哈哈1",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 3,
-                    passengerName: "哈2哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 4,
-                    passengerName: "哈哈3",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 5,
-                    passengerName: "哈4哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 6,
-                    passengerName: "哈rr哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 7,
-                    passengerName: "哈ss哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 8,
-                    passengerName: "哈xx哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 9,
-                    passengerName: "哈aa哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-                {
-                    passengerId: 10,
-                    passengerName: "哈gg哈",
-                    passengerNumber: "123",
-                    passengerSex: "F",
-                    passengerBirth: "1988-01-01",
-                },
-            ],
         };
-        this.initTicketList();
-        console.log(
-            "🚀 ~ file: index.tsx ~ line 53 ~ Index ~ constructor ~ this.state",
-            this.state
-        );
+        this.getParams();
+        this.getInitState();
     }
-    componentWillMount() {}
 
-    componentDidMount() {}
+    getParams = () => {
+        const instance = this.instance;
+        const data = instance.router.params;
+        this.spotId = data.spotId;
+    };
 
-    componentWillUnmount() {}
-
-    componentDidShow() {}
-
-    componentDidHide() {}
+    getInitState = async () => {
+        let passlist = await getPassengerList(this);
+        let info = await getSpotInfo(this, this.spotId);
+        let ticketList = await getSpotTicket(this, this.spotId);
+        for (let ticket of ticketList) {
+            let tag = ticket.ticketTag;
+            ticket.ticketTag = tag.split(" ");
+        }
+        info.ticketList = ticketList;
+        this.setState({
+            passengerlist: passlist,
+            spotInfo: info,
+        });
+        this.initTicketList();
+    };
 
     initTicketList = () => {
         let list: any = [];
-        this.spotInfo.ticketList?.map(item => {
-            list.push({
-                ticketId: item.ticketId,
-                ticketName: item.ticketName,
-                ticketPrice: item.ticketPrice,
-                ticketNum: 0,
-                passenger: [1, 2],
-            });
-        });
 
+        const { spotInfo } = this.state;
+        spotInfo &&
+            spotInfo.ticketList?.map(item => {
+                list.push({
+                    ticketId: item.ticketId,
+                    ticketName: item.ticketName,
+                    ticketPrice: item.ticketPrice,
+                    ticketNum: 0,
+                    passenger: [],
+                });
+            });
         this.state.orderTicketList = list;
     };
 
@@ -177,13 +89,11 @@ export default class Index extends PureComponent<any> {
     };
 
     onDayClick = res => {
-        console.log("🚀 ~ file: index.tsx ~ line 70 ~ Index ~ res", res);
         this.setState({ selectedDate: res && res.value });
         this.onCloseCalendar();
     };
 
     onChangeContact = res => {
-        console.log("🚀 ~ file: index.tsx ~ line 83 ~ Index ~ res", res);
         this.setState({ contact: res });
     };
 
@@ -231,11 +141,12 @@ export default class Index extends PureComponent<any> {
             passengerName: "",
             passengerNumber: "",
         };
-        passengerlist.forEach(item => {
-            if (item.passengerId == id) {
-                pass = item;
-            }
-        });
+        passengerlist &&
+            passengerlist.forEach(item => {
+                if (item.passengerId == id) {
+                    pass = item;
+                }
+            });
         return pass;
     };
 
@@ -287,14 +198,15 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
-        const { selectedDate, calendarOpen, listOpen, orderTicketList, currentTicket } = this.state;
+        const { selectedDate, calendarOpen, listOpen, orderTicketList, currentTicket, spotInfo } =
+            this.state;
         return (
             <View className="booking">
                 <H5NavBar title={"订单填写"} />
                 <ScrollView scrollY className="booking_info" style={{ top: this.top }}>
                     <View className="booking_info_spot">
                         <View className="booking_info_spot_title">
-                            <Text>{this.spotInfo.spotName}</Text>
+                            <Text>{spotInfo && spotInfo.spotName}</Text>
                         </View>
                         <View className="booking_info_spot_sku">
                             <View className="booking_info_spot_sku_line" />
@@ -322,8 +234,9 @@ export default class Index extends PureComponent<any> {
                                 </AtFloatLayout>
                             </View>
                             <View className="booking_info_spot_sku_tickets">
-                                {this.spotInfo.ticketList?.length &&
-                                    this.spotInfo.ticketList.map((item, index) => {
+                                {spotInfo &&
+                                    spotInfo.ticketList?.length &&
+                                    spotInfo.ticketList.map((item, index) => {
                                         return (
                                             <View
                                                 className="booking_info_spot_sku_ticket"
