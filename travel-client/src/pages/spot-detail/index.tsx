@@ -6,7 +6,7 @@ import H5NavBar from "../../common/h5NavBar";
 import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
 import { ISpotState } from "./interface";
-import { getSpotInfo, getSpotRate, getSpotTicket } from "../../api";
+import { getSpotInfo, getSpotRate, getSpotTicket, isUserFav } from "../../api";
 
 import "./index.scss";
 
@@ -26,6 +26,7 @@ export default class Index extends PureComponent<any> {
             introOpen: false,
         };
         this.getInfo();
+        this.getFav();
     }
 
     getParams = () => {
@@ -45,9 +46,16 @@ export default class Index extends PureComponent<any> {
         let spotRate = await getSpotRate(this, response.spotId);
         response.spotRateNum = spotRate && spotRate.spotRateNum;
         response.spotRateScore = spotRate && spotRate.spotRateScore;
-        console.log("🚀 ~ file: index.tsx ~ line 45 ~ Index ~ getInfo= ~ response", response);
         this.setState({
             spotInfo: response,
+        });
+    };
+
+    getFav = async () => {
+        let isFav = await isUserFav(this, this.spotId);
+        console.log("🚀 ~ file: index.tsx ~ line 56 ~ Index ~ getFav= ~ isFav", isFav);
+        this.setState({
+            isFav: isFav,
         });
     };
 
@@ -68,7 +76,7 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
-        const { spotInfo, introOpen } = this.state;
+        const { spotInfo, introOpen, isFav } = this.state;
         return (
             <View className="spotdetail">
                 <H5NavBar />
@@ -203,10 +211,15 @@ export default class Index extends PureComponent<any> {
                     <View className="spotdetail_footer_left">
                         <View className="spotdetail_footer_left_single" onClick={() => {}}>
                             <View className="spotdetail_footer_left_icon">
-                                {/* <Icon type={"aixin"} size={24} /> */}
-                                <Icon type={"aixin_shixin"} size={24} color={"#f5190a"} />
+                                {isFav ? (
+                                    <Icon type={"aixin_shixin"} size={24} color={"#f5190a"} />
+                                ) : (
+                                    <Icon type={"aixin"} size={24} />
+                                )}
                             </View>
-                            <Text className="spotdetail_footer_left_text">收藏</Text>
+                            <Text className="spotdetail_footer_left_text">
+                                {isFav ? "已收藏" : "收藏"}
+                            </Text>
                         </View>
                         <View
                             className="spotdetail_footer_left_single"

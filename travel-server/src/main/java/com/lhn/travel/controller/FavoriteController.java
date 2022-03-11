@@ -18,38 +18,42 @@ import java.util.List;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/favorite" )
+@RequestMapping("/favorite")
 public class FavoriteController {
 
     @Resource
     private IFavoriteService favoriteService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody Favorite favorite) {
         return favoriteService.saveOrUpdate(favorite);
     }
 
-    @DeleteMapping("/delete/{id}" )
+    @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return favoriteService.removeById(id);
     }
 
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<Favorite> findAll() {
         return favoriteService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public List<Favorite> findOne(@PathVariable Integer id) {
         return favoriteService.list();
     }
 
-    @GetMapping("/page" )
+    @GetMapping("/page")
     public Page<Favorite> findPage(@RequestParam Integer pageNum,
                                    @RequestParam Integer pageSize) {
         return favoriteService.page(new Page<>(pageNum, pageSize));
     }
 
+    @GetMapping("/isFav")
+    public Boolean isFav(@RequestParam Integer uid, @RequestParam Integer spotId) {
+        return favoriteService.isFav(uid, spotId);
+    }
 
 }
 

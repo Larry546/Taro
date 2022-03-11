@@ -1,11 +1,11 @@
 package com.lhn.travel.service;
 
-import com.lhn.travel.entity.Favorite;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lhn.travel.entity.Favorite;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author lhn
@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IFavoriteService extends IService<Favorite> {
 
+    boolean isFav(Integer uid, Integer spotId);
 }

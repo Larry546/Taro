@@ -1,5 +1,6 @@
 export interface ISpotState {
     introOpen: boolean;
+    isFav?: boolean;
     spotInfo?: ISpotInfo;
 }
 

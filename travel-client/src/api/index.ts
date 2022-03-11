@@ -47,3 +47,11 @@ export function getUserFav(target) {
 export function getSpotRate(target, spotId) {
     return target.http.get(`/comment/rateBySpot/${spotId}`);
 }
+
+export function isUserFav(target, spotId) {
+    let data = {
+        uid: getUser(),
+        spotId: spotId,
+    };
+    return target.http.get("/favorite/isFav", data);
+}
