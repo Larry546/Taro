@@ -4,7 +4,7 @@ import { AtSearchBar } from "taro-ui";
 import Image from "../../common/base-component/image";
 import SpotItem from "../../common/spot-item";
 import { IState } from "./interface";
-import { getSpotList, getSpotTicket } from "../../api";
+import { getSpotList, getSpotRate, getSpotTicket } from "../../api";
 
 import "./index.scss";
 
@@ -27,6 +27,9 @@ export default class Index extends PureComponent<any> {
         let response = await getSpotList(this);
         for (let spot of response) {
             spot.ticketList = await getSpotTicket(this, spot.spotId);
+            let spotRate = await getSpotRate(this, spot.spotId);
+            spot.spotRateNum = spotRate && spotRate.spotRateNum;
+            spot.spotRateScore = spotRate && spotRate.spotRateScore;
         }
         this.setState({
             spotList: response,

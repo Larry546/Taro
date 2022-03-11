@@ -1,8 +1,9 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text, ScrollView } from "@tarojs/components";
 import { AtList } from "taro-ui";
-import { ISpotInfo } from "../spot-detail/interface";
 import SpotCard from "../../common/spot-card";
+import { IFavState } from "./interface";
+import { getSpotRate, getUserFav } from "../../api";
 
 import "./index.scss";
 
@@ -11,63 +12,27 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
-    spotList: Array<ISpotInfo>;
+    state: IFavState;
 
     constructor(props: any) {
         super(props);
-        this.spotList = [
-            {
-                spotId: 1,
-                spotName: "上海野生动物园",
-                spotImageurl:
-                    "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
-                spotRateScore: 4.4,
-                spotRateNum: 666,
-                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号",
-                spotType: ["自然景色", "游乐场"],
-                ticketList: [
-                    {
-                        ticketId: 1,
-                        ticketName: "成人票",
-                        ticketPrice: 99,
-                        ticketRequest: "1.4米以上",
-                        ticketTag: ["无需取票", "无忧退"],
-                    },
-                    {
-                        ticketId: 2,
-                        ticketName: "儿童票票",
-                        ticketPrice: 44,
-                        ticketRequest: "1.0米(含)-1.4米(含)",
-                        ticketTag: ["无需取票", "无忧退"],
-                    },
-                ],
-            },
-            {
-                spotId: 2,
-                spotName: "上海野生动物园",
-                spotImageurl:
-                    "https://dimg01.c-ctrip.com/images/100o0e00000073et10793_C_224_172.jpg",
-                spotRateScore: 4.4,
-                spotRateNum: 666,
-                spotAddress: "浙江省绍兴市柯桥区柯岩大道558号柯岩风景区大道558号柯岩风景区",
-                spotType: ["无需取票"],
-                ticketList: [
-                    {
-                        ticketId: 1,
-                        ticketName: "成人票",
-                        ticketPrice: 99,
-                        ticketRequest: "1.4米以上",
-                        ticketTag: ["无忧退"],
-                    },
-                ],
-            },
-        ];
+        this.state = {
+            spotList: [],
+        };
+        this.getList();
     }
-    componentWillMount() {}
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
+    getList = async () => {
+        let response = await getUserFav(this);
+        for (let spot of response) {
+            let spotRate = await getSpotRate(this, spot.spotId);
+            spot.spotRateNum = spotRate && spotRate.spotRateNum;
+            spot.spotRateScore = spotRate && spotRate.spotRateScore;
+        }
+        this.setState({
+            spotList: response,
+        });
+    };
 
     goToDetail = () => {
         this.push("/pages/spot-detail/index");
@@ -78,16 +43,17 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
+        const { spotList } = this.state;
         return (
             <View className="favorite">
                 <ScrollView scrollY className="favorite_wrap">
                     <View className="favorite_header">
                         <Text className="favorite_header_text">收藏头部内容收藏头部内容</Text>
                     </View>
-                    {this.spotList.length ? (
+                    {spotList && spotList.length ? (
                         <View>
                             <AtList>
-                                {this.spotList.map((item, index) => {
+                                {spotList.map((item, index) => {
                                     return (
                                         <View key={index}>
                                             <SpotCard

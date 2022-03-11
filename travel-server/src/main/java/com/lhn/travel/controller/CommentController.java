@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,36 +19,41 @@ import java.util.List;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/comment" )
+@RequestMapping("/comment")
 public class CommentController {
 
     @Resource
     private ICommentService commentService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody Comment comment) {
         return commentService.saveOrUpdate(comment);
     }
 
-    @DeleteMapping("/delete/{id}" )
+    @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return commentService.removeById(id);
     }
 
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<Comment> findAll() {
         return commentService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public List<Comment> findOne(@PathVariable Integer id) {
         return commentService.list();
     }
 
-    @GetMapping("/page" )
+    @GetMapping("/page")
     public Page<Comment> findPage(@RequestParam Integer pageNum,
                                   @RequestParam Integer pageSize) {
         return commentService.page(new Page<>(pageNum, pageSize));
+    }
+
+    @GetMapping("/rateBySpot/{id}")
+    public Map getrateBySpot(@PathVariable Integer id) {
+        return commentService.getrateBySpot(id);
     }
 
 

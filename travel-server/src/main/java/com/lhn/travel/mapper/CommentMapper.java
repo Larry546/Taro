@@ -1,12 +1,14 @@
 package com.lhn.travel.mapper;
 
-import com.lhn.travel.entity.Comment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lhn.travel.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.Map;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author lhn
@@ -15,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CommentMapper extends BaseMapper<Comment> {
 
+    Map getrateBySpot(Integer id);
 }

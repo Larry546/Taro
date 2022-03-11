@@ -18,38 +18,42 @@ import java.util.List;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/spot" )
+@RequestMapping("/spot")
 public class SpotController {
 
     @Resource
     private ISpotService spotService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody Spot spot) {
         return spotService.saveOrUpdate(spot);
     }
 
-    @DeleteMapping("/delete/{id}" )
+    @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return spotService.removeById(id);
     }
 
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<Spot> findAll() {
         return spotService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public Spot findOne(@PathVariable Integer id) {
         return spotService.getById(id);
     }
 
-    @GetMapping("/page" )
+    @GetMapping("/page")
     public Page<Spot> findPage(@RequestParam Integer pageNum,
                                @RequestParam Integer pageSize) {
         return spotService.page(new Page<>(pageNum, pageSize));
     }
 
+    @GetMapping("/listByUser/{id}")
+    public List<Spot> findByUser(@PathVariable Integer id) {
+        return spotService.findByUser(id);
+    }
 
 }
 

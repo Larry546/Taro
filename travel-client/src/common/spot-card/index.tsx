@@ -41,8 +41,9 @@ export default class Index extends PureComponent<ISpotCard> {
                             <Text>{spotName}</Text>
                         </View>
                         <View className="spotcard_left_text_score">
+                            {spotRateScore ? <Text>{spotRateScore}分 </Text> : null}
                             <Text>
-                                {spotRateScore}分 {spotRateNum}
+                                {spotRateNum}
                                 人评价
                             </Text>
                         </View>

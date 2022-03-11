@@ -39,3 +39,11 @@ export function getSpotList(target) {
 export function getSpotTicket(target, spotId) {
     return target.http.get(`/ticket/listBySpot/${spotId}`);
 }
+
+export function getUserFav(target) {
+    return target.http.get(`/spot/listByUser/${getUser()}`);
+}
+
+export function getSpotRate(target, spotId) {
+    return target.http.get(`/comment/rateBySpot/${spotId}`);
+}
