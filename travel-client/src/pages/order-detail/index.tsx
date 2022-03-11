@@ -96,6 +96,10 @@ export default class Index extends PureComponent<any> {
         this.push(`/pages/spot-detail/index?spotId=${this.spotId}`);
     };
 
+    goToComment = () => {
+        this.push(`/pages/comment/index?spotId=${this.spotId}`);
+    };
+
     render() {
         const { orderInfo, spotInfo } = this.state;
         return (
@@ -228,8 +232,8 @@ export default class Index extends PureComponent<any> {
                         <View className="orderdetail_footer_button" onClick={this.goToDetail}>
                             <Text>再次预定</Text>
                         </View>
-                        <View className="orderdetail_footer_button" onClick={() => {}}>
-                            <Text>评论</Text>
+                        <View className="orderdetail_footer_button" onClick={this.goToComment}>
+                            <Text>点评景点</Text>
                         </View>
                     </View>
                 </View>

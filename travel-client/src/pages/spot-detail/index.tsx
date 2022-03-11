@@ -90,6 +90,10 @@ export default class Index extends PureComponent<any> {
         });
     };
 
+    goToComment = () => {
+        this.push(`/pages/comment/index?spotId=${this.spotId}`);
+    };
+
     render() {
         const { spotInfo, introOpen, isFav, requestOpen, ticket } = this.state;
         return (
@@ -245,12 +249,7 @@ export default class Index extends PureComponent<any> {
                                 {isFav ? "已收藏" : "收藏"}
                             </Text>
                         </View>
-                        <View
-                            className="spotdetail_footer_left_single"
-                            onClick={() => {
-                                this.push("/pages/comment/index");
-                            }}
-                        >
+                        <View className="spotdetail_footer_left_single" onClick={this.goToComment}>
                             <View className="spotdetail_footer_left_icon">
                                 <Icon type={"pingjia"} size={24} />
                             </View>

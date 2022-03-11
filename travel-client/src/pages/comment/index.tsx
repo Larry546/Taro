@@ -4,6 +4,7 @@ import getEnv from "../../system/tools/environment";
 import H5NavBar from "../../common/h5NavBar";
 import { ICommentState } from "./interface";
 import { AtRate, AtTextarea } from "taro-ui";
+import { getSpotInfo } from "../../api";
 
 import "./index.scss";
 
@@ -12,23 +13,32 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
+    spotId: number;
     state: ICommentState;
     top: number;
     constructor(props: any) {
         super(props);
         this.top = getEnv() === "H5" ? 95 : 0;
         this.state = {
-            spotInfo: {
-                spotId: 1,
-                spotName: "绍兴柯岩风景区",
-                spotAddress: "浙江省绍兴道558号柯岩风景区",
-                spotOpenhour: "8:00",
-                spotOffhour: "16:00",
-            },
             commentRate: 0,
             commentText: "",
         };
+        this.getParams();
+        this.getInfo();
     }
+
+    getParams = () => {
+        const instance: any = this.instance;
+        const data = instance.router.params;
+        this.spotId = data.spotId;
+    };
+
+    getInfo = async () => {
+        let info = await getSpotInfo(this, this.spotId);
+        this.setState({
+            spotInfo: info,
+        });
+    };
 
     render() {
         const { spotInfo, commentRate, commentText } = this.state;
@@ -38,10 +48,10 @@ export default class Index extends PureComponent<any> {
                 <View className="comment_wrap" style={{ top: this.top }}>
                     <View className="comment_spot">
                         <View className="comment_spot_name">
-                            <Text>{spotInfo.spotName}</Text>
+                            <Text>{spotInfo && spotInfo.spotName}</Text>
                         </View>
                         <View className="comment_spot_address">
-                            <Text>{spotInfo.spotAddress}</Text>
+                            <Text>{spotInfo && spotInfo.spotAddress}</Text>
                         </View>
                     </View>
                     <View className="comment_rate">
