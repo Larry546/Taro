@@ -24,6 +24,8 @@ export default class Index extends PureComponent<any> {
         this.getParams();
         this.state = {
             introOpen: false,
+            requestOpen: false,
+            ticket: {},
         };
         this.getInfo();
         this.getFav();
@@ -74,8 +76,22 @@ export default class Index extends PureComponent<any> {
         this.push("/pages/booking/index");
     };
 
+    openRequest = res => {
+        this.setState({
+            ticket: res,
+            requestOpen: true,
+        });
+    };
+
+    closeRequest = () => {
+        this.setState({
+            request: "",
+            requestOpen: false,
+        });
+    };
+
     render() {
-        const { spotInfo, introOpen, isFav } = this.state;
+        const { spotInfo, introOpen, isFav, requestOpen, ticket } = this.state;
         return (
             <View className="spotdetail">
                 <H5NavBar />
@@ -174,7 +190,9 @@ export default class Index extends PureComponent<any> {
                                                 </View>
                                                 <View
                                                     className="spotdetail_ticketInfo_card_tag"
-                                                    onClick={() => {}}
+                                                    onClick={() => {
+                                                        this.openRequest(item);
+                                                    }}
                                                 >
                                                     <Text>官方 | 购买须知 </Text>
                                                     <Icon type={"right"} />
@@ -191,6 +209,13 @@ export default class Index extends PureComponent<any> {
                                         </View>
                                     );
                                 })}
+                                <AtFloatLayout
+                                    isOpened={requestOpen}
+                                    onClose={this.closeRequest}
+                                    title={`${ticket.ticketName}购买要求`}
+                                >
+                                    <Text>{ticket.ticketRequest || "无"}</Text>
+                                </AtFloatLayout>
                             </View>
                         </View>
                     ) : (

@@ -146,7 +146,6 @@ export default class Index extends PureComponent<any> {
                                         <View
                                             className="index_spot_info_mleft index_spot_info_mright"
                                             key={index}
-                                            onClick={() => {}}
                                         >
                                             <SpotItem spotInfo={item} />
                                         </View>
