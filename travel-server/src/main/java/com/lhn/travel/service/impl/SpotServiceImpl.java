@@ -32,7 +32,6 @@ public class SpotServiceImpl extends ServiceImpl<SpotMapper, Spot> implements IS
     }
 
     public List<Spot> findByName(String kw) {
-//        String keyword = "%" + kw + "%;
         return spotMapper.findByName(kw);
     }
 }
