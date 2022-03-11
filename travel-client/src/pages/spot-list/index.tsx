@@ -62,15 +62,6 @@ export default class Index extends PureComponent<any> {
             },
         ];
     }
-    componentWillMount() {}
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
-    componentDidShow() {}
-
-    componentDidHide() {}
 
     render() {
         return (
