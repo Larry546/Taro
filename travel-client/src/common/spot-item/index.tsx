@@ -43,7 +43,7 @@ export default class Index extends PureComponent<ISpotItem> {
                         ) : null}
 
                         <View className="item_bottom_bottom_rate">
-                            <Text>{spotRateNum}条评论</Text>
+                            <Text>{spotRateNum || 0}条评论</Text>
                         </View>
                     </View>
                 </View>

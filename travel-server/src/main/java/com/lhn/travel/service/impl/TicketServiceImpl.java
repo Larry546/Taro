@@ -26,4 +26,8 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     public List findByOrder(Integer id) {
         return ticketMapper.findByOrder(id);
     }
+
+    public List findBySpot(Integer id) {
+        return ticketMapper.findBySpot(id);
+    }
 }

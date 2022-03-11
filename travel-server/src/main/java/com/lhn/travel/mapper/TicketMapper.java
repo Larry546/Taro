@@ -18,4 +18,6 @@ import java.util.List;
 public interface TicketMapper extends BaseMapper<Ticket> {
 
     List findByOrder(Integer id);
+
+    List findBySpot(Integer id);
 }

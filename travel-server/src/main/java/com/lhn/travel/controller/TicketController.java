@@ -18,42 +18,46 @@ import java.util.List;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/ticket" )
+@RequestMapping("/ticket")
 public class TicketController {
 
     @Resource
     private ITicketService ticketService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody Ticket ticket) {
         return ticketService.saveOrUpdate(ticket);
     }
 
-    @DeleteMapping("/delete/{id}" )
+    @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return ticketService.removeById(id);
     }
 
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<Ticket> findAll() {
         return ticketService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public List<Ticket> findOne(@PathVariable Integer id) {
         return ticketService.list();
     }
 
-    @GetMapping("/page" )
+    @GetMapping("/page")
     public Page<Ticket> findPage(@RequestParam Integer pageNum,
                                  @RequestParam Integer pageSize) {
         return ticketService.page(new Page<>(pageNum, pageSize));
     }
 
-    @GetMapping("/listByOrder/{id}" )
+    @GetMapping("/listByOrder/{id}")
     public List findByOrder(@PathVariable Integer id) {
         return ticketService.findByOrder(id);
     }
 
+    @GetMapping("/listBySpot/{id}")
+    public List findBySpot(@PathVariable Integer id) {
+        return ticketService.findBySpot(id);
+    }
 }
 

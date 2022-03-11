@@ -31,3 +31,11 @@ export function getSpotInfo(target, spotId) {
 export function getOrderInfo(target, orderId) {
     return target.http.get(`/order/find/${orderId}`);
 }
+
+export function getSpotList(target) {
+    return target.http.get("/spot/list");
+}
+
+export function getSpotTicket(target, spotId) {
+    return target.http.get(`/ticket/listBySpot/${spotId}`);
+}
