@@ -4,7 +4,6 @@ import { View, Text, ScrollView } from "@tarojs/components";
 import H5NavBar from "../../common/h5NavBar";
 import { IOrderDetailState, IOrderInfo } from "./interface";
 import { IPassengerInfo } from "../../common/traveler/edit/interface";
-import { getCurrentInstance } from "../../system/router";
 import { getPassengerList, getSpotInfo, getOrderInfo, getOrderTicket } from "../../api";
 import { ISpotInfo } from "../spot-detail/interface";
 import { IOrderTicketInfo } from "../booking/interface";
@@ -72,7 +71,7 @@ export default class Index extends PureComponent<any> {
     };
 
     getParams = () => {
-        const instance: any = getCurrentInstance;
+        const instance: any = this.instance;
         const data = instance.router.params;
         this.orderId = data.orderId;
         this.spotId = data.spotId;

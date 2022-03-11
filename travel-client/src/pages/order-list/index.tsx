@@ -7,7 +7,6 @@ import { IOrderListState, IOrderTime } from "./interface";
 import { getOrderList, getOrderTicket } from "../../api";
 import { IOrderInfo } from "../order-detail/interface";
 import { IOrderTicketInfo } from "../booking/interface";
-import { getCurrentInstance } from "../../system/router";
 
 import "./index.scss";
 
@@ -30,7 +29,7 @@ export default class Index extends PureComponent<any> {
     }
 
     getParams = () => {
-        const instance: any = getCurrentInstance;
+        const instance: any = this.instance;
         const data = instance.router.params;
         return data.orderIndex;
     };
