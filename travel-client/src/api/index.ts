@@ -63,3 +63,11 @@ export function isUserFav(target, spotId) {
     };
     return target.http.get("/favorite/isFav", data);
 }
+
+export function getSpotByType(target, type) {
+    return target.http.get(`/spot/listByType/"${type}"`);
+}
+
+export function getSpotByName(target, keyword) {
+    return target.http.get(`/spot/listByName/${keyword}`);
+}

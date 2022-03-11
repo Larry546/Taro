@@ -19,4 +19,8 @@ public interface SpotMapper extends BaseMapper<Spot> {
 
     List<Spot> findByUser(Integer id);
 
+    List<Spot> findByType(String type);
+
+    List<Spot> findByName(String kw);
+
 }

@@ -55,5 +55,15 @@ public class SpotController {
         return spotService.findByUser(id);
     }
 
+    @GetMapping("/listByType/{type}")
+    public List<Spot> findByType(@PathVariable String type) {
+        return spotService.findByType(type);
+    }
+
+    @GetMapping("/listByName/{keyword}")
+    public List<Spot> findByName(@PathVariable String keyword) {
+        return spotService.findByName(keyword);
+    }
+
 }
 

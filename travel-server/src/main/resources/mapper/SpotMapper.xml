@@ -16,4 +16,16 @@
           and t_favorite.user_id = ${id}
     </select>
 
+    <select id="findByType" resultType="com.lhn.travel.entity.Spot">
+        select *
+        from t_spot
+        where spot_type = ${type}
+    </select>
+
+    <select id="findByName" resultType="com.lhn.travel.entity.Spot">
+        select *
+        from t_spot
+        where spot_name like "%${kw}%"
+    </select>
+
 </mapper>

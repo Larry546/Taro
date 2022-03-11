@@ -18,7 +18,7 @@ export default class Index extends PureComponent<ISpotCard> {
     };
 
     render() {
-        const { index, deleteFav, spotInfo, fromFav = false } = this.props;
+        const { deleteFav, spotInfo, fromFav = false } = this.props;
         const {
             spotImageurl,
             spotName,
@@ -29,7 +29,7 @@ export default class Index extends PureComponent<ISpotCard> {
             spotAddress,
         } = spotInfo;
         return (
-            <View className="spotcard" key={index}>
+            <View className="spotcard">
                 <View className="spotcard_left" onClick={this.goToDetail}>
                     <Image
                         classWrap={"spotcard_left_image"}
@@ -53,7 +53,7 @@ export default class Index extends PureComponent<ISpotCard> {
                         </View>
                         {spotType ? (
                             <View className="spotcard_left_text_type">
-                                <Text>{spotType[0]}</Text>
+                                <Text>{spotType}</Text>
                             </View>
                         ) : null}
                     </View>
@@ -62,16 +62,12 @@ export default class Index extends PureComponent<ISpotCard> {
                     <View className="spotcard_right" onClick={deleteFav}>
                         <Icon type={"cuowuguanbiquxiao"} size={24} color={"red"} />
                     </View>
-                ) : (
-                    ticketList?.length && (
-                        <View className="spotcard_price">
-                            <Text className="spotcard_price_currency">￥</Text>
-                            <Text className="spotcard_price_number">
-                                {ticketList[0].ticketPrice}
-                            </Text>
-                        </View>
-                    )
-                )}
+                ) : ticketList && ticketList.length ? (
+                    <View className="spotcard_price">
+                        <Text className="spotcard_price_currency">￥</Text>
+                        <Text className="spotcard_price_number">{ticketList[0].ticketPrice}</Text>
+                    </View>
+                ) : null}
             </View>
         );
     }

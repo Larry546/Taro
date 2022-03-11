@@ -26,5 +26,13 @@ public class SpotServiceImpl extends ServiceImpl<SpotMapper, Spot> implements IS
     public List<Spot> findByUser(Integer uid) {
         return spotMapper.findByUser(uid);
     }
-    
+
+    public List<Spot> findByType(String type) {
+        return spotMapper.findByType(type);
+    }
+
+    public List<Spot> findByName(String kw) {
+//        String keyword = "%" + kw + "%;
+        return spotMapper.findByName(kw);
+    }
 }
