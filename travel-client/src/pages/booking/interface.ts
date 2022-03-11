@@ -6,8 +6,6 @@ export interface IBookingState {
     selectedDate: string;
     listOpen: boolean;
     contact: string;
-    requestOpen: boolean;
-    requestTicket: any;
     spotInfo?: ISpotInfo;
     orderTicketList?: Array<IOrderTicketInfo>;
     currentTicket?: IOrderTicketInfo;
