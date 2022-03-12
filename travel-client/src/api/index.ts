@@ -69,7 +69,7 @@ export function isUserFav(target, spotId) {
 }
 
 export function getSpotByType(target, type) {
-    return target.http.get(`/spot/listByType/"${type}"`);
+    return target.http.get(`/spot/listByType/${type}`);
 }
 
 export function getSpotByName(target, keyword) {
