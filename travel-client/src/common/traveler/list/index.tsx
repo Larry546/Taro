@@ -96,7 +96,17 @@ export default class Index extends PureComponent<IListProps> {
                                         >
                                             {orderTicketInfo?.ticketId ? (
                                                 <View className="list_traveler_icon">
-                                                    <View className="list_traveler_icon_circle" />
+                                                    <View
+                                                        className="list_traveler_icon_circle"
+                                                        style={{
+                                                            background:
+                                                                orderTicketInfo.passenger?.includes(
+                                                                    item.passengerId || -1
+                                                                )
+                                                                    ? "#0086f6"
+                                                                    : "",
+                                                        }}
+                                                    />
                                                 </View>
                                             ) : null}
                                             <View className="list_traveler_info">
