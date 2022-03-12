@@ -7,6 +7,7 @@ import { IPassengerInfo } from "../../common/traveler/edit/interface";
 import { getPassengerList, getSpotInfo, getOrderInfo, getOrderTicket } from "../../api";
 import { ISpotInfo } from "../spot-detail/interface";
 import { IOrderTicketInfo } from "../booking/interface";
+import { weekDay } from "../../system/tools/date";
 
 import "./index.scss";
 
@@ -150,7 +151,8 @@ export default class Index extends PureComponent<any> {
                                                             使用日期{"    "}
                                                         </Text>
                                                         <Text style={{ color: "#ff7700" }}>
-                                                            {orderInfo.orderUsetime}
+                                                            {orderInfo.orderUsetime} 星期
+                                                            {weekDay(orderInfo.orderUsetime)}
                                                         </Text>
                                                     </View>
                                                     {item.passenger?.map((passid, pindex) => {
