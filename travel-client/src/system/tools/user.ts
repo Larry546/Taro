@@ -7,3 +7,11 @@ export const setUser = uid => {
 export const getUser = () => {
     return Taro.getStorageSync("uid");
 };
+
+export const setToken = token => {
+    Taro.setStorageSync("token", token);
+};
+
+export const getToken = () => {
+    return Taro.getStorageSync("token");
+};

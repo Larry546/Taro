@@ -1,6 +1,7 @@
 import Taro from "@tarojs/taro";
 import getBaseUrl from "./tools/baseUrl";
 import interceptors from "./tools/interceptors";
+import { getToken } from "../tools/user";
 
 interceptors.forEach(interceptorItem => Taro.addInterceptor(interceptorItem));
 
@@ -16,7 +17,7 @@ class httpRequest {
             method: method,
             header: {
                 "content-type": contentType,
-                // Authorization: Taro.getStorageSync("Authorization"),
+                token: getToken(),
             },
         };
         return Taro.request(option);

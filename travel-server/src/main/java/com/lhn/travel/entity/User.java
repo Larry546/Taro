@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -19,7 +20,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@TableName("t_user" )
+@TableName("t_user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,5 +37,9 @@ public class User implements Serializable {
 
     private String userContact;
 
+    private String token;
 
+    private LocalDateTime expireTime;
+
+    private LocalDateTime loginTime;
 }

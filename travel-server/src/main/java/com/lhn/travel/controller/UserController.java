@@ -62,9 +62,11 @@ public class UserController {
 
         Integer res = userService.veritypswd(account, password);
         if (res != null) {
+            String token = userService.createToken(res);
             map.put("code", 1);
             map.put("msg", "登陆成功");
             map.put("uid", res);
+            map.put("token", token);
         } else {
             map.put("code", 0);
             map.put("msg", "用户名或密码错误!");

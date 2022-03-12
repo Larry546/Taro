@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lhn.travel.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.time.LocalDateTime;
+
 /**
  * <p>
  * Mapper 接口
@@ -15,4 +17,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
     Integer verifypswd(String account, String password);
+
+    User getById(Integer id);
+
+    void createToken(Integer id, String token, LocalDateTime now, LocalDateTime expireTime);
 }

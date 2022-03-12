@@ -7,4 +7,20 @@
         where user_account = #{account}
           and user_password = #{password};
     </select>
+
+    <select id="getById" resultType="com.lhn.travel.entity.User">
+        select user_account, user_nickname, user_contact
+        from t_user
+        where user_id = #{id}
+    </select>
+
+    <update id="createToken">
+
+        update t_user
+        set token      = #{token},
+            loginTime  = #{now},
+            expireTime = #{expireTime}
+        where user_id = #{id}
+
+    </update>
 </mapper>

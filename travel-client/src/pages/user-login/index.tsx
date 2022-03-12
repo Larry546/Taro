@@ -3,7 +3,7 @@ import { View, Text } from "@tarojs/components";
 import { AtButton, AtInput } from "taro-ui";
 import { IUserInfo } from "../user-info/interface";
 import { login } from "../../api/index";
-import { setUser } from "../../system/tools/user";
+import { setToken, setUser } from "../../system/tools/user";
 
 import "./index.scss";
 
@@ -39,6 +39,7 @@ export default class Index extends PureComponent<any> {
         let response = await login(this, loginInfo);
         if (response && response.code === 1) {
             setUser(response.uid);
+            setToken(response.token);
             this.push("/pages/user/index", "reLaunch");
         } else if (response && response.code === 0) {
             this.toast.show(response.msg);
