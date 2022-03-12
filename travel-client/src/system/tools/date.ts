@@ -26,9 +26,7 @@ export let getDateString = function (
 
 // 计算周几
 export let weekDay = function (date) {
-    console.log("🚀 ~ file: date.ts ~ line 29 ~ weekDay ~ date", date);
     let d1 = new Date(date.replace(/-/g, "/"));
-    console.log("🚀 ~ file: date.ts ~ line 30 ~ weekDay ~ d1", d1);
     let weekDay = ["日", "一", "二", "三", "四", "五", "六"];
     return weekDay[d1.getDay()];
 };
