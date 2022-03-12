@@ -4,16 +4,23 @@ server:
 spring:
   aop:
     auto: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
 
   datasource:
-    url: jdbc:mysql://localhost:3306/travel
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #        url: jdbc:mysql://localhost:3306/travel
+    #        username: root
+    #        password: 123456
 
     druid:
       filters: stat,wall
       aop-patterns: com.lhnfinal.travel.*
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/travel?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT
+      username: root
+      password: 123456
 
       filter:
         wall:
@@ -31,6 +38,7 @@ spring:
         enabled: true
         login-username: admin
         login-password: 123456
+
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
