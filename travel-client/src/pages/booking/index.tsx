@@ -9,6 +9,7 @@ import { IBookingState } from "./interface";
 import TravelerList from "../../common/traveler/list";
 import { IPassengerInfo } from "src/common/traveler/edit/interface";
 import { getPassengerList, getSpotInfo, getSpotTicket, getUserInfo } from "../../api";
+import { getDateString } from "../../system/tools/date";
 
 import "./index.scss";
 
@@ -27,7 +28,7 @@ export default class Index extends PureComponent<any> {
             calendarOpen: false,
             listOpen: false,
             detailOpen: false,
-            selectedDate: new Date().toLocaleDateString(), // 需要补零 todo
+            selectedDate: getDateString(new Date()),
         };
         this.getParams();
         this.getInitState();
@@ -245,8 +246,8 @@ export default class Index extends PureComponent<any> {
                                     onClose={this.onCloseCalendar}
                                 >
                                     <AtCalendar
-                                        format={"YYYY/MM/DD"}
-                                        minDate={new Date().toLocaleDateString()}
+                                        format={"YYYY-MM-DD"}
+                                        minDate={getDateString(new Date())}
                                         onDayClick={this.onDayClick}
                                     />
                                 </AtFloatLayout>
