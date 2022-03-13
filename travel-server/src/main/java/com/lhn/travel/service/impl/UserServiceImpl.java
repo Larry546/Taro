@@ -44,4 +44,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return token;
     }
 
+    public void logout(String token) {
+        User user = userMapper.findByToken(token);
+        token = UUID.randomUUID().toString();
+        LocalDateTime now = LocalDateTime.now();
+        userMapper.createToken(user.getUserId(), token, now, now);
+    }
+
+    public User findByToken(String token) {
+        return userMapper.findByToken(token);
+    }
+
 }

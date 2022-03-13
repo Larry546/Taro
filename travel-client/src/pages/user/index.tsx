@@ -2,8 +2,8 @@ import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
 import { AtButton, AtGrid, AtList, AtListItem, AtAvatar } from "taro-ui";
 import { IUserState } from "./interfacet";
-import { getUser, setUser } from "../../system/tools/user";
-import { getUserInfo } from "../../api";
+import { getUser, setToken, setUser } from "../../system/tools/user";
+import { getUserInfo, logout } from "../../api";
 
 import "./index.scss";
 
@@ -66,12 +66,19 @@ export default class Index extends PureComponent<any> {
 
     goToViewList = () => {};
 
-    logout = () => {
-        this.setState({
-            uid: "",
-            userInfo: {},
-        });
-        setUser("");
+    logout = async () => {
+        let res = await logout(this);
+        if (res) {
+            this.setState({
+                uid: "",
+                userInfo: {},
+            });
+            setUser("");
+            setToken("");
+            this.toast.show("退出登陆成功!");
+        } else {
+            this.toast.show("退出登陆失败!");
+        }
     };
 
     render() {

@@ -21,4 +21,6 @@ public interface UserMapper extends BaseMapper<User> {
     User getById(Integer id);
 
     void createToken(Integer id, String token, LocalDateTime now, LocalDateTime expireTime);
+
+    User findByToken(String token);
 }

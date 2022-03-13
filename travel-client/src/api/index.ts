@@ -4,6 +4,10 @@ export function login(target, loginInfo) {
     return target.http.post("/user/login", loginInfo);
 }
 
+export function logout(target) {
+    return target.http.post("/user/logout");
+}
+
 export function getUserInfo(target) {
     let uid = getUser();
     if (!uid) {

@@ -18,7 +18,7 @@ spring:
       filters: stat,wall
       aop-patterns: com.lhnfinal.travel.*
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/travel?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://localhost:3306/travel?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: 123456
 

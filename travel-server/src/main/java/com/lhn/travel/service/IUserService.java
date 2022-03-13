@@ -19,4 +19,7 @@ public interface IUserService extends IService<User> {
 
     String createToken(Integer uid);
 
+    void logout(String token);
+
+    User findByToken(String token);
 }

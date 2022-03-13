@@ -7,6 +7,7 @@ import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +73,19 @@ public class UserController {
             map.put("msg", "用户名或密码错误!");
         }
         return map;
+    }
+
+    @PostMapping("/logout")
+    public Boolean logout(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        userService.logout(token);
+        return true;
+    }
+
+    @GetMapping("/findByToken/{token}")
+    public User findByToken(@PathVariable String token) {
+        User user = userService.findByToken(token);
+        return user;
     }
 }
 
