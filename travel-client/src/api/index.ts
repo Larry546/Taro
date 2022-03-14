@@ -83,3 +83,7 @@ export function getSpotByType(target, type) {
 export function getSpotByName(target, keyword) {
     return target.http.get(`/spot/listByName/${keyword}`);
 }
+
+export function deletePassenger(target, passId) {
+    return target.http.delete(`/passenger/delete/${passId}`);
+}

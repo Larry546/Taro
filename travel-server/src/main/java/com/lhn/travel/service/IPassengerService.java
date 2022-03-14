@@ -16,4 +16,6 @@ import java.util.List;
 public interface IPassengerService extends IService<Passenger> {
 
     List<Passenger> findByUser(Integer id);
+
+    Boolean delete(Integer id);
 }

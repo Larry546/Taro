@@ -18,42 +18,41 @@ import java.util.List;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/passenger" )
+@RequestMapping("/passenger")
 public class PassengerController {
 
     @Resource
     private IPassengerService passengerService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody Passenger passenger) {
         return passengerService.saveOrUpdate(passenger);
     }
 
-    @DeleteMapping("/delete/{id}" )
-    public Boolean delete(@PathVariable Integer id) {
-        return passengerService.removeById(id);
-    }
-
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<Passenger> findAll() {
         return passengerService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public List<Passenger> findOne(@PathVariable Integer id) {
         return passengerService.list();
     }
 
-    @GetMapping("/page" )
+    @GetMapping("/page")
     public Page<Passenger> findPage(@RequestParam Integer pageNum,
                                     @RequestParam Integer pageSize) {
         return passengerService.page(new Page<>(pageNum, pageSize));
     }
 
-    @GetMapping("/listByUser/{uid}" )
+    @GetMapping("/listByUser/{uid}")
     public List<Passenger> findByUser(@PathVariable Integer uid) {
         return passengerService.findByUser(uid);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public Boolean delete(@PathVariable Integer id) {
+        return passengerService.delete(id);
+    }
 }
 

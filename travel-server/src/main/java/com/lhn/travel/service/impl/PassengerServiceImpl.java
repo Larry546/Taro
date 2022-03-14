@@ -26,4 +26,9 @@ public class PassengerServiceImpl extends ServiceImpl<PassengerMapper, Passenger
     public List<Passenger> findByUser(Integer id) {
         return passengerMapper.findByUser(id);
     }
+
+    public Boolean delete(Integer id) {
+        int count = passengerMapper.deletePass(id);
+        return count == 1 ? true : false;
+    }
 }

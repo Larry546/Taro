@@ -4,7 +4,7 @@ import Icon from "../../base-component/icon";
 import { AtFloatLayout } from "taro-ui";
 import TravelerEdit from "../edit";
 import { IListProps, IListState } from "./interface";
-import { getPassengerList } from "../../../api";
+import { deletePassenger, getPassengerList } from "../../../api";
 
 import "./index.scss";
 
@@ -66,6 +66,23 @@ export default class Index extends PureComponent<IListProps> {
         this.onCloseEdit();
     };
 
+    onDeletePass = async passId => {
+        const { passengerlist = [] } = this.state;
+        let res = await deletePassenger(this, passId);
+        if (res) {
+            let passIndex = passengerlist.findIndex(item => {
+                return item.passengerId === passId;
+            });
+            passengerlist.splice(passIndex, 1);
+        } else {
+            this.toast.show("删除失败!");
+        }
+
+        this.setState({
+            passengerlist: passengerlist,
+        });
+    };
+
     render() {
         const { orderTicketInfo } = this.props;
         const { currentPassenger, editOpened, passengerlist } = this.state;
@@ -88,28 +105,48 @@ export default class Index extends PureComponent<IListProps> {
                             return (
                                 <View className="list_traveler" key={index}>
                                     <View className="list_traveler_wrap">
-                                        <View
-                                            className="list_traveler_left"
-                                            onClick={() => {
-                                                this.onSelect(item);
-                                            }}
-                                        >
+                                        <View className="list_traveler_left">
                                             {orderTicketInfo?.ticketId ? (
-                                                <View className="list_traveler_icon">
-                                                    <View
-                                                        className="list_traveler_icon_circle"
-                                                        style={{
-                                                            background:
-                                                                orderTicketInfo.passenger?.includes(
-                                                                    item.passengerId || -1
-                                                                )
-                                                                    ? "#0086f6"
-                                                                    : "",
-                                                        }}
+                                                <View
+                                                    className="list_traveler_icon"
+                                                    onClick={() => {
+                                                        this.onSelect(item);
+                                                    }}
+                                                >
+                                                    <View className="list_traveler_icon_out">
+                                                        <View
+                                                            className="list_traveler_icon_circle"
+                                                            style={{
+                                                                background:
+                                                                    orderTicketInfo.passenger?.includes(
+                                                                        item.passengerId || -1
+                                                                    )
+                                                                        ? "#0086f6"
+                                                                        : "",
+                                                            }}
+                                                        />
+                                                    </View>
+                                                </View>
+                                            ) : (
+                                                <View
+                                                    className="list_traveler_icon"
+                                                    onClick={() => {
+                                                        this.onDeletePass(item.passengerId);
+                                                    }}
+                                                >
+                                                    <Icon
+                                                        type={"close-circle"}
+                                                        color={"#bbb"}
+                                                        size={20}
                                                     />
                                                 </View>
-                                            ) : null}
-                                            <View className="list_traveler_info">
+                                            )}
+                                            <View
+                                                className="list_traveler_info"
+                                                onClick={() => {
+                                                    this.onSelect(item);
+                                                }}
+                                            >
                                                 <Text className="list_traveler_info_name list_traveler_info_webkit">
                                                     {item.passengerName}
                                                 </Text>

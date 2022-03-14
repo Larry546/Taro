@@ -19,7 +19,7 @@ import java.time.LocalDate;
  */
 @Getter
 @Setter
-@TableName("t_passenger" )
+@TableName("t_passenger")
 public class Passenger implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +36,8 @@ public class Passenger implements Serializable {
     private LocalDate passengerBirth;
 
     private Integer userId;
+
+    private Integer isDeleted;
 
 
 }

@@ -39,14 +39,20 @@
             align-items: center;
         }
         &_icon {
-            margin-right: 40px;
-            width: 34px;
-            height: 34px;
-            border: 1px solid rgba(0, 134, 246, 0.8);
-            border-radius: 34px;
+            padding: 10px;
+            padding-right: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            &_out {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 34px;
+                height: 34px;
+                border: 1px solid rgba(0, 134, 246, 0.8);
+                border-radius: 34px;
+            }
             &_circle {
                 width: 14px;
                 height: 14px;
