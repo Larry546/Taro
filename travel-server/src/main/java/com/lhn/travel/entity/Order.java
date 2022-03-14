@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-@TableName("t_order" )
+@TableName("t_order")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,6 +40,8 @@ public class Order implements Serializable {
     private Integer spotId;
 
     private Integer userId;
+
+    private Integer isDeleted;
 
 
 }

@@ -18,41 +18,41 @@ import java.util.List;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/order" )
+@RequestMapping("/order")
 public class OrderController {
 
     @Resource
     private IOrderService orderService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody Order order) {
         return orderService.saveOrUpdate(order);
     }
 
-    @DeleteMapping("/delete/{id}" )
-    public Boolean delete(@PathVariable Integer id) {
-        return orderService.removeById(id);
-    }
-
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<Order> findAll() {
         return orderService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public Order findOne(@PathVariable Integer id) {
         return orderService.getById(id);
     }
 
-    @GetMapping("/page" )
+    @GetMapping("/page")
     public Page<Order> findPage(@RequestParam Integer pageNum,
                                 @RequestParam Integer pageSize) {
         return orderService.page(new Page<>(pageNum, pageSize));
     }
 
-    @GetMapping("/listByUser" )
+    @GetMapping("/listByUser")
     public List findByUser(@RequestParam Integer uid, @RequestParam Integer type) {
         return orderService.findByUser(uid);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Boolean delete(@PathVariable Integer id) {
+        return orderService.delete(id);
     }
 }
 

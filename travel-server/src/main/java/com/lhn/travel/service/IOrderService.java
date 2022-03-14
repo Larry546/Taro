@@ -15,4 +15,6 @@ import java.util.List;
  */
 public interface IOrderService extends IService<Order> {
     List findByUser(Integer uid);
+
+    Boolean delete(Integer id);
 }

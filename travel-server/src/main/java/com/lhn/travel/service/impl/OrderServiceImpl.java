@@ -26,4 +26,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public List findByUser(Integer uid) {
         return orderMapper.findByUser(uid);
     }
+
+    public Boolean delete(Integer id) {
+        int count = orderMapper.deleteOrder(id);
+        return count == 1 ? true : false;
+    }
 }

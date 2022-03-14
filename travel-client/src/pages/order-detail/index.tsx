@@ -4,7 +4,13 @@ import { View, Text, ScrollView } from "@tarojs/components";
 import H5NavBar from "../../common/h5NavBar";
 import { IOrderDetailState, IOrderInfo } from "./interface";
 import { IPassengerInfo } from "../../common/traveler/edit/interface";
-import { getPassengerList, getSpotInfo, getOrderInfo, getOrderTicket } from "../../api";
+import {
+    getPassengerList,
+    getSpotInfo,
+    getOrderInfo,
+    getOrderTicket,
+    deleteOrder,
+} from "../../api";
 import { ISpotInfo } from "../spot-detail/interface";
 import { IOrderTicketInfo } from "../booking/interface";
 import { weekDay } from "../../system/tools/date";
@@ -99,6 +105,30 @@ export default class Index extends PureComponent<any> {
 
     goToComment = () => {
         this.push(`/pages/comment/index?spotId=${this.spotId}`);
+    };
+
+    onDeleteOrder = () => {
+        this.confirm.show({
+            content: "是否要删除该订单？",
+            btnOK: ["取消", "确定"],
+            btnCallBack: [
+                () => {
+                    this.DodeleteOrder();
+                },
+            ],
+        });
+    };
+
+    DodeleteOrder = async () => {
+        let res = await deleteOrder(this, this.orderId);
+        if (res) {
+            this.toast.show("删除订单成功！3秒后返回");
+            setTimeout(() => {
+                this.pop();
+            }, 3000);
+        } else {
+            this.toast.show("网络错误，删除订单失败");
+        }
     };
 
     render() {
@@ -226,7 +256,7 @@ export default class Index extends PureComponent<any> {
                 </ScrollView>
                 <View className="orderdetail_footer">
                     <View className="orderdetail_footer_buttons">
-                        <View className="orderdetail_footer_button" onClick={() => {}}>
+                        <View className="orderdetail_footer_button" onClick={this.onDeleteOrder}>
                             <Text>删除订单</Text>
                         </View>
                         <View className="orderdetail_footer_button" onClick={this.goToComment}>

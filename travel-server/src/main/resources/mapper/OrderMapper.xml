@@ -13,5 +13,12 @@
              t_spot
         WHERE t_order.spot_id = t_spot.spot_id
           and t_order.user_id = ${id}
+          and t_order.is_deleted = 0
     </select>
+
+    <update id="deleteOrder">
+        update t_order
+        set is_deleted = 1
+        where order_id = #{id}
+    </update>
 </mapper>

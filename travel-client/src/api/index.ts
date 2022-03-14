@@ -119,3 +119,7 @@ export function saveComment(target, commentInfo) {
     comment.userId = uid;
     return target.http.post("/comment/save", comment);
 }
+
+export function deleteOrder(target, orderId) {
+    return target.http.delete(`/order/delete/${orderId}`);
+}
