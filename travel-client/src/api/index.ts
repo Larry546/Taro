@@ -8,6 +8,10 @@ export function logout(target) {
     return target.http.post("/user/logout");
 }
 
+export function register(target, userInfo) {
+    return target.http.post("/user/register", userInfo);
+}
+
 export function getUserInfo(target) {
     let uid = getUser();
     if (!uid) {

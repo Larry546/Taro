@@ -21,6 +21,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> patterns = new ArrayList<>();
         patterns.add("/user/login/**");
+        patterns.add("/user/logout/**");
+        patterns.add("/user/register/**");
         patterns.add("/spot/find/**");
         patterns.add("/spot/list/**");
         patterns.add("/ticket/listBySpot/**");

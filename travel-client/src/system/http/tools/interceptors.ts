@@ -9,6 +9,9 @@ const customInterceptor = chain => {
             return Promise.reject("请求资源不存在");
         } else if (res.statusCode === HTTP_STATUS.BAD_GATEWAY) {
             return Promise.reject("服务端出现了问题");
+        } else if (res.statusCode === HTTP_STATUS.TOKEN_ERROR) {
+            console.log(res.msg);
+            return res.msg;
         } else if (res.statusCode === HTTP_STATUS.SUCCESS) {
             console.log(res.data);
             return res.data;

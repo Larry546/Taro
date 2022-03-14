@@ -22,4 +22,6 @@ public interface IUserService extends IService<User> {
     void logout(String token);
 
     User findByToken(String token);
+
+    Boolean register(User user);
 }

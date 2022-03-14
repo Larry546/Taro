@@ -55,4 +55,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return userMapper.findByToken(token);
     }
 
+    public Boolean register(User user) {
+        String account = user.getUserAccount();
+        Integer userId = userMapper.isExist(account);
+        if (userId != null) {
+            return false;
+        } else if (user.getUserPassword() == null || user.getUserPassword().equals("")) {
+            return false;
+        } else {
+            int count = userMapper.insert(user);
+            return count == 1 ? true : false;
+        }
+
+    }
+
 }

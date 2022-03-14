@@ -87,5 +87,10 @@ public class UserController {
         User user = userService.findByToken(token);
         return user;
     }
+
+    @PostMapping("/register")
+    public Boolean register(@RequestBody User user) {
+        return userService.register(user);
+    }
 }
 

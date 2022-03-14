@@ -3,6 +3,7 @@ import { View, Text } from "@tarojs/components";
 import { AtButton, AtInput } from "taro-ui";
 import H5NavBar from "../../common/h5NavBar";
 import { IRegisterInfo } from "./interface";
+import { register } from "../../api";
 
 import "./index.scss";
 
@@ -22,15 +23,6 @@ export default class Index extends PureComponent<any> {
             userContact: "",
         };
     }
-    componentWillMount() {}
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
-    componentDidShow() {}
-
-    componentDidHide() {}
 
     onChangeAccount = value => {
         this.setState({ userAccount: value });
@@ -52,7 +44,7 @@ export default class Index extends PureComponent<any> {
         this.setState({ onChangeContact: value });
     };
 
-    register = () => {
+    register = async () => {
         const { userAccount, userPassword, userCheckPassword, userContact, userNickname } =
             this.state;
         let cuserAccount = String(userAccount).replace(/-| /g, "");
@@ -66,8 +58,24 @@ export default class Index extends PureComponent<any> {
             return;
         } else if (cuserPassword !== cuserCheckPassword) {
             this.toast.show("两次密码输入不一致！");
+            return;
         }
-        // todo
+        let userInfo = {
+            userAccount: userAccount,
+            userPassword: userPassword,
+            userContact: userContact,
+            userNickname: userNickname,
+        };
+
+        let res = await register(this, userInfo);
+        if (res) {
+            this.toast.show("注册成功！3秒后返回登录页");
+            setTimeout(() => {
+                this.pop();
+            }, 3000);
+        } else {
+            this.toast.show("该用户名已被注册!");
+        }
     };
 
     render() {
