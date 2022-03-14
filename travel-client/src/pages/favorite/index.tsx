@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from "@tarojs/components";
 import { AtList } from "taro-ui";
 import SpotCard from "../../common/spot-card";
 import { IFavState } from "./interface";
-import { getSpotRate, getUserFav } from "../../api";
+import { deFav, getSpotRate, getUserFav } from "../../api";
 
 import "./index.scss";
 
@@ -28,6 +28,7 @@ export default class Index extends PureComponent<any> {
 
     getList = async () => {
         let response = await getUserFav(this);
+        console.log("🚀 ~ file: index.tsx ~ line 31 ~ Index ~ getList= ~ response", response);
         if (response) {
             for (let spot of response) {
                 let spotRate = await getSpotRate(this, spot.spotId);
@@ -44,8 +45,20 @@ export default class Index extends PureComponent<any> {
         this.push("/pages/spot-detail/index");
     };
 
-    deleteFav = () => {
-        this.toast.show("deleteFav");
+    onDeleteFav = async favoriteId => {
+        let res = await deFav(this, favoriteId);
+        const { spotList = [] } = this.state;
+        if (res) {
+            let deFavIndex = spotList.findIndex(item => {
+                return item.favoriteId === favoriteId;
+            });
+            spotList.splice(deFavIndex, 1);
+            this.setState({
+                spotList: spotList,
+            });
+        } else {
+            this.toast.show("删除收藏失败!");
+        }
     };
 
     render() {
@@ -63,7 +76,9 @@ export default class Index extends PureComponent<any> {
                                     return (
                                         <View key={index}>
                                             <SpotCard
-                                                deleteFav={this.deleteFav}
+                                                deleteFav={() => {
+                                                    this.onDeleteFav(item.favoriteId);
+                                                }}
                                                 spotInfo={item}
                                                 fromFav={true}
                                             />

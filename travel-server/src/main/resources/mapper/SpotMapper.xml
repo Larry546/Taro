@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lhn.travel.mapper.SpotMapper">
 
-    <select id="findByUser" resultType="com.lhn.travel.entity.Spot">
+    <select id="findByUser" resultType="map">
         select t_spot.spot_id AS spotId,
                spot_name      AS spotName,
                spot_address   AS spotAddress,
                spot_imageURL  AS spotImageurl,
-               spot_type      as spotTpye
+               spot_type      AS spotTpye,
+               favorite_id    AS favoriteId
         from t_spot,
              t_favorite,
              t_user

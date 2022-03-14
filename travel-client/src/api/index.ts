@@ -93,3 +93,7 @@ export function savePassenger(target, passInfo) {
     pass.userId = getUser();
     return target.http.post("/passenger/save", pass);
 }
+
+export function deFav(target, spotId) {
+    return target.http.delete(`/favorite/delete/${spotId}`);
+}

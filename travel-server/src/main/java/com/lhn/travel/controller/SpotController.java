@@ -51,7 +51,7 @@ public class SpotController {
     }
 
     @GetMapping("/listByUser/{id}")
-    public List<Spot> findByUser(@PathVariable Integer id) {
+    public List findByUser(@PathVariable Integer id) {
         return spotService.findByUser(id);
     }
 

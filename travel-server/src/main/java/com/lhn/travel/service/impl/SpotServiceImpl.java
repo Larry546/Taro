@@ -23,7 +23,7 @@ public class SpotServiceImpl extends ServiceImpl<SpotMapper, Spot> implements IS
     @Autowired
     SpotMapper spotMapper;
 
-    public List<Spot> findByUser(Integer uid) {
+    public List findByUser(Integer uid) {
         return spotMapper.findByUser(uid);
     }
 

@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface SpotMapper extends BaseMapper<Spot> {
 
-    List<Spot> findByUser(Integer id);
+    List findByUser(Integer id);
 
     List<Spot> findByType(String type);
 

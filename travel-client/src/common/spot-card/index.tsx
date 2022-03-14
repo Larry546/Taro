@@ -59,7 +59,12 @@ export default class Index extends PureComponent<ISpotCard> {
                     </View>
                 </View>
                 {fromFav ? (
-                    <View className="spotcard_right" onClick={deleteFav}>
+                    <View
+                        className="spotcard_right"
+                        onClick={() => {
+                            deleteFav && deleteFav();
+                        }}
+                    >
                         <Icon type={"cuowuguanbiquxiao"} size={24} color={"red"} />
                     </View>
                 ) : ticketList && ticketList.length ? (

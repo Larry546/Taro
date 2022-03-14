@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface ISpotService extends IService<Spot> {
 
-    List<Spot> findByUser(Integer uid);
+    List findByUser(Integer uid);
 
     List<Spot> findByType(String type);
 
