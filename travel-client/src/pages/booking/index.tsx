@@ -9,7 +9,7 @@ import { IBookingState } from "./interface";
 import TravelerList from "../../common/traveler/list";
 import { IPassengerInfo } from "src/common/traveler/edit/interface";
 import { getPassengerList, getSpotInfo, getSpotTicket, getUserInfo } from "../../api";
-import { getDateString } from "../../system/tools/date";
+import { getDateString, weekDay } from "../../system/tools/date";
 
 import "./index.scss";
 
@@ -247,7 +247,9 @@ export default class Index extends PureComponent<any> {
                                     className="booking_info_spot_sku_date_selector"
                                     onClick={this.onOpenCalendar}
                                 >
-                                    <Text>{selectedDate}</Text>
+                                    <Text>
+                                        {selectedDate} 星期{weekDay(selectedDate)}
+                                    </Text>
                                 </View>
                                 <AtFloatLayout
                                     isOpened={calendarOpen}
