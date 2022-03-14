@@ -22,6 +22,10 @@ export default class Index extends PureComponent<any> {
         this.getList();
     }
 
+    componentDidShow() {
+        this.getList();
+    }
+
     getList = async () => {
         let response = await getSpotList(this);
         for (let spot of response) {
