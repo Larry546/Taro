@@ -51,7 +51,7 @@ public class FavoriteController {
     }
 
     @GetMapping("/isFav")
-    public Boolean isFav(@RequestParam Integer uid, @RequestParam Integer spotId) {
+    public Integer isFav(@RequestParam Integer uid, @RequestParam Integer spotId) {
         return favoriteService.isFav(uid, spotId);
     }
 

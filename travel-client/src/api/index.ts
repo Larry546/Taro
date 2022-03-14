@@ -67,7 +67,7 @@ export function getSpotRate(target, spotId) {
 export function isUserFav(target, spotId) {
     let uid = getUser();
     if (!uid) {
-        return false;
+        return 0;
     }
     let data = {
         uid: uid,
@@ -94,6 +94,14 @@ export function savePassenger(target, passInfo) {
     return target.http.post("/passenger/save", pass);
 }
 
-export function deFav(target, spotId) {
-    return target.http.delete(`/favorite/delete/${spotId}`);
+export function deFav(target, favoriteId) {
+    return target.http.delete(`/favorite/delete/${favoriteId}`);
+}
+
+export function onFav(target, spotId) {
+    let data = {
+        spotId: spotId,
+        userId: getUser(),
+    };
+    return target.http.post("/favorite/save", data);
 }

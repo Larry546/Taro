@@ -2,7 +2,7 @@ export interface ISpotState {
     introOpen: boolean;
     requestOpen: boolean;
     ticket: any;
-    isFav?: boolean;
+    isFav?: number;
     spotInfo?: ISpotInfo;
 }
 

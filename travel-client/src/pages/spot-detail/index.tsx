@@ -6,7 +6,7 @@ import H5NavBar from "../../common/h5NavBar";
 import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
 import { ISpotState } from "./interface";
-import { getSpotInfo, getSpotRate, getSpotTicket, isUserFav } from "../../api";
+import { deFav, getSpotInfo, getSpotRate, getSpotTicket, isUserFav, onFav } from "../../api";
 import { getUser } from "../../system/tools/user";
 
 import "./index.scss";
@@ -106,6 +106,30 @@ export default class Index extends PureComponent<any> {
 
     goToComment = () => {
         this.push(`/pages/comment/index?spotId=${this.spotId}`);
+    };
+
+    onChangeFav = async () => {
+        const { isFav } = this.state;
+        if (isFav) {
+            let res = await deFav(this, isFav);
+            if (res) {
+                this.setState({
+                    isFav: 0,
+                });
+            } else {
+                this.toast.show("取消收藏失败!");
+            }
+        } else {
+            let res = await onFav(this, this.spotId);
+            if (res) {
+                let newFav = await isUserFav(this, this.spotId);
+                this.setState({
+                    isFav: newFav,
+                });
+            } else {
+                this.toast.show("收藏失败!");
+            }
+        }
     };
 
     render() {
@@ -255,7 +279,7 @@ export default class Index extends PureComponent<any> {
                 </ScrollView>
                 <View className="spotdetail_footer">
                     <View className="spotdetail_footer_left">
-                        <View className="spotdetail_footer_left_single" onClick={() => {}}>
+                        <View className="spotdetail_footer_left_single" onClick={this.onChangeFav}>
                             <View className="spotdetail_footer_left_icon">
                                 {isFav ? (
                                     <Icon type={"aixin_shixin"} size={24} color={"#f5190a"} />

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lhn.travel.mapper.FavoriteMapper">
     <select id="isFav" resultType="java.lang.Integer">
-        select count(favorite_id)
+        select favorite_id
         from t_favorite
         where spot_id = ${spotId}
           and user_id = ${uid}

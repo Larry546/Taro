@@ -13,5 +13,5 @@ import com.lhn.travel.entity.Favorite;
  */
 public interface IFavoriteService extends IService<Favorite> {
 
-    boolean isFav(Integer uid, Integer spotId);
+    Integer isFav(Integer uid, Integer spotId);
 }
