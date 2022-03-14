@@ -51,7 +51,7 @@ export function getSpotTicket(target, spotId) {
 export function getUserFav(target) {
     let uid = getUser();
     if (!uid) {
-        return;
+        return [];
     }
     return target.http.get(`/spot/listByUser/${uid}`);
 }
