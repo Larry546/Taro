@@ -278,7 +278,7 @@ export default class Index extends PureComponent<any> {
                         <View className="spotdetail_recommend_title">
                             <Text>景点推荐</Text>
                         </View>
-                        {/* todo */}
+                        {/* todo 相似景点推荐部分 */}
                     </View>
                 </ScrollView>
                 <View className="spotdetail_footer">
