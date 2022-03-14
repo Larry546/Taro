@@ -6,12 +6,12 @@
         select *
         from t_passenger
         where user_id = #{id}
-          and isDeleted = 0
+          and is_deleted = 0
     </select>
 
     <update id="deletePass">
         update t_passenger
-        set isDeleted = 1
+        set is_deleted = 1
         where passenger_id = #{id}
     </update>
 

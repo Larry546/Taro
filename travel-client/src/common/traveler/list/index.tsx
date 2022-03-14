@@ -4,7 +4,7 @@ import Icon from "../../base-component/icon";
 import { AtFloatLayout } from "taro-ui";
 import TravelerEdit from "../edit";
 import { IListProps, IListState } from "./interface";
-import { deletePassenger, getPassengerList } from "../../../api";
+import { deletePassenger, getPassengerList, savePassenger } from "../../../api";
 
 import "./index.scss";
 
@@ -43,27 +43,17 @@ export default class Index extends PureComponent<IListProps> {
         }
     };
 
-    saveTraveler = pass => {
-        const { passengerlist } = this.state;
-        let passIndex = -1;
-        if (passengerlist) {
-            passIndex = passengerlist.findIndex(item => {
-                return item.passengerId === pass.passengerId;
+    saveTraveler = async pass => {
+        let res = await savePassenger(this, pass);
+        if (res) {
+            let newList = await getPassengerList(this);
+            this.setState({
+                passengerlist: newList,
             });
-        }
-        let newList = passengerlist || [];
-        if (passIndex === -1) {
-            // 请求接口增加出行人，并进行更新state
-
-            newList.push(pass);
+            this.onCloseEdit();
         } else {
-            newList[passIndex] = pass;
-            // todo 请求接口更新出行人
+            this.toast.show("网络错误，保存失败!");
         }
-        this.setState({
-            passengerlist: newList,
-        });
-        this.onCloseEdit();
     };
 
     onDeletePass = async passId => {

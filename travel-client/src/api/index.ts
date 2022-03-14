@@ -87,3 +87,9 @@ export function getSpotByName(target, keyword) {
 export function deletePassenger(target, passId) {
     return target.http.delete(`/passenger/delete/${passId}`);
 }
+
+export function savePassenger(target, passInfo) {
+    let pass = passInfo;
+    pass.userId = getUser();
+    return target.http.post("/passenger/save", pass);
+}
