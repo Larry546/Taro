@@ -59,6 +59,18 @@ export default class Index extends PureComponent<IListProps> {
     };
 
     onDeletePass = async passId => {
+        this.confirm.show({
+            content: "是否要删除该出行人？",
+            btnOK: ["取消", "确定"],
+            btnCallBack: [
+                () => {
+                    this.deletePass(passId);
+                },
+            ],
+        });
+    };
+
+    deletePass = async passId => {
         const { passengerlist = [] } = this.state;
         let res = await deletePassenger(this, passId);
         if (res) {
