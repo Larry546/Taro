@@ -123,3 +123,16 @@ export function saveComment(target, commentInfo) {
 export function deleteOrder(target, orderId) {
     return target.http.delete(`/order/delete/${orderId}`);
 }
+
+export function createOrder(target, orderInfo) {
+    let uid = getUser();
+    if (!uid) {
+        return false;
+    }
+    orderInfo.userId = uid;
+    return target.http.post("/order/save", orderInfo);
+}
+
+export function createDetail(target, detailInfo) {
+    return target.http.post("/orderdetail/save", detailInfo);
+}

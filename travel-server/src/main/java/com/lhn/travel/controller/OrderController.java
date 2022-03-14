@@ -25,8 +25,8 @@ public class OrderController {
     private IOrderService orderService;
 
     @PostMapping("/save")
-    public Boolean save(@RequestBody Order order) {
-        return orderService.saveOrUpdate(order);
+    public Integer save(@RequestBody Order order) {
+        return orderService.saveOrder(order);
     }
 
     @GetMapping("/list")

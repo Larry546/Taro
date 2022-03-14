@@ -45,4 +45,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         int count = orderMapper.deleteOrder(id);
         return count == 1 ? true : false;
     }
+
+    public Integer saveOrder(Order order) {
+        Integer count = orderMapper.insertOrder(order);
+        if (count > 0) {
+            return order.getOrderId();
+        } else {
+            return 0;
+        }
+    }
 }

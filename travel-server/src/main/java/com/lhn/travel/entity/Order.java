@@ -43,5 +43,7 @@ public class Order implements Serializable {
 
     private Integer isDeleted;
 
+    private String orderContact;
+
 
 }

@@ -8,7 +8,15 @@ import Image from "../..//common/base-component/image";
 import { IBookingState } from "./interface";
 import TravelerList from "../../common/traveler/list";
 import { IPassengerInfo } from "src/common/traveler/edit/interface";
-import { getPassengerList, getSpotInfo, getSpotTicket, getUserInfo } from "../../api";
+import {
+    createDetail,
+    createOrder,
+    deleteOrder,
+    getPassengerList,
+    getSpotInfo,
+    getSpotTicket,
+    getUserInfo,
+} from "../../api";
 import { getDateString, weekDay } from "../../system/tools/date";
 
 import "./index.scss";
@@ -214,6 +222,61 @@ export default class Index extends PureComponent<any> {
         this.setState({
             passengerlist: newList,
         });
+    };
+
+    booking = async () => {
+        const { orderTicketList = [], contact, selectedDate } = this.state;
+        for (let ticket of orderTicketList) {
+            let num = ticket.ticketNum;
+            let passNum = ticket.passenger?.length || 0;
+            if (num != 0 && num > passNum) {
+                this.toast.show(`还需选择${num - passNum}位${ticket.ticketName}`);
+                return;
+            }
+        }
+        if (!contact) {
+            this.toast.show("请输入联系方式(用于生成订单)!");
+            return;
+        }
+        let orderInfo = {
+            orderUsetime: selectedDate,
+            orderTotal: this.getTotal(),
+            orderStatus: "待支付",
+            orderContact: contact,
+            spotId: this.spotId,
+        };
+
+        let orderId = await createOrder(this, orderInfo);
+        if (!orderId) {
+            this.toast.show("创单失败!");
+            return;
+        }
+
+        for (let ticket of orderTicketList) {
+            if (ticket.ticketNum && ticket.passenger?.length === ticket.ticketNum) {
+                for (let pass of ticket.passenger) {
+                    let info = {
+                        orderId: orderId,
+                        passengerId: pass,
+                        ticketId: ticket.ticketId,
+                    };
+                    let createOD = await createDetail(this, info);
+                    if (!createOD) {
+                        this.toast.show("创单失败!");
+                        deleteOrder(this, orderId);
+                        return;
+                    }
+                }
+            }
+        }
+
+        this.toast.show("创单成功！3秒后跳转到订单详情页");
+        setTimeout(() => {
+            this.push(
+                `/pages/order-detail/index?orderId=${orderId}&spotId=${this.spotId}`,
+                "redirectTo"
+            );
+        }, 3000);
     };
 
     render() {
@@ -467,7 +530,7 @@ export default class Index extends PureComponent<any> {
                             <Icon type={"toTop"} />
                         </View>
                     </View>
-                    <View className="booking_footer_submit" onClick={() => {}}>
+                    <View className="booking_footer_submit" onClick={this.booking}>
                         <Text>提交订单</Text>
                     </View>
                 </View>
