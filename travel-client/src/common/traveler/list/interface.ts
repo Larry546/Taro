@@ -4,6 +4,7 @@ import { IOrderTicketInfo } from "src/pages/booking/interface";
 export interface IListProps {
     orderTicketInfo?: IOrderTicketInfo;
     selectTraveler?: Function;
+    needUpdateList?: Function;
 }
 
 export interface IListState {

@@ -44,12 +44,14 @@ export default class Index extends PureComponent<IListProps> {
     };
 
     saveTraveler = async pass => {
+        const { needUpdateList } = this.props;
         let res = await savePassenger(this, pass);
         if (res) {
             let newList = await getPassengerList(this);
             this.setState({
                 passengerlist: newList,
             });
+            needUpdateList && needUpdateList(newList);
             this.onCloseEdit();
         } else {
             this.toast.show("网络错误，保存失败!");

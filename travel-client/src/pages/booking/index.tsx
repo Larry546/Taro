@@ -88,7 +88,9 @@ export default class Index extends PureComponent<any> {
     };
 
     onCloseList = () => {
-        this.setState({ listOpen: false });
+        this.setState({
+            listOpen: false,
+        });
     };
 
     onDayClick = res => {
@@ -206,6 +208,12 @@ export default class Index extends PureComponent<any> {
 
     onCloseDetail = () => {
         this.setState({ detailOpen: false });
+    };
+
+    onUpdatePassList = newList => {
+        this.setState({
+            passengerlist: newList,
+        });
     };
 
     render() {
@@ -418,6 +426,7 @@ export default class Index extends PureComponent<any> {
                                 <TravelerList
                                     orderTicketInfo={currentTicket}
                                     selectTraveler={this.onSelectTraveler}
+                                    needUpdateList={this.onUpdatePassList}
                                 />
                             </AtFloatLayout>
                         </View>
