@@ -4,7 +4,7 @@ import getEnv from "../../system/tools/environment";
 import H5NavBar from "../../common/h5NavBar";
 import { ICommentState } from "./interface";
 import { AtRate, AtTextarea } from "taro-ui";
-import { getSpotInfo } from "../../api";
+import { getSpotInfo, saveComment } from "../../api";
 
 import "./index.scss";
 
@@ -38,6 +38,24 @@ export default class Index extends PureComponent<any> {
         this.setState({
             spotInfo: info,
         });
+    };
+
+    onSubmitComment = async () => {
+        const { commentRate, commentText } = this.state;
+        let info = {
+            commentRate: commentRate,
+            commentText: commentText,
+            spotId: this.spotId,
+        };
+        let res = await saveComment(this, info);
+        if (res) {
+            this.toast.show("点评成功！3秒后返回");
+            setTimeout(() => {
+                this.pop();
+            }, 3000);
+        } else {
+            this.toast.show("网络错误，点评失败!");
+        }
     };
 
     render() {
@@ -81,7 +99,7 @@ export default class Index extends PureComponent<any> {
                             height={200}
                         />
                     </View>
-                    <View className="comment_button" onClick={() => {}}>
+                    <View className="comment_button" onClick={this.onSubmitComment}>
                         <Text>提交</Text>
                     </View>
                 </View>

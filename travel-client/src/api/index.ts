@@ -90,7 +90,11 @@ export function deletePassenger(target, passId) {
 
 export function savePassenger(target, passInfo) {
     let pass = passInfo;
-    pass.userId = getUser();
+    let uid = getUser();
+    if (!uid) {
+        return false;
+    }
+    pass.userId = uid;
     return target.http.post("/passenger/save", pass);
 }
 
@@ -104,4 +108,14 @@ export function onFav(target, spotId) {
         userId: getUser(),
     };
     return target.http.post("/favorite/save", data);
+}
+
+export function saveComment(target, commentInfo) {
+    let comment = commentInfo;
+    let uid = getUser();
+    if (!uid) {
+        return false;
+    }
+    comment.userId = uid;
+    return target.http.post("/comment/save", comment);
 }

@@ -32,6 +32,10 @@ export default class Index extends PureComponent<any> {
         this.getFav();
     }
 
+    componentDidShow() {
+        this.getInfo();
+    }
+
     getParams = () => {
         const instance: any = this.instance;
         const data = instance.router.params;
