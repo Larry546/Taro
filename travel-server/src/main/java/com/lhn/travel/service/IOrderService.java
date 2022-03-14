@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2022-03-10
  */
 public interface IOrderService extends IService<Order> {
-    List findByUser(Integer uid);
+    List findByUser(Integer uid, Integer type);
 
     Boolean delete(Integer id);
 }

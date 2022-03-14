@@ -47,7 +47,7 @@ public class OrderController {
 
     @GetMapping("/listByUser")
     public List findByUser(@RequestParam Integer uid, @RequestParam Integer type) {
-        return orderService.findByUser(uid);
+        return orderService.findByUser(uid, type);
     }
 
     @DeleteMapping("/delete/{id}")

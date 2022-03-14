@@ -23,8 +23,22 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     OrderMapper orderMapper;
 
-    public List findByUser(Integer uid) {
-        return orderMapper.findByUser(uid);
+    public List findByUser(Integer uid, Integer type) {
+        String ctype = "";
+        switch (type) {
+            case 1:
+                ctype = "待支付";
+                break;
+            case 2:
+                ctype = "未使用使用";
+                break;
+            case 3:
+                ctype = "待评价";
+                break;
+            default:
+                ctype = "";
+        }
+        return orderMapper.findByUser(uid, ctype);
     }
 
     public Boolean delete(Integer id) {

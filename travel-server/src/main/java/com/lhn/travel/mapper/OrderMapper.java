@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
-    List findByUser(Integer id);
+    List findByUser(Integer id, String type);
 
     int deleteOrder(Integer id);
 }

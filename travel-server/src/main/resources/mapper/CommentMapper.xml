@@ -6,6 +6,6 @@
         select count(comment_id) AS spotRateNum,
                AVG(comment_rate) AS spotRateScore
         from t_comment
-        where spot_id = ${id}
+        where spot_id = #{id}
     </select>
 </mapper>

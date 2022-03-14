@@ -15,12 +15,12 @@
         where t_order.order_id = t_orderdetail.order_id
           and t_orderdetail.ticket_id = t_ticket.ticket_id
           and t_ticket.spot_id = t_order.spot_id
-          and t_order.order_id = ${id}
+          and t_order.order_id = #{id}
     </select>
 
     <select id="findBySpot" resultType="com.lhn.travel.entity.Ticket">
         select *
         from t_ticket
-        where spot_id = ${id}
+        where spot_id = #{id}
     </select>
 </mapper>

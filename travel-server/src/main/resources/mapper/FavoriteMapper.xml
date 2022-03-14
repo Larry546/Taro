@@ -4,7 +4,7 @@
     <select id="isFav" resultType="java.lang.Integer">
         select favorite_id
         from t_favorite
-        where spot_id = ${spotId}
-          and user_id = ${uid}
+        where spot_id = #{spotId}
+          and user_id = #{uid}
     </select>
 </mapper>
