@@ -136,3 +136,12 @@ export function createOrder(target, orderInfo) {
 export function createDetail(target, detailInfo) {
     return target.http.post("/orderdetail/save", detailInfo);
 }
+
+export function saveUser(target, userInfo) {
+    let uid = getUser();
+    if (!uid) {
+        return false;
+    }
+    userInfo.userId = uid;
+    return target.http.post("/user/save", userInfo);
+}

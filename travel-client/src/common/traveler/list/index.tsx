@@ -58,7 +58,7 @@ export default class Index extends PureComponent<IListProps> {
         }
     };
 
-    onDeletePass = async passId => {
+    onDeletePass = passId => {
         this.confirm.show({
             content: "是否要删除该出行人？",
             btnOK: ["取消", "确定"],

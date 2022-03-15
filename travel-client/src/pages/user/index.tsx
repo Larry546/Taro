@@ -24,6 +24,12 @@ export default class Index extends PureComponent<any> {
         }
     }
 
+    componentDidShow() {
+        if (this.state.uid) {
+            this.getInfo();
+        }
+    }
+
     getInfo = async () => {
         let response = await getUserInfo(this);
         this.setState({

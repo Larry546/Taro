@@ -1,9 +1,9 @@
 import PureComponent from "../../common/pure-component";
 import { View, Text } from "@tarojs/components";
-import { AtInput } from "taro-ui";
+import { AtButton, AtInput } from "taro-ui";
 import H5NavBar from "../../common/h5NavBar";
-import { IUserInfoState } from "./interface";
-import { getUserInfo } from "../../api";
+import { IUserInfo } from "./interface";
+import { getUserInfo, saveUser } from "../../api";
 
 import "./index.scss";
 
@@ -12,11 +12,13 @@ definePageConfig({
 });
 
 export default class Index extends PureComponent<any> {
-    state: IUserInfoState;
+    state: IUserInfo;
     constructor(props: any) {
         super(props);
         this.state = {
-            userInfo: {},
+            userAccount: "",
+            userNickname: "",
+            userContact: "",
         };
         this.getInfo();
     }
@@ -24,19 +26,51 @@ export default class Index extends PureComponent<any> {
     getInfo = async () => {
         let response = await getUserInfo(this);
         this.setState({
-            userInfo: response,
+            userAccount: response.userAccount,
+            userNickname: response.userNickname,
+            userContact: response.userContact,
         });
     };
 
+    saveInfo = () => {
+        this.confirm.show({
+            content: "是否要修改信息？",
+            btnOK: ["取消", "确定"],
+            btnCallBack: [
+                () => {
+                    this.save();
+                },
+            ],
+        });
+    };
+
+    save = async () => {
+        const { userNickname = "", userContact = "" } = this.state;
+        let info = {
+            userNickname: userNickname,
+            userContact: userContact,
+        };
+        let res = await saveUser(this, info);
+        if (res) {
+            this.toast.show("修改用户信息成功！");
+        } else {
+            this.toast.show("网络错误，修改失败！");
+        }
+    };
+
     render() {
-        const { userInfo = {} } = this.state;
-        const { userAccount = "", userNickname = "", userContact = "" } = userInfo;
+        const { userAccount = "", userNickname = "", userContact = "" } = this.state;
         return (
             <View className="userinfo">
                 <H5NavBar />
                 <View className="userinfo_info">
                     <View className="userinfo_info_title">
-                        <Text>用户信息(暂不支持修改)</Text>
+                        <View>
+                            <Text>用户信息</Text>
+                        </View>
+                        <View className="userinfo_info_title_sub">
+                            <Text>(暂不支持修改用户名密码)</Text>
+                        </View>
                     </View>
                     <View className="userinfo_info_form">
                         <View className="userinfo_info_form_input">
@@ -59,21 +93,32 @@ export default class Index extends PureComponent<any> {
                                 onChange={() => {}}
                             />
                             <AtInput
-                                disabled
                                 title={"昵称"}
                                 name="userNickname"
                                 type="text"
                                 value={userNickname || ""}
-                                onChange={() => {}}
+                                onChange={res => {
+                                    this.setState({
+                                        userNickname: res,
+                                    });
+                                }}
                             />
                             <AtInput
-                                disabled
                                 title={"联系方式"}
                                 name="userContact"
                                 type="text"
                                 value={userContact || ""}
-                                onChange={() => {}}
+                                onChange={res => {
+                                    this.setState({
+                                        userContact: res,
+                                    });
+                                }}
                             />
+                        </View>
+                        <View className="userinfo_info_form_button">
+                            <AtButton type="primary" size={"normal"} onClick={this.saveInfo}>
+                                保存
+                            </AtButton>
                         </View>
                     </View>
                 </View>

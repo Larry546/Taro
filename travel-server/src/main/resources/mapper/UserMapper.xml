@@ -17,9 +17,9 @@
     <update id="createToken">
 
         update t_user
-        set token      = #{token},
-            loginTime  = #{now},
-            expireTime = #{expireTime}
+        set token       = #{token},
+            login_time  = #{now},
+            expire_time = #{expireTime}
         where user_id = #{id}
 
     </update>
