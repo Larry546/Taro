@@ -18,6 +18,7 @@
             color: #888888;
         }
     }
+
     &_end {
         display: flex;
         justify-content: center;
@@ -25,5 +26,15 @@
         height: 300px;
         font-size: 30px;
         color: #888888;
+    }
+    &_recommend {
+        padding: 30px 30px;
+        background-color: #ffffff;
+        &_title {
+            color: #333;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
     }
 }

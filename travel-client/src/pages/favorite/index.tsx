@@ -94,7 +94,13 @@ export default class Index extends PureComponent<any> {
                             <Text>没有收藏,美好的事物值得收藏</Text>
                         </View>
                     )}
-                    <View>{/* todo 猜你喜欢景点推荐部分， */}</View>
+                    <View className="favorite_recommend">
+                        <View className="favorite_recommend_title">
+                            <Text>猜你喜欢</Text>
+                        </View>
+
+                        {/* todo 猜你喜欢景点推荐部分， */}
+                    </View>
                 </ScrollView>
             </View>
         );
