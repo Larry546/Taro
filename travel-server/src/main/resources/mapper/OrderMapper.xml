@@ -15,6 +15,7 @@
           and t_order.user_id = #{id}
           and t_order.order_status like "%${type}%"
           and t_order.is_deleted = 0
+        order by order_createtime desc
 
     </select>
 
