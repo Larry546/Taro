@@ -24,6 +24,9 @@ export default class Index extends PureComponent<any> {
             orderList: [],
         };
         this.orderIndex = this.getParams();
+    }
+
+    componentDidMount() {
         this.getList();
     }
 

@@ -39,11 +39,14 @@ export default class Index extends PureComponent<any> {
                 orderStatus: "",
             },
         };
+        this.getParams();
+    }
+
+    componentDidMount() {
         this.init();
     }
 
     init = async () => {
-        this.getParams();
         let passengerlist: Array<IPassengerInfo> = await getPassengerList(this);
         let spotInfo: ISpotInfo = await getSpotInfo(this, this.spotId);
         let order = await getOrderInfo(this, this.orderId);

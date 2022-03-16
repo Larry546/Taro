@@ -16,6 +16,9 @@ export default class Index extends PureComponent<IListProps> {
             editOpened: false,
             currentPassenger: {},
         };
+    }
+
+    componentDidMount() {
         this.getList();
     }
 
@@ -121,12 +124,11 @@ export default class Index extends PureComponent<IListProps> {
                                                         <View
                                                             className="list_traveler_icon_circle"
                                                             style={{
-                                                                background:
-                                                                    orderTicketInfo.passenger?.includes(
-                                                                        item.passengerId || -1
-                                                                    )
-                                                                        ? "#0086f6"
-                                                                        : "",
+                                                                background: orderTicketInfo.passenger?.includes(
+                                                                    item.passengerId || -1
+                                                                )
+                                                                    ? "#0086f6"
+                                                                    : "",
                                                             }}
                                                         />
                                                     </View>

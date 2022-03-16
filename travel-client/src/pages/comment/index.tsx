@@ -24,6 +24,9 @@ export default class Index extends PureComponent<any> {
             commentText: "",
         };
         this.getParams();
+    }
+
+    componentDidMount() {
         this.getInfo();
     }
 

@@ -26,6 +26,9 @@ export default class Index extends PureComponent<any> {
             spotList: [],
         };
         this.getParams();
+    }
+
+    componentDidMount() {
         this.getList();
     }
 

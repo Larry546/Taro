@@ -19,6 +19,9 @@ export default class Index extends PureComponent<any> {
         this.state = {
             searchValue: "",
         };
+    }
+
+    componentDidMount() {
         this.getList();
     }
 

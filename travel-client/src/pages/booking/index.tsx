@@ -39,6 +39,9 @@ export default class Index extends PureComponent<any> {
             selectedDate: getDateString(new Date()),
         };
         this.getParams();
+    }
+
+    componentDidMount() {
         this.getInitState();
     }
 

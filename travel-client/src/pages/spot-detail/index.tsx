@@ -28,6 +28,9 @@ export default class Index extends PureComponent<any> {
             requestOpen: false,
             ticket: {},
         };
+    }
+
+    componentDidMount() {
         this.getInfo();
         this.getFav();
     }

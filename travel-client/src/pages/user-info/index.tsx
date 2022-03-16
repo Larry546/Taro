@@ -20,6 +20,9 @@ export default class Index extends PureComponent<any> {
             userNickname: "",
             userContact: "",
         };
+    }
+
+    componentDidMount() {
         this.getInfo();
     }
 

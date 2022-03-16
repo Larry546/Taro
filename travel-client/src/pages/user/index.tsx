@@ -19,19 +19,22 @@ export default class Index extends PureComponent<any> {
         this.state = {
             uid: getUser(),
         };
-        if (this.state.uid) {
-            this.getInfo();
-        }
+    }
+
+    componentDidMount() {
+        this.getInfo();
     }
 
     componentDidShow() {
-        if (this.state.uid) {
-            this.getInfo();
-        }
+        this.getInfo();
     }
 
     getInfo = async () => {
-        let response = await getUserInfo(this);
+        const { uid } = this.state;
+        let response = {};
+        if (uid) {
+            response = await getUserInfo(this);
+        }
         this.setState({
             userInfo: response,
         });
