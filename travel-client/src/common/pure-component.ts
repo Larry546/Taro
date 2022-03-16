@@ -3,7 +3,7 @@ import { push, pop, getCurrentInstance } from "../system/router";
 import httpRequest from "../system/http";
 import toast from "./base-component/toast";
 import confirm from "./base-component/confirm";
-import { debounce } from "lodash";
+import { debounce } from "../system/tools/utils";
 
 export default class Component<T> extends React.Component<T> {
     http: any;
