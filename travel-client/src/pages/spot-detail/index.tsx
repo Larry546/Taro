@@ -68,16 +68,16 @@ export default class Index extends PureComponent<any> {
         });
     };
 
-    switchIntro = () => {
-        if (this.state.introOpen) {
-            this.setState({
-                introOpen: false,
-            });
-        } else {
-            this.setState({
-                introOpen: true,
-            });
-        }
+    onCloseIntro = () => {
+        this.setState({
+            introOpen: false,
+        });
+    };
+
+    onOpenIntro = () => {
+        this.setState({
+            introOpen: true,
+        });
     };
 
     goToBooking = () => {
@@ -97,14 +97,14 @@ export default class Index extends PureComponent<any> {
         this.push("/pages/user-login/index", "redirectTo");
     };
 
-    openRequest = res => {
+    onOpenRequest = res => {
         this.setState({
             ticket: res,
             requestOpen: true,
         });
     };
 
-    closeRequest = () => {
+    onCloseRequest = () => {
         this.setState({
             request: "",
             requestOpen: false,
@@ -169,7 +169,7 @@ export default class Index extends PureComponent<any> {
                                 </View>
                                 <View
                                     className="spotdetail_basicInfo_intro"
-                                    onClick={this.switchIntro}
+                                    onClick={this.onOpenIntro}
                                 >
                                     <Text>查看简介</Text>
                                     <Icon type={"right"} />
@@ -178,6 +178,7 @@ export default class Index extends PureComponent<any> {
                                     scrollY
                                     isOpened={introOpen}
                                     title={spotInfo.spotName + "简介"}
+                                    onClose={this.onCloseIntro}
                                 >
                                     <View className="spotdetail_poplayer">
                                         <Text>{spotInfo.spotIntro}</Text>
@@ -242,7 +243,7 @@ export default class Index extends PureComponent<any> {
                                                 <View
                                                     className="spotdetail_ticketInfo_card_tag"
                                                     onClick={() => {
-                                                        this.openRequest(item);
+                                                        this.onOpenRequest(item);
                                                     }}
                                                 >
                                                     <Text>官方 | 购买须知 </Text>
@@ -262,7 +263,7 @@ export default class Index extends PureComponent<any> {
                                 })}
                                 <AtFloatLayout
                                     isOpened={requestOpen}
-                                    onClose={this.closeRequest}
+                                    onClose={this.onCloseRequest}
                                     title={`${ticket.ticketName}购买要求`}
                                 >
                                     <View className="spotdetail_poplayer">
