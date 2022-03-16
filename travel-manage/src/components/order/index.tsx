@@ -1,6 +1,6 @@
 import { Card, Col, Row } from "antd";
 import React from "react";
-import BasicTable from "../basic-component/tables/BasicTable";
+import Table from "../basic-component/tables/SearchTable";
 import BreadcrumbCustom from "../basic-component/widget/BreadcrumbCustom";
 
 export default class Order extends React.PureComponent {
@@ -12,7 +12,7 @@ export default class Order extends React.PureComponent {
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card title="订单管理" bordered={false}>
-                                <BasicTable />
+                                <Table />
                             </Card>
                         </div>
                     </Col>

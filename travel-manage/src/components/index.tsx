@@ -1,7 +1,5 @@
 import Loadable from "react-loadable";
 import Loading from "./basic-component/widget/Loading";
-import BasicTable from "./basic-component/tables/BasicTables";
-import AdvancedTable from "./basic-component/tables/AdvancedTables";
 import AsynchronousTable from "./basic-component/tables/AsynchronousTable";
 import Echarts from "./basic-component/charts/Echarts";
 import Recharts from "./basic-component/charts/Recharts";
@@ -33,8 +31,6 @@ export default {
     Spot,
     Order,
     User,
-    BasicTable,
-    AdvancedTable,
     AsynchronousTable,
     Echarts,
     Recharts,

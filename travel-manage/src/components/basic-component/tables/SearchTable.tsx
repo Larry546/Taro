@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Input, Button } from "antd";
-import { SmileOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
+import { ColumnProps } from "antd/lib/table";
 
 const data = [
     {
@@ -35,6 +36,7 @@ class SearchTable extends React.Component {
         data,
         searchText: "",
         filtered: false,
+        selectedRowKeys: [],
     };
     searchInput: any;
     onInputChange = (e: any) => {
@@ -70,8 +72,24 @@ class SearchTable extends React.Component {
                 .filter(record => !!record),
         });
     };
+    onSelectChange = (selectedRowKeys: string[] | number[]) => {
+        console.log("selectedRowKeys changed: ", selectedRowKeys);
+        this.setState({ selectedRowKeys });
+    };
     render() {
-        const columns = [
+        const { selectedRowKeys } = this.state;
+        const rowSelection: any = {
+            selectedRowKeys,
+            onChange: this.onSelectChange,
+        };
+        const columns: ColumnProps<any>[] = [
+            {
+                title: "Id",
+                dataIndex: "age",
+                key: "1",
+                fixed: "left",
+                width: 100,
+            },
             {
                 title: "Name",
                 dataIndex: "name",
@@ -91,13 +109,51 @@ class SearchTable extends React.Component {
                     </div>
                 ),
                 filterIcon: (
-                    <SmileOutlined style={{ color: this.state.filtered ? "#108ee9" : "#aaa" }} />
+                    <SearchOutlined
+                        style={{ color: this.state.filtered ? "#1890ff" : undefined }}
+                    />
                 ),
+
                 filterDropdownVisible: this.state.filterDropdownVisible,
-                onFilterDropdownVisibleChange: (visible: boolean) =>
-                    this.setState({ filterDropdownVisible: visible }, () =>
-                        this.searchInput.focus()
-                    ),
+                onFilterDropdownVisibleChange: (visible: boolean) => {
+                    this.setState({ filterDropdownVisible: visible }, () => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput && this.searchInput.focus();
+                            }, 100);
+                        }
+                    });
+                },
+            },
+            {
+                title: "Id3",
+                dataIndex: "age",
+                key: "1",
+            },
+            {
+                title: "Id4",
+                dataIndex: "age",
+                key: "1",
+            },
+            {
+                title: "Id5",
+                dataIndex: "age",
+                key: "1",
+            },
+            {
+                title: "Id6",
+                dataIndex: "age",
+                key: "1",
+            },
+            {
+                title: "Id7",
+                dataIndex: "age",
+                key: "1",
+            },
+            {
+                title: "Id8",
+                dataIndex: "age",
+                key: "1",
             },
             {
                 title: "Age",
@@ -120,10 +176,23 @@ class SearchTable extends React.Component {
                 ],
                 onFilter: (value: any, record: any) => record.address.indexOf(value) === 0,
             },
+            {
+                title: "Action",
+                key: "operation",
+                fixed: "right",
+                width: 100,
+                render: () => <span>action</span>,
+            },
         ];
         return (
             <div>
-                <Table columns={columns} dataSource={this.state.data} />
+                <Table
+                    columns={columns}
+                    dataSource={this.state.data}
+                    expandedRowRender={record => <p>{record.address}</p>}
+                    scroll={{ x: 1200 }}
+                    rowSelection={rowSelection}
+                />
                 <style>{`
                     .custom-filter-dropdown {
                       padding: 8px;
