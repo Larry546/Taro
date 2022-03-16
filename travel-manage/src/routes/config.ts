@@ -21,17 +21,17 @@ const menus: {
         {
             key: "/app/spot",
             title: "景点管理",
-            component: "",
+            component: "Spot",
         },
         {
             key: "/app/user",
             title: "用户管理",
-            component: "",
+            component: "User",
         },
         {
             key: "/app/order",
             title: "订单管理",
-            component: "",
+            component: "Order",
         },
         // {
         //     key: "/app/ui",

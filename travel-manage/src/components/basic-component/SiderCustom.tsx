@@ -72,7 +72,9 @@ const SiderCustom = (props: SiderCustomProps) => {
             style={{ overflowY: "auto" }}
             className="sider-custom"
         >
-            <div className="logo" />
+            <div className="logo">
+                <span>Travel-admin</span>
+            </div>
             <SiderMenu
                 menus={[...routes.menus]}
                 onClick={menuClick}

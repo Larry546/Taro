@@ -19,6 +19,10 @@ import BasicAnimations from "./basic-component/animation/BasicAnimations";
 import ExampleAnimations from "./basic-component/animation/ExampleAnimations";
 import Env from "./extension/env";
 
+import Spot from "./spot";
+import Order from "./order";
+import User from "./user";
+
 const WysiwygBundle = Loadable({
     // 按需加载富文本配置
     loader: () => import("./basic-component/ui/Wysiwyg"),
@@ -26,6 +30,9 @@ const WysiwygBundle = Loadable({
 });
 
 export default {
+    Spot,
+    Order,
+    User,
     BasicTable,
     AdvancedTable,
     AsynchronousTable,
