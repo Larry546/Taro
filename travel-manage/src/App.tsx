@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Layout } from "antd";
 import { useAlita } from "redux-alita";
 import Routes from "./routes";
-import SiderCustom from "./components/SiderCustom";
-import HeaderCustom from "./components/HeaderCustom";
-import { ThemePicker, Copyright } from "./components/widget";
+import SiderCustom from "./components/basic-component/SiderCustom";
+import HeaderCustom from "./components/basic-component/HeaderCustom";
+import { ThemePicker, Copyright } from "./components/basic-component/widget";
 import classNames from "classnames";
 
 const { Content, Footer } = Layout;

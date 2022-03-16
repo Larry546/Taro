@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Timeline } from "antd";
-import BreadcrumbCustom from "../widget/BreadcrumbCustom";
+import BreadcrumbCustom from "../basic-component/widget/BreadcrumbCustom";
 import EchartsViews from "./EchartsViews";
 import EchartsProjects from "./EchartsProjects";
 import b1 from "../../style/imgs/b1.jpg";

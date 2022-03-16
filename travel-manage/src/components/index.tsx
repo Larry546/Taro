@@ -1,27 +1,27 @@
 import Loadable from "react-loadable";
-import Loading from "./widget/Loading";
-import BasicTable from "./tables/BasicTables";
-import AdvancedTable from "./tables/AdvancedTables";
-import AsynchronousTable from "./tables/AsynchronousTable";
-import Echarts from "./charts/Echarts";
-import Recharts from "./charts/Recharts";
-import Icons from "./ui/Icons";
-import Buttons from "./ui/Buttons";
-import Spins from "./ui/Spins";
-import Modals from "./ui/Modals";
-import Notifications from "./ui/Notifications";
-import Tabs from "./ui/Tabs";
-import Banners from "./ui/banners";
-import Drags from "./ui/Draggable";
+import Loading from "./basic-component/widget/Loading";
+import BasicTable from "./basic-component/tables/BasicTables";
+import AdvancedTable from "./basic-component/tables/AdvancedTables";
+import AsynchronousTable from "./basic-component/tables/AsynchronousTable";
+import Echarts from "./basic-component/charts/Echarts";
+import Recharts from "./basic-component/charts/Recharts";
+import Icons from "./basic-component/ui/Icons";
+import Buttons from "./basic-component/ui/Buttons";
+import Spins from "./basic-component/ui/Spins";
+import Modals from "./basic-component/ui/Modals";
+import Notifications from "./basic-component/ui/Notifications";
+import Tabs from "./basic-component/ui/Tabs";
+import Banners from "./basic-component/ui/banners";
+import Drags from "./basic-component/ui/Draggable";
 import Dashboard from "./dashboard/Dashboard";
-import Gallery from "./ui/Gallery";
-import BasicAnimations from "./animation/BasicAnimations";
-import ExampleAnimations from "./animation/ExampleAnimations";
+import Gallery from "./basic-component/ui/Gallery";
+import BasicAnimations from "./basic-component/animation/BasicAnimations";
+import ExampleAnimations from "./basic-component/animation/ExampleAnimations";
 import Env from "./extension/env";
 
 const WysiwygBundle = Loadable({
     // 按需加载富文本配置
-    loader: () => import("./ui/Wysiwyg"),
+    loader: () => import("./basic-component/ui/Wysiwyg"),
     loading: Loading,
 });
 

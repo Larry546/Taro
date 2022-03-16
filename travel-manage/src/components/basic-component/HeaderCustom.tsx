@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import screenfull from "screenfull";
-import avater from "../style/imgs/b1.jpg";
+import avater from "../../style/imgs/b1.jpg";
 import SiderCustom from "./SiderCustom";
 import { Menu, Layout, Badge, Popover } from "antd";
 import { useHistory } from "react-router-dom";
 import { useAlita } from "redux-alita";
-import { useSwitch } from "../utils/hooks";
+import { useSwitch } from "../../utils/hooks";
 import {
     ArrowsAltOutlined,
     BarsOutlined,

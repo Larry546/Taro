@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "antd";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import routes from "../routes/config";
+import routes from "../../routes/config";
 import SiderMenu from "./SiderMenu";
-import { useSwitch } from "../utils/hooks";
+import { useSwitch } from "../../utils/hooks";
 import { usePrevious } from "ahooks";
 const { Sider } = Layout;
 

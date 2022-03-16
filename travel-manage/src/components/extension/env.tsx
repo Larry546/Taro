@@ -1,5 +1,5 @@
 import React from "react";
-import BreadcrumbCustom from "../widget/BreadcrumbCustom";
+import BreadcrumbCustom from "../basic-component/widget/BreadcrumbCustom";
 import { Row, Col, Card, Descriptions } from "antd";
 
 const getEnvs = () => Object.keys(process.env).filter(key => /^REACT_ADMIN_/i.test(key));
