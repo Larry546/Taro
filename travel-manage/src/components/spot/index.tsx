@@ -1,6 +1,6 @@
 import { Card, Col, Row } from "antd";
 import React from "react";
-import Table from "../basic-component/tables/SearchTable";
+import Table from "../basic-component/tables/AllTable";
 import BreadcrumbCustom from "../basic-component/widget/BreadcrumbCustom";
 
 export default class Spot extends React.PureComponent {
