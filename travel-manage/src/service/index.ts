@@ -1,5 +1,4 @@
 import axios from "axios";
-import { get, post } from "./tools";
 
 export const npmDependencies = () =>
     axios
