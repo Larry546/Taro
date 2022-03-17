@@ -15,4 +15,24 @@
         where passenger_id = #{id}
     </update>
 
+    <select id="findByOrder" resultType="map">
+        select t_ticket.ticket_id       as ticketId,
+               ticket_name              as ticketName,
+               t_passenger.passenger_id as passengerId,
+               passenger_name           as passengerName,
+               passenger_number         as passengerNumber,
+               passenger_sex            as passengerSex,
+               passenger_birth          as passengerBirth
+        from t_passenger,
+             t_ticket,
+             t_order,
+             t_orderdetail
+        where t_orderdetail.order_id = t_order.order_id
+          and t_orderdetail.passenger_id = t_passenger.passenger_id
+          and t_passenger.user_id = t_order.user_id
+          and t_orderdetail.ticket_id = t_ticket.ticket_id
+          and t_order.order_id = #{id}
+
+    </select>
+
 </mapper>

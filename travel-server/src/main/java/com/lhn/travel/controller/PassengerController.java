@@ -54,5 +54,10 @@ public class PassengerController {
     public Boolean delete(@PathVariable Integer id) {
         return passengerService.delete(id);
     }
+
+    @GetMapping("/listByOrder/{uid}")
+    public List findByOrder(@PathVariable Integer uid) {
+        return passengerService.findByOrder(uid);
+    }
 }
 

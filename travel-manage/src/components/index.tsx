@@ -1,6 +1,5 @@
 import Loadable from "react-loadable";
 import Loading from "./basic-component/widget/Loading";
-import AsynchronousTable from "./basic-component/tables/AsynchronousTable";
 import Echarts from "./basic-component/charts/Echarts";
 import Recharts from "./basic-component/charts/Recharts";
 import Icons from "./basic-component/ui/Icons";
@@ -13,8 +12,6 @@ import Banners from "./basic-component/ui/banners";
 import Drags from "./basic-component/ui/Draggable";
 import Dashboard from "./dashboard/Dashboard";
 import Gallery from "./basic-component/ui/Gallery";
-import BasicAnimations from "./basic-component/animation/BasicAnimations";
-import ExampleAnimations from "./basic-component/animation/ExampleAnimations";
 import Env from "./extension/env";
 
 import Spot from "./spot";
@@ -31,7 +28,6 @@ export default {
     Spot,
     Order,
     User,
-    AsynchronousTable,
     Echarts,
     Recharts,
     Icons,
@@ -44,8 +40,6 @@ export default {
     Drags,
     Dashboard,
     Gallery,
-    BasicAnimations,
-    ExampleAnimations,
     WysiwygBundle,
     Env,
 } as any;

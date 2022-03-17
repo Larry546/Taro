@@ -16,5 +16,5 @@ import java.util.List;
 public interface ITicketService extends IService<Ticket> {
     List findByOrder(Integer id);
 
-    List findBySpot(Integer id);
+    List<Ticket> findBySpot(Integer id);
 }

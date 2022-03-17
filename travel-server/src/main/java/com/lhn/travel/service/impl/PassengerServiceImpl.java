@@ -31,4 +31,8 @@ public class PassengerServiceImpl extends ServiceImpl<PassengerMapper, Passenger
         int count = passengerMapper.deletePass(id);
         return count == 1 ? true : false;
     }
+
+    public List findByOrder(Integer id) {
+        return passengerMapper.findByOrder(id);
+    }
 }

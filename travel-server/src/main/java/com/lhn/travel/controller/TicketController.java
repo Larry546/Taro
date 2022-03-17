@@ -56,7 +56,7 @@ public class TicketController {
     }
 
     @GetMapping("/listBySpot/{id}")
-    public List findBySpot(@PathVariable Integer id) {
+    public List<Ticket> findBySpot(@PathVariable Integer id) {
         return ticketService.findBySpot(id);
     }
 }

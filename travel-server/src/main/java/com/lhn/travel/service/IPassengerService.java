@@ -18,4 +18,6 @@ public interface IPassengerService extends IService<Passenger> {
     List<Passenger> findByUser(Integer id);
 
     Boolean delete(Integer id);
+
+    List findByOrder(Integer id);
 }
