@@ -7,7 +7,7 @@ import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IOrderState } from "./interface";
 import { getOrderList as _getOrderList, getOrderPass } from "../../../service/api";
 
-export default class OrderList extends React.PureComponent {
+export default class OrderList extends React.PureComponent<any> {
     state: IOrderState;
     searchInput: any;
     constructor(props: any) {
@@ -158,28 +158,45 @@ export default class OrderList extends React.PureComponent {
                 key: "5",
             },
             {
+                title: "order_createtime",
+                dataIndex: "orderCreatetime",
+                key: "6",
+            },
+            {
                 title: "spot_id",
                 dataIndex: "spotId",
-                key: "6",
+                key: "7",
             },
             {
                 title: "user_id",
                 dataIndex: "userId",
-                key: "7",
+                key: "8",
             },
             {
                 title: "is_deleted",
                 dataIndex: "isDeleted",
-                key: "8",
+                key: "9",
             },
             {
                 title: "Action",
                 key: "operation",
                 fixed: "right",
                 width: 200,
-                render: () => (
+                render: (value, record) => (
                     <Space size={"middle"}>
-                        <a>编辑</a> <a>删除</a>
+                        <a
+                            onClick={() => {
+                                this.props.history.push({
+                                    pathname: "/app/order/edit",
+                                    state: {
+                                        orderId: record.orderId,
+                                    },
+                                });
+                            }}
+                        >
+                            编辑
+                        </a>{" "}
+                        <a>删除</a>
                     </Space>
                 ),
             },
@@ -226,8 +243,7 @@ export default class OrderList extends React.PureComponent {
                 key: "operation",
                 render: () => (
                     <Space size="middle">
-                        <a>编辑</a>
-                        <a>删除</a>
+                        <a>暂无可用操作</a>
                     </Space>
                 ),
             },

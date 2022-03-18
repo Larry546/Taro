@@ -53,7 +53,11 @@ export default class SpotEdit extends React.PureComponent<any> {
                 spotIntro: res.spotIntro,
             };
             this.formref.setFieldsValue(info);
-            this.setState(info);
+            this.setState({
+                ...info,
+                spotOpenhour: res.spotOpenhour,
+                spotOffhour: res.spotOffhour,
+            });
         }
     };
 

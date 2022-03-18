@@ -39,3 +39,8 @@ export function getUserInfo(userId: number) {
     let url = `/user/adminFind/${userId}`;
     return http.get(url);
 }
+
+export function getOrderInfo(orderId: number) {
+    let url = `/order/find/${orderId}`;
+    return http.get(url);
+}
