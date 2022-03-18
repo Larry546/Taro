@@ -1,9 +1,10 @@
 import { Button, Card, Col, Form, Input, Row, TimePicker } from "antd";
 import moment from "moment";
 import React from "react";
-import { getSpotInfo } from "../../../service/api";
+import { getSpotInfo as _getSpotInfo } from "../../../service/api";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { ISpotEditState } from "./interfacet";
+import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
 
 const Item = Form.Item;
 
@@ -39,10 +40,10 @@ export default class SpotEdit extends React.PureComponent<any> {
     };
 
     getSpotInfo = async () => {
-        let res = await getSpotInfo(this.spotId);
+        let res = await _getSpotInfo(this.spotId);
         if (res) {
             let date = new Date().toLocaleDateString() + " ";
-            this.formref.setFieldsValue({
+            let info = {
                 spotName: res.spotName,
                 spotAddress: res.spotAddress,
                 spotOpenhour: moment(date + res.spotOpenhour),
@@ -50,17 +51,9 @@ export default class SpotEdit extends React.PureComponent<any> {
                 spotImageurl: res.spotImageurl,
                 spotType: res.spotType,
                 spotIntro: res.spotIntro,
-            });
-
-            this.setState({
-                spotName: res.spotName,
-                spotAddress: res.spotAddress,
-                spotOpenhour: res.spotOpenhour,
-                spotOffhour: res.spotOffhour,
-                spotImageurl: res.spotImageurl,
-                spotType: res.spotType,
-                spotIntro: res.spotIntro,
-            });
+            };
+            this.formref.setFieldsValue(info);
+            this.setState(info);
         }
     };
 
@@ -74,28 +67,6 @@ export default class SpotEdit extends React.PureComponent<any> {
             spotType,
             spotIntro,
         } = this.state;
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
-            },
-            wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 16 },
-            },
-        };
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
-            },
-        };
         return (
             <div>
                 <BreadcrumbCustom breads={["景点管理", "景点编辑"]} />
@@ -149,10 +120,6 @@ export default class SpotEdit extends React.PureComponent<any> {
                                             <TimePicker
                                                 value={moment(spotOpenhour)}
                                                 onChange={(time, dateString) => {
-                                                    console.log(
-                                                        "🚀 ~ file: index.tsx ~ line 150 ~ SpotEdit ~ render ~ time",
-                                                        time
-                                                    );
                                                     this.setState({
                                                         spotOpenhour: dateString,
                                                     });

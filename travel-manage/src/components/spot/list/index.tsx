@@ -217,9 +217,21 @@ export default class SpotList extends React.PureComponent<any> {
             {
                 title: "Action",
                 key: "operation",
-                render: () => (
+                render: (value: any, record: any) => (
                     <Space size="middle">
-                        <a>编辑</a>
+                        <a
+                            onClick={() => {
+                                this.props.history.push({
+                                    pathname: "/app/spot/ticket",
+                                    state: {
+                                        spotId: record.spotId,
+                                        ticketId: record.ticketId,
+                                    },
+                                });
+                            }}
+                        >
+                            编辑
+                        </a>
                         <a>删除</a>
                     </Space>
                 ),

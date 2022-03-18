@@ -29,3 +29,8 @@ export function getSpotInfo(spotId: number) {
     let url = `/spot/find/${spotId}`;
     return http.get(url);
 }
+
+export function getTicketInfo(ticketId: number) {
+    let url = `/ticket/find/${ticketId}`;
+    return http.get(url);
+}

@@ -32,6 +32,11 @@ const menus: {
                     title: "景点编辑",
                     component: "SpotEdit",
                 },
+                {
+                    key: "/app/spot/ticket",
+                    title: "门票编辑",
+                    component: "TicketEdit",
+                },
             ],
         },
         {

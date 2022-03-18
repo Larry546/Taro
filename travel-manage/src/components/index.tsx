@@ -21,6 +21,8 @@ import UserList from "./user/list";
 import SpotEdit from "./spot/edit";
 import OrderEdit from "./order/edit";
 
+import TicketEdit from "./spot/ticket";
+
 const WysiwygBundle = Loadable({
     // 按需加载富文本配置
     loader: () => import("./basic-component/ui/Wysiwyg"),
@@ -33,6 +35,7 @@ export default {
     UserList,
     SpotEdit,
     OrderEdit,
+    TicketEdit,
     Echarts,
     Recharts,
     Icons,
