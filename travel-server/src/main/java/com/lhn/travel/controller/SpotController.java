@@ -1,6 +1,5 @@
 package com.lhn.travel.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhn.travel.entity.Spot;
 import com.lhn.travel.service.ISpotService;
 import org.springframework.web.bind.annotation.*;
@@ -44,11 +43,6 @@ public class SpotController {
         return spotService.getById(id);
     }
 
-    @GetMapping("/page")
-    public Page<Spot> findPage(@RequestParam Integer pageNum,
-                               @RequestParam Integer pageSize) {
-        return spotService.page(new Page<>(pageNum, pageSize));
-    }
 
     @GetMapping("/listByUser/{id}")
     public List findByUser(@PathVariable Integer id) {

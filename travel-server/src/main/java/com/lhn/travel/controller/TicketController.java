@@ -1,6 +1,5 @@
 package com.lhn.travel.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhn.travel.entity.Ticket;
 import com.lhn.travel.service.ITicketService;
 import org.springframework.web.bind.annotation.*;
@@ -40,15 +39,10 @@ public class TicketController {
     }
 
     @GetMapping("/find/{id}")
-    public List<Ticket> findOne(@PathVariable Integer id) {
-        return ticketService.list();
+    public Ticket findOne(@PathVariable Integer id) {
+        return ticketService.getById(id);
     }
 
-    @GetMapping("/page")
-    public Page<Ticket> findPage(@RequestParam Integer pageNum,
-                                 @RequestParam Integer pageSize) {
-        return ticketService.page(new Page<>(pageNum, pageSize));
-    }
 
     @GetMapping("/listByOrder/{id}")
     public List findByOrder(@PathVariable Integer id) {

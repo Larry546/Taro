@@ -1,6 +1,5 @@
 package com.lhn.travel.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhn.travel.entity.Favorite;
 import com.lhn.travel.service.IFavoriteService;
 import org.springframework.web.bind.annotation.*;
@@ -44,11 +43,6 @@ public class FavoriteController {
         return favoriteService.list();
     }
 
-    @GetMapping("/page")
-    public Page<Favorite> findPage(@RequestParam Integer pageNum,
-                                   @RequestParam Integer pageSize) {
-        return favoriteService.page(new Page<>(pageNum, pageSize));
-    }
 
     @GetMapping("/isFav")
     public Integer isFav(@RequestParam Integer uid, @RequestParam Integer spotId) {

@@ -1,6 +1,5 @@
 package com.lhn.travel.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhn.travel.entity.Orderdetail;
 import com.lhn.travel.service.IOrderdetailService;
 import org.springframework.web.bind.annotation.*;
@@ -18,37 +17,32 @@ import java.util.List;
  * @since 2022-03-10
  */
 @RestController
-@RequestMapping("/orderdetail" )
+@RequestMapping("/orderdetail")
 public class OrderdetailController {
 
     @Resource
     private IOrderdetailService orderdetailService;
 
-    @PostMapping("/save" )
+    @PostMapping("/save")
     public Boolean save(@RequestBody Orderdetail orderdetail) {
         return orderdetailService.saveOrUpdate(orderdetail);
     }
 
-    @DeleteMapping("/delete/{id}" )
+    @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return orderdetailService.removeById(id);
     }
 
-    @GetMapping("/list" )
+    @GetMapping("/list")
     public List<Orderdetail> findAll() {
         return orderdetailService.list();
     }
 
-    @GetMapping("/find/{id}" )
+    @GetMapping("/find/{id}")
     public List<Orderdetail> findOne(@PathVariable Integer id) {
         return orderdetailService.list();
     }
 
-    @GetMapping("/page" )
-    public Page<Orderdetail> findPage(@RequestParam Integer pageNum,
-                                      @RequestParam Integer pageSize) {
-        return orderdetailService.page(new Page<>(pageNum, pageSize));
-    }
 
 }
 

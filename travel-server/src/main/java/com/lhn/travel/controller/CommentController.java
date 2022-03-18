@@ -1,6 +1,5 @@
 package com.lhn.travel.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhn.travel.entity.Comment;
 import com.lhn.travel.service.ICommentService;
 import org.springframework.web.bind.annotation.*;
@@ -45,11 +44,6 @@ public class CommentController {
         return commentService.list();
     }
 
-    @GetMapping("/page")
-    public Page<Comment> findPage(@RequestParam Integer pageNum,
-                                  @RequestParam Integer pageSize) {
-        return commentService.page(new Page<>(pageNum, pageSize));
-    }
 
     @GetMapping("/rateBySpot/{id}")
     public Map getrateBySpot(@PathVariable Integer id) {

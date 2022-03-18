@@ -33,7 +33,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return user.getUserId();
     }
 
-    public User getById(Integer id) {
+    public User getByBaseId(Integer id) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", id);
         User user = userMapper.selectById(id);

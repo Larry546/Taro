@@ -1,6 +1,5 @@
 package com.lhn.travel.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhn.travel.entity.User;
 import com.lhn.travel.service.IUserService;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -45,13 +44,12 @@ public class UserController {
 
     @GetMapping("/find/{id}")
     public User findOne(@PathVariable Integer id) {
-        return userService.getById(id);
+        return userService.getByBaseId(id);
     }
 
-    @GetMapping("/page")
-    public Page<User> findPage(@RequestParam Integer pageNum,
-                               @RequestParam Integer pageSize) {
-        return userService.page(new Page<>(pageNum, pageSize));
+    @GetMapping("/adminFind/{id}")
+    public User adminFind(@PathVariable Integer id) {
+        return userService.getById(id);
     }
 
     @PostMapping("/login")

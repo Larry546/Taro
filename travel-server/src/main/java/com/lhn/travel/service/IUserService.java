@@ -15,7 +15,7 @@ public interface IUserService extends IService<User> {
 
     Integer veritypswd(String account, String password);
 
-    User getById(Integer id);
+    User getByBaseId(Integer id);
 
     String createToken(Integer uid);
 

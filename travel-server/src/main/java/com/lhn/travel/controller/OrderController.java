@@ -1,6 +1,5 @@
 package com.lhn.travel.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhn.travel.entity.Order;
 import com.lhn.travel.service.IOrderService;
 import org.springframework.web.bind.annotation.*;
@@ -39,11 +38,6 @@ public class OrderController {
         return orderService.getById(id);
     }
 
-    @GetMapping("/page")
-    public Page<Order> findPage(@RequestParam Integer pageNum,
-                                @RequestParam Integer pageSize) {
-        return orderService.page(new Page<>(pageNum, pageSize));
-    }
 
     @GetMapping("/listByUser")
     public List findByUser(@RequestParam Integer uid, @RequestParam Integer type) {
