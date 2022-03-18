@@ -34,3 +34,8 @@ export function getTicketInfo(ticketId: number) {
     let url = `/ticket/find/${ticketId}`;
     return http.get(url);
 }
+
+export function getUserInfo(userId: number) {
+    let url = `/user/adminFind/${userId}`;
+    return http.get(url);
+}

@@ -20,6 +20,7 @@ import UserList from "./user/list";
 
 import SpotEdit from "./spot/edit";
 import OrderEdit from "./order/edit";
+import UserEdit from "./user/edit";
 
 import TicketEdit from "./spot/ticket";
 
@@ -35,6 +36,7 @@ export default {
     UserList,
     SpotEdit,
     OrderEdit,
+    UserEdit,
     TicketEdit,
     Echarts,
     Recharts,

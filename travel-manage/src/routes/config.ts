@@ -48,6 +48,11 @@ const menus: {
                     title: "用户列表",
                     component: "UserList",
                 },
+                {
+                    key: "/app/user/edit",
+                    title: "用户编辑",
+                    component: "UserEdit",
+                },
             ],
         },
         {

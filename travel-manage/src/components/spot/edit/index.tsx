@@ -77,7 +77,7 @@ export default class SpotEdit extends React.PureComponent<any> {
                                 <div className="wrap">
                                     <Form
                                         {...formItemLayout}
-                                        name="spotedit"
+                                        name="SpotEdit"
                                         scrollToFirstError
                                         style={{ width: 500 }}
                                         ref={ref => (this.formref = ref)}

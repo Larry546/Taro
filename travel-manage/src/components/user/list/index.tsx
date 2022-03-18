@@ -7,7 +7,7 @@ import { getUserList } from "../../../service/api";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IUserState } from "./interface";
 
-export default class UserList extends React.PureComponent {
+export default class UserList extends React.PureComponent<any> {
     state: IUserState;
     searchInput: any;
     constructor(props: any) {
@@ -140,9 +140,21 @@ export default class UserList extends React.PureComponent {
                 key: "operation",
                 fixed: "right",
                 width: 200,
-                render: () => (
+                render: (value, record) => (
                     <Space size={"middle"}>
-                        <a>编辑</a> <a>删除</a>
+                        <a
+                            onClick={() => {
+                                this.props.history.push({
+                                    pathname: "/app/user/edit",
+                                    state: {
+                                        userId: record.userId,
+                                    },
+                                });
+                            }}
+                        >
+                            编辑
+                        </a>{" "}
+                        <a>删除</a>
                     </Space>
                 ),
             },
