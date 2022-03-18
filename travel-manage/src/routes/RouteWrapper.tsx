@@ -23,7 +23,7 @@ const RouteWrapper = (props: any) => {
             restProps.match.params = { ...params };
         };
 
-        restProps = removeQueryInRouter(restProps, queryReg);
+        removeQueryInRouter(restProps, queryReg);
         const merge = {
             ...restProps,
             query: queryMemo,

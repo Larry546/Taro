@@ -7,7 +7,7 @@ import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { ISpotState } from "./interface";
 import { getSpotList, getTicketList } from "../../../service/api";
 
-export default class SpotList extends React.PureComponent {
+export default class SpotList extends React.PureComponent<any> {
     state: ISpotState;
     searchInput: any;
     constructor(props: any) {
@@ -188,9 +188,21 @@ export default class SpotList extends React.PureComponent {
                 key: "operation",
                 fixed: "right",
                 width: 200,
-                render: () => (
+                render: (value, record) => (
                     <Space size={"middle"}>
-                        <a>编辑</a> <a>删除</a>
+                        <a
+                            onClick={() => {
+                                this.props.history.push({
+                                    pathname: "/app/spot/edit",
+                                    state: {
+                                        spotId: record.spotId,
+                                    },
+                                });
+                            }}
+                        >
+                            编辑
+                        </a>{" "}
+                        <a>删除</a>
                     </Space>
                 ),
             },

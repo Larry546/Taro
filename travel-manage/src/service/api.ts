@@ -24,3 +24,8 @@ export function getOrderPass(orderId: number) {
     let url = `/passenger/listByOrder/${orderId}`;
     return http.get(url);
 }
+
+export function getSpotInfo(spotId: number) {
+    let url = `/spot/find/${spotId}`;
+    return http.get(url);
+}
