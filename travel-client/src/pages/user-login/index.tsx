@@ -40,7 +40,7 @@ export default class Index extends PureComponent<any> {
         if (response && response.code === 1) {
             setUser(response.uid);
             setToken(response.token);
-            this.push("/pages/user/index", "reLaunch");
+            this.pop();
         } else if (response && response.code === 0) {
             this.toast.show(response.msg);
         } else {

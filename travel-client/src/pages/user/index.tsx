@@ -26,6 +26,7 @@ export default class Index extends PureComponent<any> {
     }
 
     componentDidShow() {
+        this.setState({ uid: getUser() });
         this.getInfo();
     }
 
@@ -41,7 +42,7 @@ export default class Index extends PureComponent<any> {
     };
 
     goToLogin = () => {
-        this.push("/pages/user-login/index", "redirectTo");
+        this.push("/pages/user-login/index");
     };
 
     checkLoginStatus = () => {
