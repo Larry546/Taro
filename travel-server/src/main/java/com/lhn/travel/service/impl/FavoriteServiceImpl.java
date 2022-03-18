@@ -1,5 +1,6 @@
 package com.lhn.travel.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lhn.travel.entity.Favorite;
 import com.lhn.travel.mapper.FavoriteMapper;
@@ -22,7 +23,10 @@ public class FavoriteServiceImpl extends ServiceImpl<FavoriteMapper, Favorite> i
     FavoriteMapper favoriteMapper;
 
     public Integer isFav(Integer uid, Integer spotId) {
-        Integer fId = favoriteMapper.isFav(uid, spotId);
-        return fId == null ? 0 : fId;
+        QueryWrapper<Favorite> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", uid);
+        queryWrapper.eq("spot_id", spotId);
+        Favorite favorite = favoriteMapper.selectOne(queryWrapper);
+        return favorite == null ? 0 : favorite.getFavoriteId();
     }
 }

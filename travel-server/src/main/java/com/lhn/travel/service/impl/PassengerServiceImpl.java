@@ -1,5 +1,6 @@
 package com.lhn.travel.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lhn.travel.entity.Passenger;
 import com.lhn.travel.mapper.PassengerMapper;
@@ -24,11 +25,18 @@ public class PassengerServiceImpl extends ServiceImpl<PassengerMapper, Passenger
     PassengerMapper passengerMapper;
 
     public List<Passenger> findByUser(Integer id) {
-        return passengerMapper.findByUser(id);
+        QueryWrapper<Passenger> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", id);
+        queryWrapper.eq("is_deleted", 0);
+        return passengerMapper.selectList(queryWrapper);
     }
 
     public Boolean delete(Integer id) {
-        int count = passengerMapper.deletePass(id);
+        Passenger passenger = new Passenger();
+        passenger.setIsDeleted(1);
+        QueryWrapper<Passenger> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("passenger_id", id);
+        int count = passengerMapper.update(passenger, queryWrapper);
         return count == 1 ? true : false;
     }
 

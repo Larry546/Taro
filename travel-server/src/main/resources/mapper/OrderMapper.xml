@@ -19,11 +19,6 @@
 
     </select>
 
-    <update id="deleteOrder">
-        update t_order
-        set is_deleted = 1
-        where order_id = #{id}
-    </update>
 
     <insert id="insertOrder" useGeneratedKeys="true" keyProperty="orderId" keyColumn="order_id">
         insert into t_order (order_usetime, order_total, order_status, order_contact, spot_id, user_id)

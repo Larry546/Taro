@@ -18,9 +18,4 @@
           and t_order.order_id = #{id}
     </select>
 
-    <select id="findBySpot" resultType="com.lhn.travel.entity.Ticket">
-        select *
-        from t_ticket
-        where spot_id = #{id}
-    </select>
 </mapper>

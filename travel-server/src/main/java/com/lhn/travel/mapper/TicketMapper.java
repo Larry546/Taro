@@ -19,5 +19,4 @@ public interface TicketMapper extends BaseMapper<Ticket> {
 
     List findByOrder(Integer id);
 
-    List<Ticket> findBySpot(Integer id);
 }

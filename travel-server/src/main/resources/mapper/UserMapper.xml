@@ -1,38 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lhn.travel.mapper.UserMapper">
-    <select id="verifypswd" resultType="java.lang.Integer">
-        select user_id
-        from t_user
-        where user_account = #{account}
-          and user_password = #{password};
-    </select>
 
-    <select id="getById" resultType="com.lhn.travel.entity.User">
-        select user_id, user_account, user_nickname, user_contact
-        from t_user
-        where user_id = #{id}
-    </select>
-
-    <update id="createToken">
-
-        update t_user
-        set token       = #{token},
-            login_time  = #{now},
-            expire_time = #{expireTime}
-        where user_id = #{id}
-
-    </update>
-
-    <select id="findByToken" resultType="com.lhn.travel.entity.User">
-        select *
-        from t_user
-        where token = #{token}
-    </select>
-
-    <select id="isExist" resultType="java.lang.Integer">
-        select user_id
-        from t_user
-        where user_account = #{account}
-    </select>
 </mapper>

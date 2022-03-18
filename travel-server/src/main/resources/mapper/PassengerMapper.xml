@@ -2,18 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lhn.travel.mapper.PassengerMapper">
 
-    <select id="findByUser" resultType="com.lhn.travel.entity.Passenger">
-        select *
-        from t_passenger
-        where user_id = #{id}
-          and is_deleted = 0
-    </select>
-
-    <update id="deletePass">
-        update t_passenger
-        set is_deleted = 1
-        where passenger_id = #{id}
-    </update>
 
     <select id="findByOrder" resultType="map">
         select t_ticket.ticket_id       as ticketId,

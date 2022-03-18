@@ -16,9 +16,6 @@ import java.util.List;
  */
 @Mapper
 public interface PassengerMapper extends BaseMapper<Passenger> {
-    List<Passenger> findByUser(Integer id);
-
-    int deletePass(Integer id);
 
     List findByOrder(Integer id);
 }

@@ -1,5 +1,6 @@
 package com.lhn.travel.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lhn.travel.entity.Spot;
 import com.lhn.travel.mapper.SpotMapper;
@@ -28,10 +29,14 @@ public class SpotServiceImpl extends ServiceImpl<SpotMapper, Spot> implements IS
     }
 
     public List<Spot> findByType(String type) {
-        return spotMapper.findByType(type);
+        QueryWrapper<Spot> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("spot_type", type);
+        return spotMapper.selectList(queryWrapper);
     }
 
     public List<Spot> findByName(String kw) {
-        return spotMapper.findByName(kw);
+        QueryWrapper<Spot> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("spot_name", kw);
+        return spotMapper.selectList(queryWrapper);
     }
 }

@@ -1,5 +1,6 @@
 package com.lhn.travel.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lhn.travel.entity.Ticket;
 import com.lhn.travel.mapper.TicketMapper;
@@ -28,6 +29,8 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     }
 
     public List<Ticket> findBySpot(Integer id) {
-        return ticketMapper.findBySpot(id);
+        QueryWrapper<Ticket> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("spot_id", id);
+        return ticketMapper.selectList(queryWrapper);
     }
 }
