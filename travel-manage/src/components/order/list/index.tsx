@@ -3,42 +3,36 @@ import { Button, Card, Col, Input, Row, Space, Table as BaseTable } from "antd";
 import Highlighter from "react-highlight-words";
 import { ColumnProps } from "antd/lib/table";
 import React from "react";
-import BreadcrumbCustom from "../basic-component/widget/BreadcrumbCustom";
-import { ISpotState } from "./interface";
-import { getSpotList, getTicketList } from "../../service/api";
+import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
+import { IOrderState } from "./interface";
+import { getOrderList as _getOrderList, getOrderPass } from "../../../service/api";
 
-export default class Spot extends React.PureComponent {
-    state: ISpotState;
+export default class OrderList extends React.PureComponent {
+    state: IOrderState;
     searchInput: any;
     constructor(props: any) {
         super(props);
         this.state = {
-            spotlist: [],
-            ticketlist: [],
+            orderlist: [],
+            passengerlist: [],
             searchText: "",
             searchedColumn: "",
-            selectedRowKeys: [],
         };
     }
 
     componentDidMount() {
-        this.getList();
+        this.getOrderList();
     }
 
-    getList = async () => {
-        let res = await getSpotList();
+    getOrderList = async () => {
+        let res = await _getOrderList();
         let list = res || [];
-        for (let spot of list) {
-            spot.key = spot.spotId;
+        for (let order of list) {
+            order.key = order.orderId;
         }
         this.setState({
-            spotlist: list,
+            orderlist: list,
         });
-    };
-
-    onSelectChange = (selectedRowKeys: string[] | number[]) => {
-        console.log("selectedRowKeys changed: ", selectedRowKeys);
-        this.setState({ selectedRowKeys });
     };
 
     getColumnSearchProps = (dataIndex: any) => ({
@@ -111,86 +105,71 @@ export default class Spot extends React.PureComponent {
         this.setState({ searchText: "" });
     };
 
-    getTicket = async (spotId: number) => {
-        let res = await getTicketList(spotId);
+    getPassenger = async (orderId: number) => {
+        let res = await getOrderPass(orderId);
         let list = res || [];
-        for (let ticket of list) {
-            ticket.key = ticket.ticketId;
+        for (let i = 0; i < list.length; i++) {
+            list[i].key = i;
         }
         this.setState({
-            ticketlist: list,
+            passengerlist: list,
         });
     };
+
     onExpand = (expanded: any, record: any) => {
         if (expanded) {
-            this.getTicket(record.spotId);
+            this.getPassenger(record.orderId);
         } else {
             this.setState({
-                ticketlist: [],
+                passengerlist: [],
             });
         }
     };
 
     render() {
-        const { spotlist, selectedRowKeys, ticketlist } = this.state;
-        const rowSelection: any = {
-            selectedRowKeys,
-            onChange: this.onSelectChange,
-        };
-
+        const { orderlist, passengerlist } = this.state;
         const columns: ColumnProps<any>[] = [
             {
-                title: "spot_id",
-                dataIndex: "spotId",
+                title: "order_id",
+                dataIndex: "orderId",
                 key: "1",
                 fixed: "left",
                 width: 100,
             },
             {
-                title: "spot_name",
-                dataIndex: "spotName",
+                title: "order_usetime",
+                dataIndex: "orderUsetime",
                 key: "2",
-                ...this.getColumnSearchProps("spotName"),
+                ...this.getColumnSearchProps("orderUsetime"),
             },
             {
-                title: "spot_address",
-                dataIndex: "spotAddress",
+                title: "order_total",
+                dataIndex: "orderTotal",
                 key: "3",
             },
             {
-                title: "spot_openhour",
-                dataIndex: "spotOpenhour",
+                title: "order_status",
+                dataIndex: "orderStatus",
                 key: "4",
             },
             {
-                title: "spot_offhour",
-                dataIndex: "spotOffhour",
+                title: "order_contact",
+                dataIndex: "orderContact",
                 key: "5",
             },
             {
-                title: "spot_imageURL",
-                dataIndex: "spotImageurl",
+                title: "spot_id",
+                dataIndex: "spotId",
                 key: "6",
             },
             {
-                title: "spot_type",
-                dataIndex: "spotType",
+                title: "user_id",
+                dataIndex: "userId",
                 key: "7",
-                filters: [
-                    {
-                        text: "主题乐园",
-                        value: "主题乐园",
-                    },
-                    {
-                        text: "城市观光",
-                        value: "城市观光",
-                    },
-                ],
-                onFilter: (value: any, record: any) => record.spotType.indexOf(value) === 0,
             },
             {
-                title: "spot_intro",
-                dataIndex: "spotIntro",
+                title: "is_deleted",
+                dataIndex: "isDeleted",
                 key: "8",
             },
             {
@@ -206,12 +185,42 @@ export default class Spot extends React.PureComponent {
             },
         ];
 
-        const ticketcolums = [
-            { title: "ticket_id", dataIndex: "ticketId", key: "1" },
-            { title: "ticket_name", dataIndex: "ticketName", key: "2" },
-            { title: "ticket_price", dataIndex: "ticketPrice", key: "3" },
-            { title: "ticket_request", dataIndex: "ticketRequest", key: "4" },
-            { title: "ticket_tag", dataIndex: "ticketTag", key: "5" },
+        const passengerColumns = [
+            {
+                title: "ticket_id",
+                dataIndex: "ticketId",
+                key: "1",
+            },
+            {
+                title: "ticket_name",
+                dataIndex: "ticketName",
+                key: "2",
+            },
+            {
+                title: "passenger_id",
+                dataIndex: "passengerId",
+                key: "3",
+            },
+            {
+                title: "passenger_name",
+                dataIndex: "passengerName",
+                key: "4",
+            },
+            {
+                title: "passenger_number",
+                dataIndex: "passengerNumber",
+                key: "5",
+            },
+            {
+                title: "passenger_sex",
+                dataIndex: "passengerSex",
+                key: "6",
+            },
+            {
+                title: "passenger_birth",
+                dataIndex: "passenger_birth",
+                key: "7",
+            },
             {
                 title: "Action",
                 key: "operation",
@@ -223,12 +232,11 @@ export default class Spot extends React.PureComponent {
                 ),
             },
         ];
-
         const expandedRowRender = () => {
             return (
                 <BaseTable
-                    columns={ticketcolums}
-                    dataSource={ticketlist}
+                    columns={passengerColumns}
+                    dataSource={passengerlist}
                     pagination={false}
                     tableLayout={"fixed"}
                 />
@@ -236,21 +244,20 @@ export default class Spot extends React.PureComponent {
         };
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom breads={["景点管理"]} />
+                <BreadcrumbCustom breads={["订单管理", "订单列表"]} />
                 <Row gutter={16}>
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
-                            <Card title="景点管理" bordered={false}>
+                            <Card title="订单管理" bordered={false}>
                                 <div>
                                     <BaseTable
                                         columns={columns}
-                                        dataSource={spotlist}
+                                        dataSource={orderlist}
                                         expandable={{
                                             expandedRowRender,
                                             onExpand: this.onExpand,
                                         }}
                                         scroll={{ x: 1200 }}
-                                        rowSelection={rowSelection}
                                         tableLayout={"fixed"}
                                         pagination={{ defaultPageSize: 5 }}
                                     />

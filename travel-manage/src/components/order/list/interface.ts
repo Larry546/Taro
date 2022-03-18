@@ -3,5 +3,4 @@ export interface IOrderState {
     passengerlist: Array<any>;
     searchText: string;
     searchedColumn: string;
-    selectedRowKeys: Array<any>;
 }

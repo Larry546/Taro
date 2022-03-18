@@ -3,5 +3,4 @@ export interface ISpotState {
     ticketlist: Array<any>;
     searchText: string;
     searchedColumn: string;
-    selectedRowKeys: Array<any>;
 }

@@ -3,11 +3,11 @@ import { Button, Card, Col, Input, Row, Space, Table as BaseTable } from "antd";
 import { ColumnProps } from "antd/lib/table";
 import React from "react";
 import Highlighter from "react-highlight-words";
-import { getUserList } from "../../service/api";
-import BreadcrumbCustom from "../basic-component/widget/BreadcrumbCustom";
+import { getUserList } from "../../../service/api";
+import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IUserState } from "./interface";
 
-export default class User extends React.PureComponent {
+export default class UserList extends React.PureComponent {
     state: IUserState;
     searchInput: any;
     constructor(props: any) {
@@ -16,7 +16,6 @@ export default class User extends React.PureComponent {
             userlist: [],
             searchText: "",
             searchedColumn: "",
-            selectedRowKeys: [],
         };
     }
 
@@ -33,11 +32,6 @@ export default class User extends React.PureComponent {
         this.setState({
             userlist: list,
         });
-    };
-
-    onSelectChange = (selectedRowKeys: any) => {
-        console.log("selectedRowKeys changed: ", selectedRowKeys);
-        this.setState({ selectedRowKeys });
     };
 
     getColumnSearchProps = (dataIndex: any) => ({
@@ -111,11 +105,7 @@ export default class User extends React.PureComponent {
     };
 
     render() {
-        const { userlist, selectedRowKeys } = this.state;
-        const rowSelection: any = {
-            selectedRowKeys,
-            onChange: this.onSelectChange,
-        };
+        const { userlist } = this.state;
         const columns: ColumnProps<any>[] = [
             {
                 title: "user_id",
@@ -159,7 +149,7 @@ export default class User extends React.PureComponent {
         ];
         return (
             <div className="gutter-example">
-                <BreadcrumbCustom breads={["用户管理"]} />
+                <BreadcrumbCustom breads={["用户管理", "用户列表"]} />
                 <Row gutter={16}>
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
@@ -168,7 +158,6 @@ export default class User extends React.PureComponent {
                                     columns={columns}
                                     dataSource={userlist}
                                     scroll={{ x: 1200 }}
-                                    rowSelection={rowSelection}
                                     tableLayout={"fixed"}
                                     pagination={{ defaultPageSize: 5 }}
                                 />

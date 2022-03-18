@@ -14,9 +14,12 @@ import Dashboard from "./dashboard/Dashboard";
 import Gallery from "./basic-component/ui/Gallery";
 import Env from "./extension/env";
 
-import Spot from "./spot";
-import Order from "./order";
-import User from "./user";
+import SpotList from "./spot/list";
+import OrderList from "./order/list";
+import UserList from "./user/list";
+
+import SpotEdit from "./spot/edit";
+import OrderEdit from "./order/edit";
 
 const WysiwygBundle = Loadable({
     // 按需加载富文本配置
@@ -25,9 +28,11 @@ const WysiwygBundle = Loadable({
 });
 
 export default {
-    Spot,
-    Order,
-    User,
+    SpotList,
+    OrderList,
+    UserList,
+    SpotEdit,
+    OrderEdit,
     Echarts,
     Recharts,
     Icons,
