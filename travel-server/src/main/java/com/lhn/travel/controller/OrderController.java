@@ -29,6 +29,11 @@ public class OrderController {
         return orderService.saveOrder(order);
     }
 
+    @PostMapping("/update")
+    public Boolean update(@RequestBody Order order) {
+        return orderService.updateById(order);
+    }
+
     @GetMapping("/list")
     public List<Order> findAll() {
         return orderService.list();
