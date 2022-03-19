@@ -1,6 +1,7 @@
 package com.lhn.travel.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lhn.travel.entity.Spot;
 import com.lhn.travel.service.ISpotService;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,18 @@ public class SpotController {
 
     @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
-        return spotService.removeById(id);
+        UpdateWrapper<Spot> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("spot_id", id);
+        updateWrapper.set("is_deleted", 1);
+        return spotService.update(updateWrapper);
+    }
+
+    @DeleteMapping("/undelete/{id}")
+    public Boolean undelete(@PathVariable Integer id) {
+        UpdateWrapper<Spot> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("spot_id", id);
+        updateWrapper.set("is_deleted", 0);
+        return spotService.update(updateWrapper);
     }
 
     @GetMapping("/list")

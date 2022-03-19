@@ -1,11 +1,28 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Input, Row, Space, Table as BaseTable } from "antd";
+import {
+    Button,
+    Card,
+    Col,
+    Input,
+    message,
+    Popconfirm,
+    Row,
+    Space,
+    Table as BaseTable,
+} from "antd";
 import Highlighter from "react-highlight-words";
 import { ColumnProps } from "antd/lib/table";
 import React from "react";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { ISpotState } from "./interface";
-import { getSpotList, getTicketList } from "../../../service/api";
+import {
+    getSpotList as _getSpotList,
+    getTicketList as _getTicketList,
+    deleteSpot as _deleteSpot,
+    unDeleteSpot as _unDeleteSpot,
+    deleteTicket as _deleteTicket,
+    unDeleteTicket as _unDeleteTicket,
+} from "../../../service/api";
 
 export default class SpotList extends React.PureComponent<any> {
     state: ISpotState;
@@ -25,7 +42,7 @@ export default class SpotList extends React.PureComponent<any> {
     }
 
     getList = async () => {
-        let res = await getSpotList();
+        let res = await _getSpotList();
         let list = res || [];
         for (let spot of list) {
             spot.key = spot.spotId;
@@ -106,7 +123,7 @@ export default class SpotList extends React.PureComponent<any> {
     };
 
     getTicket = async (spotId: number) => {
-        let res = await getTicketList(spotId);
+        let res = await _getTicketList(spotId);
         let list = res || [];
         for (let ticket of list) {
             ticket.key = ticket.ticketId;
@@ -122,6 +139,46 @@ export default class SpotList extends React.PureComponent<any> {
             this.setState({
                 ticketlist: [],
             });
+        }
+    };
+
+    deleteSpot = async (spotId: number) => {
+        let res = await _deleteSpot(spotId);
+        if (res) {
+            this.getList();
+            message.success("删除成功!");
+        } else {
+            message.warn("删除失败");
+        }
+    };
+
+    unDeleteSpot = async (spotId: number) => {
+        let res = await _unDeleteSpot(spotId);
+        if (res) {
+            this.getList();
+            message.success("恢复成功!");
+        } else {
+            message.warn("恢复失败");
+        }
+    };
+
+    deleteTicket = async (spotId: number, ticketId: number) => {
+        let res = await _deleteTicket(ticketId);
+        if (res) {
+            this.getTicket(spotId);
+            message.success("删除成功!");
+        } else {
+            message.warn("删除失败");
+        }
+    };
+
+    unDeleteTicket = async (spotId: number, ticketId: number) => {
+        let res = await _unDeleteTicket(ticketId);
+        if (res) {
+            this.getTicket(spotId);
+            message.success("恢复成功!");
+        } else {
+            message.warn("恢复失败");
         }
     };
 
@@ -204,12 +261,26 @@ export default class SpotList extends React.PureComponent<any> {
                                 >
                                     编辑
                                 </a>{" "}
-                                <a>删除</a>
+                                <Popconfirm
+                                    title={"确定要删除该景点?"}
+                                    onConfirm={() => {
+                                        this.deleteSpot(record.spotId);
+                                    }}
+                                >
+                                    <a>删除</a>
+                                </Popconfirm>
                             </Space>
                         ) : (
                             <Space size={"middle"}>
                                 <span>已删除</span>
-                                <a>恢复</a>
+                                <Popconfirm
+                                    title={"确定要恢复该景点?"}
+                                    onConfirm={() => {
+                                        this.unDeleteSpot(record.spotId);
+                                    }}
+                                >
+                                    <a>恢复</a>
+                                </Popconfirm>
                             </Space>
                         )}
                     </div>
@@ -244,11 +315,26 @@ export default class SpotList extends React.PureComponent<any> {
                                 >
                                     编辑
                                 </a>
-                                <a>删除</a>
+                                <Popconfirm
+                                    title={"确定要删除该门票?"}
+                                    onConfirm={() => {
+                                        this.deleteTicket(record.spotId, record.ticketId);
+                                    }}
+                                >
+                                    <a>删除</a>
+                                </Popconfirm>
                             </Space>
                         ) : (
                             <Space size={"middle"}>
-                                <span>已删除</span> <a>恢复</a>
+                                <span>已删除</span>
+                                <Popconfirm
+                                    title={"确定要恢复该门票?"}
+                                    onConfirm={() => {
+                                        this.unDeleteTicket(record.spotId, record.ticketId);
+                                    }}
+                                >
+                                    <a>恢复</a>
+                                </Popconfirm>
                             </Space>
                         )}
                     </div>

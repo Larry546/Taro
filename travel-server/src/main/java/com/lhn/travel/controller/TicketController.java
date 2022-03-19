@@ -1,6 +1,7 @@
 package com.lhn.travel.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lhn.travel.entity.Ticket;
 import com.lhn.travel.service.ITicketService;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +32,20 @@ public class TicketController {
 
     @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
-        return ticketService.removeById(id);
+        UpdateWrapper<Ticket> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("ticket_id", id);
+        updateWrapper.set("is_deleted", 1);
+        return ticketService.update(updateWrapper);
     }
+
+    @DeleteMapping("/undelete/{id}")
+    public Boolean undelete(@PathVariable Integer id) {
+        UpdateWrapper<Ticket> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("ticket_id", id);
+        updateWrapper.set("is_deleted", 0);
+        return ticketService.update(updateWrapper);
+    }
+
 
     @GetMapping("/list")
     public List<Ticket> findAll() {

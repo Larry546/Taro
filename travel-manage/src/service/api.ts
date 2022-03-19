@@ -64,3 +64,23 @@ export function unDeleteOrder(orderId: number) {
     let url = `/order/undelete/${orderId}`;
     return http.delete(url);
 }
+
+export function deleteSpot(spotId: number) {
+    let url = `/spot/delete/${spotId}`;
+    return http.delete(url);
+}
+
+export function unDeleteSpot(spotId: number) {
+    let url = `/spot/undelete/${spotId}`;
+    return http.delete(url);
+}
+
+export function deleteTicket(ticketId: number) {
+    let url = `/ticket/delete/${ticketId}`;
+    return http.delete(url);
+}
+
+export function unDeleteTicket(ticketId: number) {
+    let url = `/ticket/undelete/${ticketId}`;
+    return http.delete(url);
+}
