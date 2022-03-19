@@ -1,9 +1,9 @@
-import { Button, Card, Col, DatePicker, Form, Input, Row } from "antd";
+import { Button, Card, Col, DatePicker, Form, Input, message, Row } from "antd";
 import React from "react";
 import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IOrderEditState } from "./interface";
-import { getOrderInfo as _getOrderInfo } from "../../../service/api";
+import { getOrderInfo as _getOrderInfo, updateOrder as _updateOrder } from "../../../service/api";
 import moment from "moment";
 
 const Item = Form.Item;
@@ -23,7 +23,6 @@ export default class OrderEdit extends React.PureComponent<any> {
             orderCreatetime: "",
             spotId: undefined,
             userId: undefined,
-            isDeleted: undefined,
         };
         this.getParams();
     }
@@ -51,13 +50,25 @@ export default class OrderEdit extends React.PureComponent<any> {
                 orderCreatetime: res.orderCreatetime,
                 spotId: res.spotId,
                 userId: res.userId,
-                isDeleted: res.isDeleted,
             };
             this.formref.setFieldsValue({
                 orderId: this.orderId,
                 ...info,
             });
             this.setState({ ...info, orderUsetime: res.orderUsetime });
+        }
+    };
+
+    submit = async () => {
+        let info = {
+            orderId: this.orderId,
+            ...this.state,
+        };
+        let res = await _updateOrder(info);
+        if (res) {
+            message.success("保存成功!");
+        } else {
+            message.error("网络错误，保存失败!");
         }
     };
 
@@ -70,7 +81,6 @@ export default class OrderEdit extends React.PureComponent<any> {
             orderCreatetime,
             spotId,
             userId,
-            isDeleted,
         } = this.state;
         return (
             <div className="gutter-example">
@@ -157,9 +167,6 @@ export default class OrderEdit extends React.PureComponent<any> {
                                             <Item name={"userId"} label={"用户ID"}>
                                                 <Input value={userId} disabled={true} />
                                             </Item>
-                                            <Item name={"isDeleted"} label={"是否已删除"}>
-                                                <Input value={isDeleted} disabled={true} />
-                                            </Item>
                                             <Item {...tailFormItemLayout}>
                                                 <Button
                                                     type="primary"
@@ -169,7 +176,14 @@ export default class OrderEdit extends React.PureComponent<any> {
                                                 >
                                                     返回
                                                 </Button>
-                                                <Button type="primary">提交</Button>
+                                                <Button
+                                                    type="primary"
+                                                    onClick={() => {
+                                                        this.submit();
+                                                    }}
+                                                >
+                                                    提交
+                                                </Button>
                                             </Item>
                                         </Form>
                                     </div>

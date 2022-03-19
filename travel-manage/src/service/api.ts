@@ -84,3 +84,13 @@ export function unDeleteTicket(ticketId: number) {
     let url = `/ticket/undelete/${ticketId}`;
     return http.delete(url);
 }
+
+export function saveUser(userInfo: Object) {
+    let url = "/user/save";
+    return http.post(url, userInfo);
+}
+
+export function updateOrder(orderInfo: Object) {
+    let url = "/order/update";
+    return http.post(url, orderInfo);
+}

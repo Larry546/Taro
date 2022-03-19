@@ -6,5 +6,4 @@ export interface IOrderEditState {
     orderCreatetime: string;
     spotId: number | undefined;
     userId: number | undefined;
-    isDeleted: number | undefined;
 }

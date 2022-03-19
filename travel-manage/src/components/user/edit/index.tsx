@@ -1,9 +1,9 @@
-import { Button, Card, Col, Form, Input, Row } from "antd";
+import { Button, Card, Col, Form, Input, message, Row } from "antd";
 import React from "react";
 import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IUserEditState } from "./interface";
-import { getUserInfo as _getUserInfo } from "../../../service/api";
+import { getUserInfo as _getUserInfo, saveUser as _saveUser } from "../../../service/api";
 
 const Item = Form.Item;
 
@@ -47,6 +47,19 @@ export default class UserEdit extends React.PureComponent<any> {
             this.formref.setFieldsValue(info);
 
             this.setState(info);
+        }
+    };
+
+    submit = async () => {
+        let info = {
+            userId: this.userId,
+            ...this.state,
+        };
+        let res = await _saveUser(info);
+        if (res) {
+            message.success("保存成功!");
+        } else {
+            message.error("网络错误，保存失败!");
         }
     };
 
@@ -130,7 +143,14 @@ export default class UserEdit extends React.PureComponent<any> {
                                                 >
                                                     返回
                                                 </Button>
-                                                <Button type="primary">提交</Button>
+                                                <Button
+                                                    type="primary"
+                                                    onClick={() => {
+                                                        this.submit();
+                                                    }}
+                                                >
+                                                    提交
+                                                </Button>
                                             </Item>
                                         </Form>
                                     </div>

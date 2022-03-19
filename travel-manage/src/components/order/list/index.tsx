@@ -262,6 +262,7 @@ export default class OrderList extends React.PureComponent<any> {
                 title: "ticket_id",
                 dataIndex: "ticketId",
                 key: "1",
+                width: 100,
             },
             {
                 title: "ticket_name",
@@ -272,6 +273,7 @@ export default class OrderList extends React.PureComponent<any> {
                 title: "passenger_id",
                 dataIndex: "passengerId",
                 key: "3",
+                width: 100,
             },
             {
                 title: "passenger_name",
@@ -287,15 +289,17 @@ export default class OrderList extends React.PureComponent<any> {
                 title: "passenger_sex",
                 dataIndex: "passengerSex",
                 key: "6",
+                width: 100,
             },
             {
                 title: "passenger_birth",
-                dataIndex: "passenger_birth",
+                dataIndex: "passengerBirth",
                 key: "7",
             },
             {
                 title: "Action",
                 key: "operation",
+                width: 150,
                 render: () => (
                     <Space size="middle">
                         <a>暂无可用操作</a>
