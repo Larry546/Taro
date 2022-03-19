@@ -36,6 +36,13 @@ public class SpotController {
 
     @GetMapping("/list")
     public List<Spot> findAll() {
+        QueryWrapper<Spot> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("is_deleted", 0);
+        return spotService.list(queryWrapper);
+    }
+
+    @GetMapping("/adminList")
+    public List<Spot> adminfindAll() {
         return spotService.list();
     }
 
@@ -54,6 +61,7 @@ public class SpotController {
     public List<Spot> findByType(@PathVariable String type) {
         QueryWrapper<Spot> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("spot_type", type);
+        queryWrapper.eq("is_deleted", 0);
         return spotService.list(queryWrapper);
     }
 
@@ -61,6 +69,7 @@ public class SpotController {
     public List<Spot> findByName(@PathVariable String keyword) {
         QueryWrapper<Spot> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("spot_name", keyword);
+        queryWrapper.eq("is_deleted", 0);
         return spotService.list(queryWrapper);
     }
 

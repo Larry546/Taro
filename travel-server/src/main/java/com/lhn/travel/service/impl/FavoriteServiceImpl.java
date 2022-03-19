@@ -21,4 +21,9 @@ public class FavoriteServiceImpl extends ServiceImpl<FavoriteMapper, Favorite> i
     @Autowired
     FavoriteMapper favoriteMapper;
 
+    public Integer isFav(Integer uid, Integer spotId) {
+        Integer fid = favoriteMapper.isFav(uid, spotId);
+        return fid == null ? 0 : fid;
+    }
+
 }

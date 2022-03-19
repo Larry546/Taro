@@ -14,6 +14,7 @@
              t_user
         where t_spot.spot_id = t_favorite.spot_id
           and t_user.user_id = t_favorite.user_id
+          and t_spot.is_deleted = 0
           and t_favorite.user_id = #{id}
     </select>
 

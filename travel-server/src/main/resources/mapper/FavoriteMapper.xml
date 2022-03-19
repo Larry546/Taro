@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lhn.travel.mapper.FavoriteMapper">
 
+    <select id="isFav" resultType="integer">
+        select favorite_id as favoriteId
+        from t_favorite,
+             t_spot
+        where t_favorite.user_id = #{uid}
+          and t_favorite.spot_id = t_spot.spot_id
+          and t_spot.is_deleted = 0
+          and t_favorite.spot_id = #{spotId}
+    </select>
+
 </mapper>

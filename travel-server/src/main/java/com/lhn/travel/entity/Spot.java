@@ -19,7 +19,7 @@ import java.time.LocalTime;
  */
 @Getter
 @Setter
-@TableName("t_spot" )
+@TableName("t_spot")
 public class Spot implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,6 +40,8 @@ public class Spot implements Serializable {
     private String spotType;
 
     private String spotIntro;
+
+    private Integer isDeleted;
 
 
 }
