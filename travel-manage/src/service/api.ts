@@ -44,3 +44,8 @@ export function getOrderInfo(orderId: number) {
     let url = `/order/find/${orderId}`;
     return http.get(url);
 }
+
+export function deleteUser(userId: number) {
+    let url = `/user/delete/${userId}`;
+    return http.delete(url);
+}

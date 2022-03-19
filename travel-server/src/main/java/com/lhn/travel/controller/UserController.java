@@ -1,6 +1,7 @@
 package com.lhn.travel.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lhn.travel.entity.User;
 import com.lhn.travel.service.IUserService;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -35,7 +36,10 @@ public class UserController {
 
     @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
-        return userService.removeById(id);
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("user_id", id);
+        updateWrapper.set("is_deleted", 1);
+        return userService.update(updateWrapper);
     }
 
     @GetMapping("/list")

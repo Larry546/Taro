@@ -1,9 +1,19 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Input, Row, Space, Table as BaseTable } from "antd";
+import {
+    Button,
+    Card,
+    Col,
+    Input,
+    message,
+    Popconfirm,
+    Row,
+    Space,
+    Table as BaseTable,
+} from "antd";
 import { ColumnProps } from "antd/lib/table";
 import React from "react";
 import Highlighter from "react-highlight-words";
-import { getUserList } from "../../../service/api";
+import { getUserList as _getUserList, deleteUser as _deleteUser } from "../../../service/api";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IUserState } from "./interface";
 
@@ -24,7 +34,7 @@ export default class UserList extends React.PureComponent<any> {
     }
 
     getList = async () => {
-        let res = await getUserList();
+        let res = await _getUserList();
         let list = res || [];
         for (let user of list) {
             user.key = user.userId;
@@ -104,6 +114,16 @@ export default class UserList extends React.PureComponent<any> {
         this.setState({ searchText: "" });
     };
 
+    deleteUser = async (userId: number) => {
+        let res = await _deleteUser(userId);
+        if (res) {
+            this.getList();
+            message.success("删除成功!");
+        } else {
+            message.warn("删除失败");
+        }
+    };
+
     render() {
         const { userlist } = this.state;
         const columns: ColumnProps<any>[] = [
@@ -156,7 +176,14 @@ export default class UserList extends React.PureComponent<any> {
                                 >
                                     编辑
                                 </a>{" "}
-                                <a>删除</a>
+                                <Popconfirm
+                                    title={"确定要删除该用户?"}
+                                    onConfirm={() => {
+                                        this.deleteUser(record.userId);
+                                    }}
+                                >
+                                    <a>删除</a>
+                                </Popconfirm>
                             </Space>
                         ) : (
                             <Space size={"middle"}>

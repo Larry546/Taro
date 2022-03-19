@@ -59,75 +59,83 @@ export default class UserEdit extends React.PureComponent<any> {
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card title={"用户编辑"} bordered={false}>
-                                <div className="wrap">
-                                    <Form
-                                        {...formItemLayout}
-                                        name="UserEdit"
-                                        scrollToFirstError
-                                        style={{ width: 500 }}
-                                        ref={ref => (this.formref = ref)}
-                                    >
-                                        <Item
-                                            name={"userAccount"}
-                                            label={"用户名"}
-                                            rules={[{ required: true, message: "请输入用户名!" }]}
+                                {this.userId !== 0 ? (
+                                    <div className="wrap">
+                                        <Form
+                                            {...formItemLayout}
+                                            name="UserEdit"
+                                            scrollToFirstError
+                                            style={{ width: 500 }}
+                                            ref={ref => (this.formref = ref)}
                                         >
-                                            <Input
-                                                value={userAccount}
-                                                onChange={e => {
-                                                    this.setState({
-                                                        userAccount: e.target.value,
-                                                    });
-                                                }}
-                                            />
-                                        </Item>
-                                        <Item
-                                            name={"userPassword"}
-                                            label={"用户密码"}
-                                            rules={[{ required: true, message: "请输入用户密码!" }]}
-                                        >
-                                            <Input
-                                                value={userPassword}
-                                                onChange={e => {
-                                                    this.setState({
-                                                        ticketPrice: e.target.value,
-                                                    });
-                                                }}
-                                            />
-                                        </Item>
-                                        <Item name={"userContact"} label={"用户联系方式"}>
-                                            <Input
-                                                value={userContact}
-                                                onChange={e => {
-                                                    this.setState({
-                                                        userContact: e.target.value,
-                                                    });
-                                                }}
-                                            />
-                                        </Item>
-                                        <Item name={"userNickname"} label={"用户昵称"}>
-                                            <Input
-                                                value={userNickname}
-                                                onChange={e => {
-                                                    this.setState({
-                                                        userNickname: e.target.value,
-                                                    });
-                                                }}
-                                            />
-                                        </Item>
-                                        <Item {...tailFormItemLayout}>
-                                            <Button
-                                                type="primary"
-                                                onClick={() => {
-                                                    this.props.history.goBack();
-                                                }}
+                                            <Item
+                                                name={"userAccount"}
+                                                label={"用户名"}
+                                                rules={[
+                                                    { required: true, message: "请输入用户名!" },
+                                                ]}
                                             >
-                                                返回
-                                            </Button>
-                                            <Button type="primary">提交</Button>
-                                        </Item>
-                                    </Form>
-                                </div>
+                                                <Input
+                                                    value={userAccount}
+                                                    onChange={e => {
+                                                        this.setState({
+                                                            userAccount: e.target.value,
+                                                        });
+                                                    }}
+                                                />
+                                            </Item>
+                                            <Item
+                                                name={"userPassword"}
+                                                label={"用户密码"}
+                                                rules={[
+                                                    { required: true, message: "请输入用户密码!" },
+                                                ]}
+                                            >
+                                                <Input
+                                                    value={userPassword}
+                                                    onChange={e => {
+                                                        this.setState({
+                                                            ticketPrice: e.target.value,
+                                                        });
+                                                    }}
+                                                />
+                                            </Item>
+                                            <Item name={"userContact"} label={"用户联系方式"}>
+                                                <Input
+                                                    value={userContact}
+                                                    onChange={e => {
+                                                        this.setState({
+                                                            userContact: e.target.value,
+                                                        });
+                                                    }}
+                                                />
+                                            </Item>
+                                            <Item name={"userNickname"} label={"用户昵称"}>
+                                                <Input
+                                                    value={userNickname}
+                                                    onChange={e => {
+                                                        this.setState({
+                                                            userNickname: e.target.value,
+                                                        });
+                                                    }}
+                                                />
+                                            </Item>
+                                            <Item {...tailFormItemLayout}>
+                                                <Button
+                                                    type="primary"
+                                                    onClick={() => {
+                                                        this.props.history.goBack();
+                                                    }}
+                                                >
+                                                    返回
+                                                </Button>
+                                                <Button type="primary">提交</Button>
+                                            </Item>
+                                        </Form>
+                                    </div>
+                                ) : (
+                                    <span>暂不支持管理员创建用户</span>
+                                )}
                             </Card>
                         </div>
                     </Col>
