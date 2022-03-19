@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import screenfull from "screenfull";
 import avater from "../../style/imgs/b1.jpg";
 import SiderCustom from "./SiderCustom";
-import { Menu, Layout, Badge, Popover } from "antd";
+import { Menu, Layout, Popover } from "antd";
 import { useHistory } from "react-router-dom";
 import { useAlita } from "redux-alita";
 import { useSwitch } from "../../utils/hooks";
@@ -11,7 +11,6 @@ import {
     BarsOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    NotificationOutlined,
 } from "@ant-design/icons";
 const { Header } = Layout;
 
@@ -78,11 +77,6 @@ const HeaderCustom = (props: HeaderCustomProps) => {
             >
                 <Menu.Item key="full">
                     <ArrowsAltOutlined onClick={screenFull} />
-                </Menu.Item>
-                <Menu.Item key="1">
-                    <Badge style={{ marginLeft: 10 }}>
-                        <NotificationOutlined />
-                    </Badge>
                 </Menu.Item>
                 <Menu.Item>
                     <span className="avatar">
