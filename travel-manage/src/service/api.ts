@@ -94,3 +94,8 @@ export function updateOrder(orderInfo: Object) {
     let url = "/order/update";
     return http.post(url, orderInfo);
 }
+
+export function saveSpot(spotInfo: object) {
+    let url = "/spot/save";
+    return http.post(url, spotInfo);
+}

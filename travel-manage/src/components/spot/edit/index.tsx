@@ -1,7 +1,7 @@
-import { Button, Card, Col, Form, Input, Row, TimePicker } from "antd";
+import { Button, Card, Col, Form, Input, message, Row, TimePicker } from "antd";
 import moment from "moment";
 import React from "react";
-import { getSpotInfo as _getSpotInfo } from "../../../service/api";
+import { getSpotInfo as _getSpotInfo, saveSpot as _saveSpot } from "../../../service/api";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { ISpotEditState } from "./interfacet";
 import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
@@ -58,6 +58,19 @@ export default class SpotEdit extends React.PureComponent<any> {
                 spotOpenhour: res.spotOpenhour,
                 spotOffhour: res.spotOffhour,
             });
+        }
+    };
+
+    submit = async () => {
+        let info: any = {
+            spotId: this.spotId === 0 ? undefined : this.spotId,
+            ...this.state,
+        };
+        let res = await _saveSpot(info);
+        if (res) {
+            message.success("保存成功!");
+        } else {
+            message.error("网络错误，保存失败!");
         }
     };
 
@@ -198,7 +211,14 @@ export default class SpotEdit extends React.PureComponent<any> {
                                             >
                                                 返回
                                             </Button>
-                                            <Button type="primary">提交</Button>
+                                            <Button
+                                                type="primary"
+                                                onClick={() => {
+                                                    this.submit();
+                                                }}
+                                            >
+                                                提交
+                                            </Button>
                                         </Item>
                                     </Form>
                                 </div>
