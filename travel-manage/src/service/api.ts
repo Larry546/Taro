@@ -95,7 +95,12 @@ export function updateOrder(orderInfo: Object) {
     return http.post(url, orderInfo);
 }
 
-export function saveSpot(spotInfo: object) {
+export function saveSpot(spotInfo: Object) {
     let url = "/spot/save";
     return http.post(url, spotInfo);
+}
+
+export function saveTicket(ticketInfo: Object) {
+    let url = "/ticket/save";
+    return http.post(url, ticketInfo);
 }

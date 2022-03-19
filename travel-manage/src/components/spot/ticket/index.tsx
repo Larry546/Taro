@@ -1,6 +1,6 @@
-import { Button, Card, Col, Form, Input, Row } from "antd";
+import { Button, Card, Col, Form, Input, message, Row } from "antd";
 import React from "react";
-import { getTicketInfo as _getTicketInfo } from "../../../service/api";
+import { getTicketInfo as _getTicketInfo, saveTicket as _saveTicket } from "../../../service/api";
 import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { ITicketState } from "./interface";
@@ -51,6 +51,19 @@ export default class TicketEdit extends React.PureComponent<any> {
             this.formref.setFieldsValue(info);
 
             this.setState(info);
+        }
+    };
+
+    submit = async () => {
+        let info: any = {
+            ticketId: this.ticketId === 0 ? undefined : this.ticketId,
+            ...this.state,
+        };
+        let res = await _saveTicket(info);
+        if (res) {
+            message.success("保存成功!");
+        } else {
+            message.error("网络错误，保存失败!");
         }
     };
 
@@ -143,7 +156,14 @@ export default class TicketEdit extends React.PureComponent<any> {
                                             >
                                                 返回
                                             </Button>
-                                            <Button type="primary">提交</Button>
+                                            <Button
+                                                type="primary"
+                                                onClick={() => {
+                                                    this.submit();
+                                                }}
+                                            >
+                                                提交
+                                            </Button>
                                         </Item>
                                     </Form>
                                 </div>

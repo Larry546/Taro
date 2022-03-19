@@ -208,11 +208,13 @@ export default class SpotList extends React.PureComponent<any> {
                 title: "spot_openhour",
                 dataIndex: "spotOpenhour",
                 key: "4",
+                width: 100,
             },
             {
                 title: "spot_offhour",
                 dataIndex: "spotOffhour",
                 key: "5",
+                width: 100,
             },
             {
                 title: "spot_imageURL",
@@ -231,6 +233,10 @@ export default class SpotList extends React.PureComponent<any> {
                     {
                         text: "城市观光",
                         value: "城市观光",
+                    },
+                    {
+                        text: "动植物园",
+                        value: "动植物园",
                     },
                 ],
                 onFilter: (value: any, record: any) => record.spotType.indexOf(value) === 0,
