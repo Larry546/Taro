@@ -187,29 +187,38 @@ export default class SpotList extends React.PureComponent<any> {
                 title: "Action",
                 key: "operation",
                 fixed: "right",
-                width: 200,
+                width: 150,
                 render: (value, record) => (
-                    <Space size={"middle"}>
-                        <a
-                            onClick={() => {
-                                this.props.history.push({
-                                    pathname: "/app/spot/edit",
-                                    state: {
-                                        spotId: record.spotId,
-                                    },
-                                });
-                            }}
-                        >
-                            编辑
-                        </a>{" "}
-                        <a>删除</a>
-                    </Space>
+                    <div>
+                        {record.isDeleted === 0 ? (
+                            <Space size={"middle"}>
+                                <a
+                                    onClick={() => {
+                                        this.props.history.push({
+                                            pathname: "/app/spot/edit",
+                                            state: {
+                                                spotId: record.spotId,
+                                            },
+                                        });
+                                    }}
+                                >
+                                    编辑
+                                </a>{" "}
+                                <a>删除</a>
+                            </Space>
+                        ) : (
+                            <Space size={"middle"}>
+                                <span>已删除</span>
+                                <a>恢复</a>
+                            </Space>
+                        )}
+                    </div>
                 ),
             },
         ];
 
         const ticketcolums = [
-            { title: "ticket_id", dataIndex: "ticketId", key: "1" },
+            { title: "ticket_id", dataIndex: "ticketId", key: "1", width: 100 },
             { title: "ticket_name", dataIndex: "ticketName", key: "2" },
             { title: "ticket_price", dataIndex: "ticketPrice", key: "3" },
             { title: "ticket_request", dataIndex: "ticketRequest", key: "4" },
@@ -217,23 +226,32 @@ export default class SpotList extends React.PureComponent<any> {
             {
                 title: "Action",
                 key: "operation",
+                width: 150,
                 render: (value: any, record: any) => (
-                    <Space size="middle">
-                        <a
-                            onClick={() => {
-                                this.props.history.push({
-                                    pathname: "/app/spot/ticket",
-                                    state: {
-                                        spotId: record.spotId,
-                                        ticketId: record.ticketId,
-                                    },
-                                });
-                            }}
-                        >
-                            编辑
-                        </a>
-                        <a>删除</a>
-                    </Space>
+                    <div>
+                        {record.isDeleted === 0 ? (
+                            <Space size="middle">
+                                <a
+                                    onClick={() => {
+                                        this.props.history.push({
+                                            pathname: "/app/spot/ticket",
+                                            state: {
+                                                spotId: record.spotId,
+                                                ticketId: record.ticketId,
+                                            },
+                                        });
+                                    }}
+                                >
+                                    编辑
+                                </a>
+                                <a>删除</a>
+                            </Space>
+                        ) : (
+                            <Space size={"middle"}>
+                                <span>已删除</span> <a>恢复</a>
+                            </Space>
+                        )}
+                    </div>
                 ),
             },
         ];

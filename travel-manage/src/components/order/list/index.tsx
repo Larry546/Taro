@@ -198,7 +198,9 @@ export default class OrderList extends React.PureComponent<any> {
                                 <a>删除</a>
                             </Space>
                         ) : (
-                            <span>该订单已删除</span>
+                            <Space size={"middle"}>
+                                <span>已删除</span> <a>恢复</a>
+                            </Space>
                         )}
                     </div>
                 ),

@@ -1,12 +1,12 @@
 import http from "./tools";
 
 export function getSpotList() {
-    let url = "/spot/list";
+    let url = "/spot/adminList";
     return http.get(url);
 }
 
 export function getTicketList(spotId: number) {
-    let url = `/ticket/listBySpot/${spotId}`;
+    let url = `/ticket/adminListBySpot/${spotId}`;
     return http.get(url);
 }
 
