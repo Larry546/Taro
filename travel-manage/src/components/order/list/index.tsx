@@ -147,7 +147,7 @@ export default class OrderList extends React.PureComponent<any> {
             this.getOrderList();
             message.success("删除成功!");
         } else {
-            message.warn("删除失败");
+            message.error("删除失败");
         }
     };
 
@@ -157,7 +157,7 @@ export default class OrderList extends React.PureComponent<any> {
             this.getOrderList();
             message.success("恢复成功!");
         } else {
-            message.warn("恢复失败");
+            message.error("恢复失败");
         }
     };
 
