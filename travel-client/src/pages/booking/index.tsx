@@ -368,24 +368,30 @@ export default class Index extends PureComponent<any> {
                                                     </Text>
                                                 </View>
                                                 <View className="booking_info_spot_sku_ticket_tline">
-                                                    {item.ticketTag?.map((tag, index) => {
-                                                        return (
-                                                            <View
-                                                                style={{
-                                                                    color:
-                                                                        index % 2
-                                                                            ? "#0086f6"
-                                                                            : "#F70",
-                                                                }}
-                                                                key={index}
-                                                            >
-                                                                <Text>{tag} </Text>
-                                                                <Text style={{ color: "#666" }}>
-                                                                    |{" "}
-                                                                </Text>
-                                                            </View>
-                                                        );
-                                                    })}
+                                                    {item.ticketTag &&
+                                                        item.ticketTag.map((tag, index) => {
+                                                            return tag.length ? (
+                                                                <View
+                                                                    style={{
+                                                                        color:
+                                                                            index % 2
+                                                                                ? "#0086f6"
+                                                                                : "#F70",
+                                                                    }}
+                                                                    key={index}
+                                                                >
+                                                                    <Text>{tag} </Text>
+                                                                    <Text
+                                                                        style={{
+                                                                            color: "#666",
+                                                                        }}
+                                                                    >
+                                                                        |{" "}
+                                                                    </Text>
+                                                                </View>
+                                                            ) : null;
+                                                        })}
+
                                                     <View>
                                                         <Text style={{ color: "#666" }}>官方</Text>
                                                     </View>

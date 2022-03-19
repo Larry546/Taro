@@ -217,7 +217,7 @@ export default class Index extends PureComponent<any> {
                                                                 item.ticketTag &&
                                                                 item.ticketTag?.length - 1 ===
                                                                     index;
-                                                            return (
+                                                            return tag.length ? (
                                                                 <View
                                                                     style={{
                                                                         color: isLast
@@ -237,7 +237,7 @@ export default class Index extends PureComponent<any> {
                                                                         </Text>
                                                                     ) : null}
                                                                 </View>
-                                                            );
+                                                            ) : null;
                                                         })}
                                                 </View>
                                                 <View
