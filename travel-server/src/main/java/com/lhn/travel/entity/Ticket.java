@@ -19,7 +19,7 @@ import java.math.BigDecimal;
  */
 @Getter
 @Setter
-@TableName("t_ticket" )
+@TableName("t_ticket")
 public class Ticket implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +36,8 @@ public class Ticket implements Serializable {
     private String ticketTag;
 
     private Integer spotId;
+
+    private Integer isDeleted;
 
 
 }

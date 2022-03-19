@@ -54,6 +54,14 @@ public class TicketController {
     public List<Ticket> findBySpot(@PathVariable Integer id) {
         QueryWrapper<Ticket> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("spot_id", id);
+        queryWrapper.eq("is_deleted", 0);
+        return ticketService.list(queryWrapper);
+    }
+
+    @GetMapping("/adminListBySpot/{id}")
+    public List<Ticket> adminFindBySpot(@PathVariable Integer id) {
+        QueryWrapper<Ticket> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("spot_id", id);
         return ticketService.list(queryWrapper);
     }
 }
