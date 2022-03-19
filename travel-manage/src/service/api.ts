@@ -49,3 +49,18 @@ export function deleteUser(userId: number) {
     let url = `/user/delete/${userId}`;
     return http.delete(url);
 }
+
+export function unDeleteUser(userId: number) {
+    let url = `/user/undelete/${userId}`;
+    return http.delete(url);
+}
+
+export function deleteOrder(orderId: number) {
+    let url = `/order/delete/${orderId}`;
+    return http.delete(url);
+}
+
+export function unDeleteOrder(orderId: number) {
+    let url = `/order/undelete/${orderId}`;
+    return http.delete(url);
+}

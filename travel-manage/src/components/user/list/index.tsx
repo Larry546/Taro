@@ -13,7 +13,11 @@ import {
 import { ColumnProps } from "antd/lib/table";
 import React from "react";
 import Highlighter from "react-highlight-words";
-import { getUserList as _getUserList, deleteUser as _deleteUser } from "../../../service/api";
+import {
+    getUserList as _getUserList,
+    deleteUser as _deleteUser,
+    unDeleteUser as _unDeleteUser,
+} from "../../../service/api";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IUserState } from "./interface";
 
@@ -124,6 +128,16 @@ export default class UserList extends React.PureComponent<any> {
         }
     };
 
+    undeleteUser = async (userId: number) => {
+        let res = await _unDeleteUser(userId);
+        if (res) {
+            this.getList();
+            message.success("恢复成功!");
+        } else {
+            message.warn("恢复失败");
+        }
+    };
+
     render() {
         const { userlist } = this.state;
         const columns: ColumnProps<any>[] = [
@@ -187,7 +201,15 @@ export default class UserList extends React.PureComponent<any> {
                             </Space>
                         ) : (
                             <Space size={"middle"}>
-                                <span>已删除</span> <a>恢复</a>
+                                <span>已删除</span>
+                                <Popconfirm
+                                    title={"确定要恢复该用户?"}
+                                    onConfirm={() => {
+                                        this.undeleteUser(record.userId);
+                                    }}
+                                >
+                                    <a>恢复</a>
+                                </Popconfirm>
                             </Space>
                         )}
                     </div>

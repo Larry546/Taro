@@ -1,11 +1,26 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Input, Row, Space, Table as BaseTable } from "antd";
+import {
+    Button,
+    Card,
+    Col,
+    Input,
+    message,
+    Popconfirm,
+    Row,
+    Space,
+    Table as BaseTable,
+} from "antd";
 import Highlighter from "react-highlight-words";
 import { ColumnProps } from "antd/lib/table";
 import React from "react";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IOrderState } from "./interface";
-import { getOrderList as _getOrderList, getOrderPass } from "../../../service/api";
+import {
+    getOrderList as _getOrderList,
+    getOrderPass as _getOrderPass,
+    deleteOrder as _deleteOrder,
+    unDeleteOrder as _unDeleteOrder,
+} from "../../../service/api";
 
 export default class OrderList extends React.PureComponent<any> {
     state: IOrderState;
@@ -106,7 +121,7 @@ export default class OrderList extends React.PureComponent<any> {
     };
 
     getPassenger = async (orderId: number) => {
-        let res = await getOrderPass(orderId);
+        let res = await _getOrderPass(orderId);
         let list = res || [];
         for (let i = 0; i < list.length; i++) {
             list[i].key = i;
@@ -123,6 +138,26 @@ export default class OrderList extends React.PureComponent<any> {
             this.setState({
                 passengerlist: [],
             });
+        }
+    };
+
+    deleteOrder = async (orderId: number) => {
+        let res = await _deleteOrder(orderId);
+        if (res) {
+            this.getOrderList();
+            message.success("删除成功!");
+        } else {
+            message.warn("删除失败");
+        }
+    };
+
+    unDeleteOrder = async (orderId: number) => {
+        let res = await _unDeleteOrder(orderId);
+        if (res) {
+            this.getOrderList();
+            message.success("恢复成功!");
+        } else {
+            message.warn("恢复失败");
         }
     };
 
@@ -195,11 +230,26 @@ export default class OrderList extends React.PureComponent<any> {
                                 >
                                     编辑
                                 </a>{" "}
-                                <a>删除</a>
+                                <Popconfirm
+                                    title={"确定要删除该订单?"}
+                                    onConfirm={() => {
+                                        this.deleteOrder(record.orderId);
+                                    }}
+                                >
+                                    <a>删除</a>
+                                </Popconfirm>
                             </Space>
                         ) : (
                             <Space size={"middle"}>
-                                <span>已删除</span> <a>恢复</a>
+                                <span>已删除</span>
+                                <Popconfirm
+                                    title={"确定要恢复该订单?"}
+                                    onConfirm={() => {
+                                        this.unDeleteOrder(record.orderId);
+                                    }}
+                                >
+                                    <a>恢复</a>
+                                </Popconfirm>
                             </Space>
                         )}
                     </div>

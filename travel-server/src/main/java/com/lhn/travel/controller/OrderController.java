@@ -1,5 +1,6 @@
 package com.lhn.travel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lhn.travel.entity.Order;
 import com.lhn.travel.service.IOrderService;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,18 @@ public class OrderController {
 
     @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
-        return orderService.delete(id);
+        UpdateWrapper<Order> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("order_id", id);
+        updateWrapper.set("is_deleted", 1);
+        return orderService.update(updateWrapper);
+    }
+
+    @DeleteMapping("/undelete/{id}")
+    public Boolean undelete(@PathVariable Integer id) {
+        UpdateWrapper<Order> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("order_id", id);
+        updateWrapper.set("is_deleted", 0);
+        return orderService.update(updateWrapper);
     }
 }
 

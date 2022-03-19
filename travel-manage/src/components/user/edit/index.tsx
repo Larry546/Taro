@@ -77,6 +77,7 @@ export default class UserEdit extends React.PureComponent<any> {
                                             >
                                                 <Input
                                                     value={userAccount}
+                                                    disabled={true}
                                                     onChange={e => {
                                                         this.setState({
                                                             userAccount: e.target.value,

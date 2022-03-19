@@ -42,6 +42,14 @@ public class UserController {
         return userService.update(updateWrapper);
     }
 
+    @DeleteMapping("/undelete/{id}")
+    public Boolean undelete(@PathVariable Integer id) {
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("user_id", id);
+        updateWrapper.set("is_deleted", 0);
+        return userService.update(updateWrapper);
+    }
+
     @GetMapping("/list")
     public List<User> findAll() {
         return userService.list();
