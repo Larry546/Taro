@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -18,7 +19,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@TableName("t_comment" )
+@TableName("t_comment")
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +34,8 @@ public class Comment implements Serializable {
     private Integer userId;
 
     private Integer spotId;
+
+    private LocalDateTime createTime;
 
 
 }
