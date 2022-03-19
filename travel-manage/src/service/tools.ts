@@ -9,7 +9,7 @@ const BASE_URL = "http://localhost:8088";
 class httpRequest {
     get(url: string, msg: string = "接口异常", config?: any) {
         return axios
-            .get(BASE_URL + url, config)
+            .get(BASE_URL + url, { ...config, headers: { token: sessionStorage.getItem("token") } })
             .then(res => res.data)
             .catch(err => {
                 console.log(err);
@@ -19,7 +19,10 @@ class httpRequest {
 
     post(url: string, data?: any, msg: string = "接口异常", config?: any) {
         return axios
-            .post(BASE_URL + url, data, config)
+            .post(BASE_URL + url, data, {
+                ...config,
+                headers: { token: sessionStorage.getItem("token") },
+            })
             .then(res => res.data)
             .catch(err => {
                 console.log(err);
@@ -29,7 +32,10 @@ class httpRequest {
 
     delete(url: string, msg: string = "接口异常", config?: any) {
         return axios
-            .delete(BASE_URL + url, config)
+            .delete(BASE_URL + url, {
+                ...config,
+                headers: { token: sessionStorage.getItem("token") },
+            })
             .then(res => res.data)
             .catch(err => {
                 console.log(err);

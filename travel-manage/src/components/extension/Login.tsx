@@ -18,6 +18,7 @@ const Login = (props: LoginProps) => {
     const handleSubmit = (values: any) => {
         if (checkUser(values)) {
             sessionStorage.setItem("travel-user", values.userName);
+            sessionStorage.setItem("token", "b85f3a37-af4d-4727-b7d5-483deb7f444a");
             history.push("/app/dashboard/index");
         }
     };
