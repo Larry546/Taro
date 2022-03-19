@@ -40,18 +40,19 @@ export default class TicketEdit extends React.PureComponent<any> {
 
     getTicketInfo = async () => {
         let res = await _getTicketInfo(this.ticketId);
+        let info: any = { spotId: this.spotId };
         if (res) {
-            let info = {
+            info = {
                 ticketName: res.ticketName,
                 ticketPrice: res.ticketPrice,
                 ticketRequest: res.ticketRequest,
                 ticketTag: res.ticketTag,
-                spotId: res.spotId || this.spotId,
+                spotId: res.spotId,
             };
-            this.formref.setFieldsValue(info);
-
-            this.setState(info);
         }
+        this.formref.setFieldsValue(info);
+
+        this.setState(info);
     };
 
     submit = async () => {

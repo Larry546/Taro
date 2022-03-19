@@ -250,7 +250,7 @@ export default class SpotList extends React.PureComponent<any> {
                 title: "Action",
                 key: "operation",
                 fixed: "right",
-                width: 150,
+                width: 200,
                 render: (value, record) => (
                     <div>
                         {record.isDeleted === 0 ? (
@@ -266,7 +266,20 @@ export default class SpotList extends React.PureComponent<any> {
                                     }}
                                 >
                                     编辑
-                                </a>{" "}
+                                </a>
+                                <a
+                                    onClick={() => {
+                                        this.props.history.push({
+                                            pathname: "/app/spot/ticket",
+                                            state: {
+                                                spotId: record.spotId,
+                                                ticketId: 0,
+                                            },
+                                        });
+                                    }}
+                                >
+                                    新增门票
+                                </a>
                                 <Popconfirm
                                     title={"确定要删除该景点?"}
                                     onConfirm={() => {
@@ -277,7 +290,10 @@ export default class SpotList extends React.PureComponent<any> {
                                 </Popconfirm>
                             </Space>
                         ) : (
-                            <Space size={"middle"}>
+                            <Space
+                                size={"middle"}
+                                style={{ display: "flex", justifyContent: "center" }}
+                            >
                                 <span>已删除</span>
                                 <Popconfirm
                                     title={"确定要恢复该景点?"}
