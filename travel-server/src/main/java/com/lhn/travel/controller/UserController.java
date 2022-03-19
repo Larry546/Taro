@@ -63,6 +63,7 @@ public class UserController {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_account", account);
         queryWrapper.eq("user_password", password);
+        queryWrapper.eq("is_deleted", 0);
         User resUser = userService.getOne(queryWrapper);
 
         if (resUser != null) {
@@ -86,13 +87,6 @@ public class UserController {
         return true;
     }
 
-    @GetMapping("/findByToken/{token}")
-    public User findByToken(@PathVariable String token) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("token", token);
-        User user = userService.getOne(queryWrapper);
-        return user;
-    }
 
     @PostMapping("/register")
     public Boolean register(@RequestBody User user) {

@@ -41,4 +41,6 @@ public class User implements Serializable {
     private LocalDateTime expireTime;
 
     private LocalDateTime loginTime;
+
+    private Integer isDeleted;
 }

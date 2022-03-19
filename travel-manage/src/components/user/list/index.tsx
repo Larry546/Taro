@@ -139,23 +139,31 @@ export default class UserList extends React.PureComponent<any> {
                 title: "Action",
                 key: "operation",
                 fixed: "right",
-                width: 200,
+                width: 150,
                 render: (value, record) => (
-                    <Space size={"middle"}>
-                        <a
-                            onClick={() => {
-                                this.props.history.push({
-                                    pathname: "/app/user/edit",
-                                    state: {
-                                        userId: record.userId,
-                                    },
-                                });
-                            }}
-                        >
-                            编辑
-                        </a>{" "}
-                        <a>删除</a>
-                    </Space>
+                    <div>
+                        {record.isDeleted === 0 ? (
+                            <Space size={"middle"}>
+                                <a
+                                    onClick={() => {
+                                        this.props.history.push({
+                                            pathname: "/app/user/edit",
+                                            state: {
+                                                userId: record.userId,
+                                            },
+                                        });
+                                    }}
+                                >
+                                    编辑
+                                </a>{" "}
+                                <a>删除</a>
+                            </Space>
+                        ) : (
+                            <Space size={"middle"}>
+                                <span>已删除</span> <a>恢复</a>
+                            </Space>
+                        )}
+                    </div>
                 ),
             },
         ];
