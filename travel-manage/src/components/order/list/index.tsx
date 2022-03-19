@@ -166,38 +166,41 @@ export default class OrderList extends React.PureComponent<any> {
                 title: "spot_id",
                 dataIndex: "spotId",
                 key: "7",
+                width: 100,
             },
             {
                 title: "user_id",
                 dataIndex: "userId",
                 key: "8",
-            },
-            {
-                title: "is_deleted",
-                dataIndex: "isDeleted",
-                key: "9",
+                width: 100,
             },
             {
                 title: "Action",
                 key: "operation",
                 fixed: "right",
-                width: 200,
+                width: 150,
                 render: (value, record) => (
-                    <Space size={"middle"}>
-                        <a
-                            onClick={() => {
-                                this.props.history.push({
-                                    pathname: "/app/order/edit",
-                                    state: {
-                                        orderId: record.orderId,
-                                    },
-                                });
-                            }}
-                        >
-                            编辑
-                        </a>{" "}
-                        <a>删除</a>
-                    </Space>
+                    <div>
+                        {record.isDeleted === 0 ? (
+                            <Space size={"middle"}>
+                                <a
+                                    onClick={() => {
+                                        this.props.history.push({
+                                            pathname: "/app/order/edit",
+                                            state: {
+                                                orderId: record.orderId,
+                                            },
+                                        });
+                                    }}
+                                >
+                                    编辑
+                                </a>{" "}
+                                <a>删除</a>
+                            </Space>
+                        ) : (
+                            <span>该订单已删除</span>
+                        )}
+                    </div>
                 ),
             },
         ];
