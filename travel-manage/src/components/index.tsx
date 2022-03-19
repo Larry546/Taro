@@ -1,5 +1,3 @@
-import Echarts from "./basic-component/charts/Echarts";
-import Recharts from "./basic-component/charts/Recharts";
 import Dashboard from "./dashboard/Dashboard";
 import Env from "./extension/env";
 
@@ -21,8 +19,6 @@ export default {
     OrderEdit,
     UserEdit,
     TicketEdit,
-    Echarts,
-    Recharts,
     Dashboard,
     Env,
 } as any;

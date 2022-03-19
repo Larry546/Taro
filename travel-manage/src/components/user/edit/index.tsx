@@ -1,6 +1,5 @@
 import { Button, Card, Col, Form, Input, Row } from "antd";
 import React from "react";
-import { getTicketInfo as _getTicketInfo } from "../../../service/api";
 import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
 import { IUserEditState } from "./interface";
