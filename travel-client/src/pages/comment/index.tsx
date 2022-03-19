@@ -95,8 +95,8 @@ export default class Index extends PureComponent<any> {
                     <View className="comment_edit">
                         <AtTextarea
                             value={commentText}
-                            onChange={res => {
-                                this.setState({ commentText: res });
+                            onChange={(_, event) => {
+                                this.setState({ commentText: event?.detail.value });
                             }}
                             placeholder={"发表评价，旅途亮点，温馨TIPS。"}
                             height={200}
