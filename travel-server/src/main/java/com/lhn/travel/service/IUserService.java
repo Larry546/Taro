@@ -13,15 +13,11 @@ import com.lhn.travel.entity.User;
  */
 public interface IUserService extends IService<User> {
 
-    Integer veritypswd(String account, String password);
-
     User getByBaseId(Integer id);
 
     String createToken(Integer uid);
 
     void logout(String token);
-
-    User findByToken(String token);
 
     Boolean register(User user);
 }

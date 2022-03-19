@@ -1,5 +1,6 @@
 package com.lhn.travel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lhn.travel.entity.Favorite;
 import com.lhn.travel.service.IFavoriteService;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,11 @@ public class FavoriteController {
 
     @GetMapping("/isFav")
     public Integer isFav(@RequestParam Integer uid, @RequestParam Integer spotId) {
-        return favoriteService.isFav(uid, spotId);
+        QueryWrapper<Favorite> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", uid);
+        queryWrapper.eq("spot_id", spotId);
+        Favorite favorite = favoriteService.getOne(queryWrapper);
+        return favorite == null ? 0 : favorite.getFavoriteId();
     }
 
 }

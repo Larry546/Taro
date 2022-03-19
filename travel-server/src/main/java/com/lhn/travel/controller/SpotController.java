@@ -1,5 +1,6 @@
 package com.lhn.travel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lhn.travel.entity.Spot;
 import com.lhn.travel.service.ISpotService;
 import org.springframework.web.bind.annotation.*;
@@ -51,12 +52,16 @@ public class SpotController {
 
     @GetMapping("/listByType/{type}")
     public List<Spot> findByType(@PathVariable String type) {
-        return spotService.findByType(type);
+        QueryWrapper<Spot> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("spot_type", type);
+        return spotService.list(queryWrapper);
     }
 
     @GetMapping("/listByName/{keyword}")
     public List<Spot> findByName(@PathVariable String keyword) {
-        return spotService.findByName(keyword);
+        QueryWrapper<Spot> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("spot_name", keyword);
+        return spotService.list(queryWrapper);
     }
 
 }

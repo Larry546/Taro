@@ -1,5 +1,6 @@
 package com.lhn.travel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lhn.travel.entity.Ticket;
 import com.lhn.travel.service.ITicketService;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +52,9 @@ public class TicketController {
 
     @GetMapping("/listBySpot/{id}")
     public List<Ticket> findBySpot(@PathVariable Integer id) {
-        return ticketService.findBySpot(id);
+        QueryWrapper<Ticket> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("spot_id", id);
+        return ticketService.list(queryWrapper);
     }
 }
 

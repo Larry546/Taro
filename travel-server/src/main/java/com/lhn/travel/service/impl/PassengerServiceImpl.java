@@ -24,12 +24,6 @@ public class PassengerServiceImpl extends ServiceImpl<PassengerMapper, Passenger
     @Autowired
     PassengerMapper passengerMapper;
 
-    public List<Passenger> findByUser(Integer id) {
-        QueryWrapper<Passenger> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_id", id);
-        queryWrapper.eq("is_deleted", 0);
-        return passengerMapper.selectList(queryWrapper);
-    }
 
     public Boolean delete(Integer id) {
         Passenger passenger = new Passenger();

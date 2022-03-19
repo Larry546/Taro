@@ -1,5 +1,6 @@
 package com.lhn.travel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lhn.travel.entity.Passenger;
 import com.lhn.travel.service.IPassengerService;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,10 @@ public class PassengerController {
 
     @GetMapping("/listByUser/{uid}")
     public List<Passenger> findByUser(@PathVariable Integer uid) {
-        return passengerService.findByUser(uid);
+        QueryWrapper<Passenger> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", uid);
+        queryWrapper.eq("is_deleted", 0);
+        return passengerService.list(queryWrapper);
     }
 
     @DeleteMapping("/delete/{id}")

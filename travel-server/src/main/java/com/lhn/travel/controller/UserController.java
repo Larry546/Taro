@@ -1,5 +1,6 @@
 package com.lhn.travel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lhn.travel.entity.User;
 import com.lhn.travel.service.IUserService;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -59,12 +60,17 @@ public class UserController {
         String account = user.getUserAccount();
         String password = user.getUserPassword();
 
-        Integer res = userService.veritypswd(account, password);
-        if (res != null) {
-            String token = userService.createToken(res);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_account", account);
+        queryWrapper.eq("user_password", password);
+        User resUser = userService.getOne(queryWrapper);
+
+        if (resUser != null) {
+            Integer uid = resUser.getUserId();
+            String token = userService.createToken(uid);
             map.put("code", 1);
             map.put("msg", "登陆成功");
-            map.put("uid", res);
+            map.put("uid", uid);
             map.put("token", token);
         } else {
             map.put("code", 0);
@@ -82,7 +88,9 @@ public class UserController {
 
     @GetMapping("/findByToken/{token}")
     public User findByToken(@PathVariable String token) {
-        User user = userService.findByToken(token);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("token", token);
+        User user = userService.getOne(queryWrapper);
         return user;
     }
 

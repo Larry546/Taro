@@ -1,6 +1,7 @@
 package com.lhn.travel.common.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lhn.travel.common.utils.HttpContextUtil;
 import com.lhn.travel.common.utils.Result;
 import com.lhn.travel.entity.User;
@@ -38,7 +39,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             setReturn(response, 401, "用户未登录，请先登录");
             return false;
         }
-        User user = userService.findByToken(token);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("token", token);
+        User user = userService.getOne(queryWrapper);
         // 若用户不存在,
         if (user == null) {
             setReturn(response, 401, "用户不存在");

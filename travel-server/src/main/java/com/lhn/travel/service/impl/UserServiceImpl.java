@@ -25,13 +25,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Autowired
     UserMapper userMapper;
 
-    public Integer veritypswd(String account, String password) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_account", account);
-        queryWrapper.eq("user_password", password);
-        User user = userMapper.selectOne(queryWrapper);
-        return user.getUserId();
-    }
 
     public User getByBaseId(Integer id) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -73,11 +66,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userMapper.update(user, queryWrapper);
     }
 
-    public User findByToken(String token) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("token", token);
-        return userMapper.selectOne(queryWrapper);
-    }
 
     public Boolean register(User user) {
         String account = user.getUserAccount();

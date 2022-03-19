@@ -17,7 +17,4 @@ public interface ISpotService extends IService<Spot> {
 
     List findByUser(Integer uid);
 
-    List<Spot> findByType(String type);
-
-    List<Spot> findByName(String kw);
 }
