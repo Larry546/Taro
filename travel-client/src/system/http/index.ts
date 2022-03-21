@@ -20,7 +20,12 @@ class httpRequest {
                 token: getToken(),
             },
         };
-        return Taro.request(option);
+        return Taro.request(option).catch(res => {
+            if (res.status === 401) {
+                Taro.setStorageSync("uid", "");
+                Taro.setStorageSync("token", "");
+            }
+        });
     }
 
     get(url, data = "") {

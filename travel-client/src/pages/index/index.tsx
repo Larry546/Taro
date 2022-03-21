@@ -31,6 +31,9 @@ export default class Index extends PureComponent<any> {
 
     getList = async () => {
         let response = await getSpotList(this);
+        if (!response) {
+            return;
+        }
         for (let spot of response) {
             spot.ticketList = await getSpotTicket(this, spot.spotId);
             let spotRate = await getSpotRate(this, spot.spotId);
