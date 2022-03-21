@@ -21,9 +21,9 @@ export default class Index extends PureComponent<any> {
         };
     }
 
-    componentDidMount() {
-        this.getInfo();
-    }
+    // componentDidMount() {
+    //     this.getInfo();
+    // }
 
     componentDidShow() {
         this.setState({ uid: getUser() });

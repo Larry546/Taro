@@ -21,9 +21,9 @@ export default class Index extends PureComponent<any> {
         };
     }
 
-    componentDidMount() {
-        this.getList();
-    }
+    // componentDidMount() {
+    //     this.getList();
+    // }
 
     componentDidShow() {
         this.getList();

@@ -30,13 +30,14 @@ export default class Index extends PureComponent<any> {
         };
     }
 
-    componentDidMount() {
-        this.getInfo();
-        this.getFav();
-    }
+    // componentDidMount() {
+    //     this.getInfo();
+    //     this.getFav();
+    // }
 
     componentDidShow() {
         this.getInfo();
+        this.getFav();
     }
 
     getParams = () => {
@@ -112,7 +113,16 @@ export default class Index extends PureComponent<any> {
     };
 
     goToComment = () => {
-        this.push(`/pages/comment/index?spotId=${this.spotId}`);
+        if (!getUser()) {
+            this.confirm.show({
+                content: "请先登录",
+                btnOK: ["返回", "去登陆"],
+                btnCallBack: [this.goToLogin],
+            });
+            return;
+        } else {
+            this.push(`/pages/comment/index?spotId=${this.spotId}`);
+        }
     };
 
     onChangeFav = async () => {
