@@ -3,7 +3,13 @@ import { View, Text, ScrollView } from "@tarojs/components";
 import { AtList } from "taro-ui";
 import SpotCard from "../../common/spot-card";
 import { IFavState } from "./interface";
-import { deFav, getSpotRate, getSpotTicket, getUserFav, getUserRcmd } from "../../api";
+import {
+    deFav,
+    getRecommend as _getRecommend,
+    getSpotRate,
+    getSpotTicket,
+    getUserFav,
+} from "../../api";
 import SpotItem from "../../common/spot-item";
 
 import "./index.scss";
@@ -47,7 +53,7 @@ export default class Index extends PureComponent<any> {
     };
 
     getRecommend = async () => {
-        let response = await getUserRcmd(this);
+        let response = await _getRecommend(this, "user");
         if (response) {
             for (let spot of response) {
                 spot.ticketList = await getSpotTicket(this, spot.spotId);
@@ -55,10 +61,10 @@ export default class Index extends PureComponent<any> {
                 spot.spotRateNum = spotRate && spotRate.spotRateNum;
                 spot.spotRateScore = spotRate && spotRate.spotRateScore;
             }
-            this.setState({
-                recommendList: response,
-            });
         }
+        this.setState({
+            recommendList: response,
+        });
     };
 
     goToDetail = () => {

@@ -13,7 +13,7 @@ import {
     getSpotTicket,
     isUserFav,
     onFav,
-    getSpotRcmd,
+    getRecommend as _getRecommend,
 } from "../../api";
 import { getUser } from "../../system/tools/user";
 
@@ -81,7 +81,7 @@ export default class Index extends PureComponent<any> {
     };
 
     getRecommend = async () => {
-        let response = await getSpotRcmd(this, this.spotId);
+        let response = await _getRecommend(this, "spot", this.spotId);
         if (response) {
             for (let spot of response) {
                 spot.ticketList = await getSpotTicket(this, spot.spotId);
@@ -89,10 +89,10 @@ export default class Index extends PureComponent<any> {
                 spot.spotRateNum = spotRate && spotRate.spotRateNum;
                 spot.spotRateScore = spotRate && spotRate.spotRateScore;
             }
-            this.setState({
-                recommendList: response,
-            });
         }
+        this.setState({
+            recommendList: response,
+        });
     };
 
     onCloseIntro = () => {

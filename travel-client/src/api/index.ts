@@ -146,14 +146,22 @@ export function saveUser(target, userInfo) {
     return target.http.post("/user/save", userInfo);
 }
 
-export function getUserRcmd(target) {
-    let uid = getUser();
-    if (!uid) {
-        return [];
+export function getRecommend(target, type: string, spotId?: number) {
+    let data = {};
+    if (type === "user") {
+        let uid = getUser();
+        if (!uid) {
+            return [];
+        }
+        data = {
+            id: uid,
+            type: type,
+        };
+    } else if (type === "spot") {
+        data = {
+            id: spotId,
+            type: type,
+        };
     }
-    return target.http.get(`/recommend/user/${uid}`);
-}
-
-export function getSpotRcmd(target, spotId) {
-    return target.http.get(`/recommend/spot/${spotId}`);
+    return target.http.get(`/recommend/get`, data);
 }
