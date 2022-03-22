@@ -119,6 +119,16 @@
             font-weight: 600;
             margin-bottom: 30px;
         }
+        &_info {
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            &_mleft:nth-child(even) {
+                margin-left: 6px;
+            }
+            &_mright:nth-child(odd) {
+                margin-right: 6px;
+            }
+        }
     }
     &_footer {
         position: fixed;

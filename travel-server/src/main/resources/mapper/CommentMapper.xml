@@ -8,4 +8,13 @@
         from t_comment
         where spot_id = #{id}
     </select>
+
+
+    <select id="getUserRate" resultType="com.lhn.travel.entity.Rate">
+
+        SELECT spot_id as spotId, AVG(comment_rate) as AVGRate, user_id as userId
+        from t_comment
+        WHERE user_id = #{userId}
+        GROUP BY spot_id
+    </select>
 </mapper>

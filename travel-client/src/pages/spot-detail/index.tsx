@@ -6,10 +6,19 @@ import H5NavBar from "../../common/h5NavBar";
 import Image from "../../common/base-component/image";
 import Icon from "../../common/base-component/icon";
 import { ISpotState } from "./interface";
-import { deFav, getSpotInfo, getSpotRate, getSpotTicket, isUserFav, onFav } from "../../api";
+import {
+    deFav,
+    getSpotInfo,
+    getSpotRate,
+    getSpotTicket,
+    isUserFav,
+    onFav,
+    getSpotRcmd,
+} from "../../api";
 import { getUser } from "../../system/tools/user";
 
 import "./index.scss";
+import SpotItem from "../../common/spot-item";
 
 definePageConfig({
     navigationBarTitleText: "景点详情",
@@ -27,6 +36,7 @@ export default class Index extends PureComponent<any> {
             introOpen: false,
             requestOpen: false,
             ticket: {},
+            recommendList: [],
         };
     }
 
@@ -38,6 +48,7 @@ export default class Index extends PureComponent<any> {
     componentDidShow() {
         this.getInfo();
         this.getFav();
+        this.getRecommend();
     }
 
     getParams = () => {
@@ -67,6 +78,21 @@ export default class Index extends PureComponent<any> {
         this.setState({
             isFav: isFav,
         });
+    };
+
+    getRecommend = async () => {
+        let response = await getSpotRcmd(this, this.spotId);
+        if (response) {
+            for (let spot of response) {
+                spot.ticketList = await getSpotTicket(this, spot.spotId);
+                let spotRate = await getSpotRate(this, spot.spotId);
+                spot.spotRateNum = spotRate && spotRate.spotRateNum;
+                spot.spotRateScore = spotRate && spotRate.spotRateScore;
+            }
+            this.setState({
+                recommendList: response,
+            });
+        }
     };
 
     onCloseIntro = () => {
@@ -150,7 +176,7 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
-        const { spotInfo, introOpen, isFav, requestOpen, ticket } = this.state;
+        const { spotInfo, introOpen, isFav, requestOpen, ticket, recommendList } = this.state;
         return (
             <View className="spotdetail">
                 <H5NavBar />
@@ -287,13 +313,25 @@ export default class Index extends PureComponent<any> {
                             <Text>该景点暂无门票可售</Text>
                         </View>
                     )}
-
-                    <View className="spotdetail_recommend">
-                        <View className="spotdetail_recommend_title">
-                            <Text>景点推荐</Text>
+                    {recommendList && recommendList.length ? (
+                        <View className="spotdetail_recommend">
+                            <View className="spotdetail_recommend_title">
+                                <Text>景点推荐</Text>
+                            </View>
+                            <View className="spotdetail_recommend_info">
+                                {recommendList.map((item, index) => {
+                                    return (
+                                        <View
+                                            className="spotdetail_recommend_info_mleft spotdetail_recommend_info_mright"
+                                            key={index}
+                                        >
+                                            <SpotItem spotInfo={item} />
+                                        </View>
+                                    );
+                                })}
+                            </View>
                         </View>
-                        {/* todo 相似景点推荐部分 */}
-                    </View>
+                    ) : null}
                 </ScrollView>
                 <View className="spotdetail_footer">
                     <View className="spotdetail_footer_left">

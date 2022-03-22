@@ -31,6 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
         patterns.add("/spot/listByType/**");
         patterns.add("/spot/listByName/**");
         patterns.add("/spot/listByUser/**");
+        patterns.add("/recommend/spot/**");
 
         registry.addInterceptor(loginInterceptor()).addPathPatterns("/**").excludePathPatterns(patterns);
     }

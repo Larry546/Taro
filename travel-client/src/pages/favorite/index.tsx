@@ -3,7 +3,8 @@ import { View, Text, ScrollView } from "@tarojs/components";
 import { AtList } from "taro-ui";
 import SpotCard from "../../common/spot-card";
 import { IFavState } from "./interface";
-import { deFav, getSpotRate, getUserFav } from "../../api";
+import { deFav, getSpotRate, getSpotTicket, getUserFav, getUserRcmd } from "../../api";
+import SpotItem from "../../common/spot-item";
 
 import "./index.scss";
 
@@ -18,6 +19,7 @@ export default class Index extends PureComponent<any> {
         super(props);
         this.state = {
             spotList: [],
+            recommendList: [],
         };
     }
 
@@ -27,6 +29,7 @@ export default class Index extends PureComponent<any> {
 
     componentDidShow() {
         this.getList();
+        this.getRecommend();
     }
 
     getList = async () => {
@@ -41,6 +44,21 @@ export default class Index extends PureComponent<any> {
         this.setState({
             spotList: response,
         });
+    };
+
+    getRecommend = async () => {
+        let response = await getUserRcmd(this);
+        if (response) {
+            for (let spot of response) {
+                spot.ticketList = await getSpotTicket(this, spot.spotId);
+                let spotRate = await getSpotRate(this, spot.spotId);
+                spot.spotRateNum = spotRate && spotRate.spotRateNum;
+                spot.spotRateScore = spotRate && spotRate.spotRateScore;
+            }
+            this.setState({
+                recommendList: response,
+            });
+        }
     };
 
     goToDetail = () => {
@@ -64,7 +82,7 @@ export default class Index extends PureComponent<any> {
     };
 
     render() {
-        const { spotList } = this.state;
+        const { spotList, recommendList } = this.state;
         return (
             <View className="favorite">
                 <ScrollView scrollY className="favorite_wrap">
@@ -97,13 +115,25 @@ export default class Index extends PureComponent<any> {
                             <Text>没有收藏,美好的事物值得收藏</Text>
                         </View>
                     )}
-                    <View className="favorite_recommend">
-                        <View className="favorite_recommend_title">
-                            <Text>猜你喜欢</Text>
+                    {recommendList && recommendList.length ? (
+                        <View className="favorite_recommend">
+                            <View className="favorite_recommend_title">
+                                <Text>猜你喜欢</Text>
+                            </View>
+                            <View className="favorite_recommend_info">
+                                {recommendList.map((item, index) => {
+                                    return (
+                                        <View
+                                            className="favorite_recommend_info_mleft favorite_recommend_info_mright"
+                                            key={index}
+                                        >
+                                            <SpotItem spotInfo={item} />
+                                        </View>
+                                    );
+                                })}
+                            </View>
                         </View>
-
-                        {/* todo 猜你喜欢景点推荐部分， */}
-                    </View>
+                    ) : null}
                 </ScrollView>
             </View>
         );

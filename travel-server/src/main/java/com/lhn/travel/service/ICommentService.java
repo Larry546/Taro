@@ -2,7 +2,9 @@ package com.lhn.travel.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lhn.travel.entity.Comment;
+import com.lhn.travel.entity.Rate;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,4 +17,6 @@ import java.util.Map;
  */
 public interface ICommentService extends IService<Comment> {
     Map getrateBySpot(Integer id);
+
+    List<Rate> getUserRate(Integer userId);
 }

@@ -145,3 +145,15 @@ export function saveUser(target, userInfo) {
     userInfo.userId = uid;
     return target.http.post("/user/save", userInfo);
 }
+
+export function getUserRcmd(target) {
+    let uid = getUser();
+    if (!uid) {
+        return [];
+    }
+    return target.http.get(`/recommend/user/${uid}`);
+}
+
+export function getSpotRcmd(target, spotId) {
+    return target.http.get(`/recommend/spot/${spotId}`);
+}
