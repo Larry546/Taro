@@ -142,30 +142,30 @@ export default class UserList extends React.PureComponent<any> {
         const { userlist } = this.state;
         const columns: ColumnProps<any>[] = [
             {
-                title: "user_id",
+                title: "用户ID",
                 dataIndex: "userId",
                 key: "1",
                 fixed: "left",
                 width: 100,
             },
             {
-                title: "user_account",
+                title: "用户名",
                 dataIndex: "userAccount",
                 key: "2",
                 ...this.getColumnSearchProps("userAccount"),
             },
             {
-                title: "user_password",
+                title: "密码",
                 dataIndex: "userPassword",
                 key: "3",
             },
             {
-                title: "user_nickname",
+                title: "昵称",
                 dataIndex: "userNickname",
                 key: "4",
             },
             {
-                title: "user_contact",
+                title: "联系方式",
                 dataIndex: "userContact",
                 key: "5",
             },

@@ -187,42 +187,42 @@ export default class SpotList extends React.PureComponent<any> {
 
         const columns: ColumnProps<any>[] = [
             {
-                title: "spot_id",
+                title: "景点ID",
                 dataIndex: "spotId",
                 key: "1",
                 fixed: "left",
                 width: 100,
             },
             {
-                title: "spot_name",
+                title: "景点名",
                 dataIndex: "spotName",
                 key: "2",
                 ...this.getColumnSearchProps("spotName"),
             },
             {
-                title: "spot_address",
+                title: "景点地址",
                 dataIndex: "spotAddress",
                 key: "3",
             },
             {
-                title: "spot_openhour",
+                title: "开放时间",
                 dataIndex: "spotOpenhour",
                 key: "4",
                 width: 100,
             },
             {
-                title: "spot_offhour",
+                title: "关闭时间",
                 dataIndex: "spotOffhour",
                 key: "5",
                 width: 100,
             },
             {
-                title: "spot_imageURL",
+                title: "图片URL",
                 dataIndex: "spotImageurl",
                 key: "6",
             },
             {
-                title: "spot_type",
+                title: "类型",
                 dataIndex: "spotType",
                 key: "7",
                 filters: [
@@ -238,11 +238,15 @@ export default class SpotList extends React.PureComponent<any> {
                         text: "动植物园",
                         value: "动植物园",
                     },
+                    {
+                        text: "其他",
+                        value: "其他",
+                    },
                 ],
                 onFilter: (value: any, record: any) => record.spotType.indexOf(value) === 0,
             },
             {
-                title: "spot_intro",
+                title: "简介",
                 dataIndex: "spotIntro",
                 key: "8",
             },
@@ -311,11 +315,11 @@ export default class SpotList extends React.PureComponent<any> {
         ];
 
         const ticketcolums = [
-            { title: "ticket_id", dataIndex: "ticketId", key: "1", width: 100 },
-            { title: "ticket_name", dataIndex: "ticketName", key: "2" },
-            { title: "ticket_price", dataIndex: "ticketPrice", key: "3" },
-            { title: "ticket_request", dataIndex: "ticketRequest", key: "4" },
-            { title: "ticket_tag", dataIndex: "ticketTag", key: "5" },
+            { title: "门票ID", dataIndex: "ticketId", key: "1", width: 100 },
+            { title: "票名", dataIndex: "ticketName", key: "2" },
+            { title: "价格", dataIndex: "ticketPrice", key: "3" },
+            { title: "要求", dataIndex: "ticketRequest", key: "4" },
+            { title: "标签", dataIndex: "ticketTag", key: "5" },
             {
                 title: "Action",
                 key: "operation",

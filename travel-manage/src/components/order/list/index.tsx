@@ -165,46 +165,47 @@ export default class OrderList extends React.PureComponent<any> {
         const { orderlist, passengerlist } = this.state;
         const columns: ColumnProps<any>[] = [
             {
-                title: "order_id",
+                title: "订单ID",
                 dataIndex: "orderId",
                 key: "1",
                 fixed: "left",
                 width: 100,
             },
             {
-                title: "order_usetime",
+                title: "使用时间",
                 dataIndex: "orderUsetime",
                 key: "2",
                 ...this.getColumnSearchProps("orderUsetime"),
             },
             {
-                title: "order_total",
+                title: "总额",
                 dataIndex: "orderTotal",
                 key: "3",
+                width: 200,
             },
             {
-                title: "order_status",
+                title: "订单状态",
                 dataIndex: "orderStatus",
                 key: "4",
             },
             {
-                title: "order_contact",
+                title: "联系方式",
                 dataIndex: "orderContact",
                 key: "5",
             },
             {
-                title: "order_createtime",
+                title: "创单时间",
                 dataIndex: "orderCreatetime",
                 key: "6",
             },
             {
-                title: "spot_id",
+                title: "景点ID",
                 dataIndex: "spotId",
                 key: "7",
                 width: 100,
             },
             {
-                title: "user_id",
+                title: "用户ID",
                 dataIndex: "userId",
                 key: "8",
                 width: 100,
@@ -259,40 +260,40 @@ export default class OrderList extends React.PureComponent<any> {
 
         const passengerColumns = [
             {
-                title: "ticket_id",
+                title: "门票ID",
                 dataIndex: "ticketId",
                 key: "1",
                 width: 100,
             },
             {
-                title: "ticket_name",
+                title: "门票名",
                 dataIndex: "ticketName",
                 key: "2",
             },
             {
-                title: "passenger_id",
+                title: "出行人ID",
                 dataIndex: "passengerId",
                 key: "3",
                 width: 100,
             },
             {
-                title: "passenger_name",
+                title: "出行人姓名",
                 dataIndex: "passengerName",
                 key: "4",
             },
             {
-                title: "passenger_number",
+                title: "出行人证件号码",
                 dataIndex: "passengerNumber",
                 key: "5",
             },
             {
-                title: "passenger_sex",
+                title: "出行人性别",
                 dataIndex: "passengerSex",
                 key: "6",
-                width: 100,
+                width: 200,
             },
             {
-                title: "passenger_birth",
+                title: "出行人出生日期",
                 dataIndex: "passengerBirth",
                 key: "7",
             },
