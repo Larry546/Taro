@@ -85,5 +85,10 @@ public class SpotController {
         return spotService.list(queryWrapper);
     }
 
+    @GetMapping("/count")
+    public Long getCount() {
+        return spotService.count();
+    }
+
 }
 

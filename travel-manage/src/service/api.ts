@@ -104,3 +104,23 @@ export function saveTicket(ticketInfo: Object) {
     let url = "/ticket/save";
     return http.post(url, ticketInfo);
 }
+
+export function getSpotCount() {
+    let url = "/spot/count";
+    return http.get(url);
+}
+
+export function getUserCount() {
+    let url = "/user/count";
+    return http.get(url);
+}
+
+export function getTicketCount() {
+    let url = "/ticket/count";
+    return http.get(url);
+}
+
+export function getOrderCount() {
+    let url = "/order/count";
+    return http.get(url);
+}

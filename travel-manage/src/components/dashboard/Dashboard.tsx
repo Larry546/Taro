@@ -3,15 +3,58 @@ import { Row, Col, Card, Timeline } from "antd";
 import BreadcrumbCustom from "../basic-component/widget/BreadcrumbCustom";
 import EchartsViews from "./EchartsViews";
 import {
-    CameraOutlined,
-    CloudOutlined,
-    HeartOutlined,
-    MailOutlined,
+    EnvironmentOutlined,
+    CreditCardOutlined,
+    UserOutlined,
+    FileDoneOutlined,
     SyncOutlined,
 } from "@ant-design/icons";
 
-class Dashboard extends React.Component {
+import {
+    getSpotCount as _getSpotCount,
+    getUserCount as _getUserCount,
+    getTicketCount as _getTicketCount,
+    getOrderCount as _getOrderCount,
+} from "../../service/api";
+
+interface State {
+    spotNum: number;
+    ticketNum: number;
+    userNum: number;
+    orderNum: number;
+}
+
+export default class Dashboard extends React.PureComponent {
+    state: State;
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            spotNum: 0,
+            ticketNum: 0,
+            userNum: 0,
+            orderNum: 0,
+        };
+    }
+
+    componentDidMount() {
+        this.getNum();
+    }
+
+    getNum = async () => {
+        let spotNum = await _getSpotCount();
+        let ticketNum = await _getTicketCount();
+        let userNum = await _getUserCount();
+        let orderNum = await _getOrderCount();
+        this.setState({
+            spotNum,
+            ticketNum,
+            userNum,
+            orderNum,
+        });
+    };
+
     render() {
+        const { spotNum, ticketNum, userNum, orderNum } = this.state;
         return (
             <div className="gutter-example button-demo">
                 <BreadcrumbCustom />
@@ -21,11 +64,11 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <HeartOutlined className="text-2x text-danger" />
+                                        <EnvironmentOutlined className="text-2x text-blue" />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">收藏</div>
-                                        <h2>301</h2>
+                                        <div className="text-muted">景点</div>
+                                        <h2>{spotNum}</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -34,11 +77,11 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <CloudOutlined type="cloud" className="text-2x" />
+                                        <UserOutlined type="cloud" className="text-2x" />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">云数据</div>
-                                        <h2>30122</h2>
+                                        <div className="text-muted">用户</div>
+                                        <h2>{userNum}</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -49,11 +92,11 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <CameraOutlined className="text-2x text-info" />
+                                        <CreditCardOutlined className="text-2x text-dark" />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">照片</div>
-                                        <h2>802</h2>
+                                        <div className="text-muted">门票</div>
+                                        <h2>{ticketNum}</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -62,11 +105,11 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <MailOutlined className="text-2x text-success" />
+                                        <FileDoneOutlined className="text-2x text-success" />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">邮件</div>
-                                        <h2>102</h2>
+                                        <div className="text-muted">订单</div>
+                                        <h2>{orderNum}</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -79,24 +122,19 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="pb-m">
                                     <h3>任务</h3>
-                                    <small>10个已经完成，2个待完成，1个正在进行中</small>
+                                    <small>10个已经完成，2个待完成</small>
                                 </div>
                                 <span className="card-tool">
                                     <SyncOutlined />
                                 </span>
                                 <Timeline>
-                                    <Timeline.Item color="green">新版本迭代会</Timeline.Item>
-                                    <Timeline.Item color="green">完成网站设计初版</Timeline.Item>
-                                    <Timeline.Item color="red">
+                                    <Timeline.Item color="green">系统设计</Timeline.Item>
+                                    <Timeline.Item color="green">系统实现</Timeline.Item>
+                                    <Timeline.Item color="green">
                                         <p>联调接口</p>
                                         <p>功能验收</p>
                                     </Timeline.Item>
-
-                                    <Timeline.Item color="#108ee9">
-                                        <p>登录功能设计</p>
-                                        <p>权限验证</p>
-                                        <p>页面排版</p>
-                                    </Timeline.Item>
+                                    <Timeline.Item color="red">访问量统计</Timeline.Item>
                                 </Timeline>
                             </Card>
                         </div>
@@ -105,7 +143,7 @@ class Dashboard extends React.Component {
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <div className="pb-m">
-                                    <h3>访问量统计</h3>
+                                    <h3>访问量统计（假数据）</h3>
                                     <small>最近7天用户访问量</small>
                                 </div>
                                 <span className="card-tool">
@@ -120,5 +158,3 @@ class Dashboard extends React.Component {
         );
     }
 }
-
-export default Dashboard;

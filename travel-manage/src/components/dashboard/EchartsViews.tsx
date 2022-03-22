@@ -30,13 +30,13 @@ const option = {
     xAxis: {
         type: "category",
         data: [
-            "2017-05-01",
-            "2017-05-02",
-            "2017-05-03",
-            "2017-05-04",
-            "2017-05-05",
-            "2017-05-06",
-            "2017-05-07",
+            "2022-04-01",
+            "2022-04-02",
+            "2022-04-03",
+            "2022-04-04",
+            "2022-04-05",
+            "2022-04-06",
+            "2022-04-07",
         ],
         boundaryGap: false,
         splitLine: {
@@ -85,13 +85,12 @@ const option = {
     },
     series: [
         {
-            name: "昨日",
             type: "line",
             smooth: true,
             showSymbol: false,
             symbol: "circle",
             symbolSize: 6,
-            data: ["1200", "1400", "808", "811", "626", "488", "1600"],
+            data: ["200", "300", "103", "222", "158", "488", "89"],
             areaStyle: {
                 normal: {
                     color: new echarts.graphic.LinearGradient(

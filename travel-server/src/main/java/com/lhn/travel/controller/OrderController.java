@@ -65,5 +65,10 @@ public class OrderController {
         updateWrapper.set("is_deleted", 0);
         return orderService.update(updateWrapper);
     }
+
+    @GetMapping("/count")
+    public Long getCount() {
+        return orderService.count();
+    }
 }
 

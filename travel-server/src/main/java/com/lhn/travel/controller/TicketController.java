@@ -77,5 +77,10 @@ public class TicketController {
         queryWrapper.eq("spot_id", id);
         return ticketService.list(queryWrapper);
     }
+
+    @GetMapping("/count")
+    public Long getCount() {
+        return ticketService.count();
+    }
 }
 

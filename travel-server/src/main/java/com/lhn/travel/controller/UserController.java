@@ -104,5 +104,10 @@ public class UserController {
     public Boolean register(@RequestBody User user) {
         return userService.register(user);
     }
+
+    @GetMapping("/count")
+    public Long getCount() {
+        return userService.count();
+    }
 }
 
