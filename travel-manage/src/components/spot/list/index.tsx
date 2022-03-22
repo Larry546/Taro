@@ -197,6 +197,7 @@ export default class SpotList extends React.PureComponent<any> {
                 title: "景点名",
                 dataIndex: "spotName",
                 key: "2",
+                width: 200,
                 ...this.getColumnSearchProps("spotName"),
             },
             {
@@ -225,6 +226,7 @@ export default class SpotList extends React.PureComponent<any> {
                 title: "类型",
                 dataIndex: "spotType",
                 key: "7",
+                width: 200,
                 filters: [
                     {
                         text: "主题乐园",
