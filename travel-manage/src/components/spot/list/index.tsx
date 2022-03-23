@@ -222,7 +222,7 @@ export default class SpotList extends React.PureComponent<any> {
                 dataIndex: "spotId",
                 key: "1",
                 fixed: "left",
-                width: 100,
+                width: 80,
             },
             {
                 title: "景点名",
@@ -257,7 +257,7 @@ export default class SpotList extends React.PureComponent<any> {
                 title: "类型",
                 dataIndex: "spotType",
                 key: "7",
-                width: 200,
+                width: 150,
                 filters: [
                     {
                         text: "主题乐园",
@@ -287,7 +287,7 @@ export default class SpotList extends React.PureComponent<any> {
                 title: "QRCode",
                 key: "code",
                 fixed: "right",
-                width: 150,
+                width: 100,
                 render: (_, record) => (
                     <Space size={"middle"}>
                         <a
@@ -372,7 +372,7 @@ export default class SpotList extends React.PureComponent<any> {
         ];
 
         const ticketcolums = [
-            { title: "门票ID", dataIndex: "ticketId", key: "1", width: 100 },
+            { title: "门票ID", dataIndex: "ticketId", key: "1", width: 80 },
             { title: "票名", dataIndex: "ticketName", key: "2" },
             { title: "价格", dataIndex: "ticketPrice", key: "3" },
             { title: "要求", dataIndex: "ticketRequest", key: "4" },

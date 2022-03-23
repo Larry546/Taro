@@ -146,7 +146,7 @@ export default class UserList extends React.PureComponent<any> {
                 dataIndex: "userId",
                 key: "1",
                 fixed: "left",
-                width: 100,
+                width: 80,
             },
             {
                 title: "用户名",

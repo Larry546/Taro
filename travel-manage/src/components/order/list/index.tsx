@@ -169,7 +169,7 @@ export default class OrderList extends React.PureComponent<any> {
                 dataIndex: "orderId",
                 key: "1",
                 fixed: "left",
-                width: 100,
+                width: 80,
             },
             {
                 title: "使用时间",
@@ -278,7 +278,7 @@ export default class OrderList extends React.PureComponent<any> {
                 title: "门票ID",
                 dataIndex: "ticketId",
                 key: "1",
-                width: 100,
+                width: 80,
             },
             {
                 title: "门票名",
@@ -289,7 +289,7 @@ export default class OrderList extends React.PureComponent<any> {
                 title: "出行人ID",
                 dataIndex: "passengerId",
                 key: "3",
-                width: 100,
+                width: 80,
             },
             {
                 title: "出行人姓名",
