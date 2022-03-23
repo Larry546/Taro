@@ -253,6 +253,18 @@ export default class SpotList extends React.PureComponent<any> {
                 key: "8",
             },
             {
+                title: "QRCode",
+                key: "code",
+                fixed: "right",
+                width: 150,
+                render: () => (
+                    <Space size={"middle"}>
+                        <a>H5</a>
+                        <a>微信</a>
+                    </Space>
+                ),
+            },
+            {
                 title: "Action",
                 key: "operation",
                 fixed: "right",

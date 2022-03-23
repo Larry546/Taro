@@ -187,6 +187,21 @@ export default class OrderList extends React.PureComponent<any> {
                 title: "订单状态",
                 dataIndex: "orderStatus",
                 key: "4",
+                filters: [
+                    {
+                        text: "待支付",
+                        value: "待支付",
+                    },
+                    {
+                        text: "未使用",
+                        value: "未使用",
+                    },
+                    {
+                        text: "待评价",
+                        value: "待评价",
+                    },
+                ],
+                onFilter: (value: any, record: any) => record.orderStatus.indexOf(value) === 0,
             },
             {
                 title: "联系方式",

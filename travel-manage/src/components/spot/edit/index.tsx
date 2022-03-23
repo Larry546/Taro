@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, Input, message, Row, TimePicker } from "antd";
+import { Button, Card, Col, Form, Input, message, Row, Select, TimePicker } from "antd";
 import moment from "moment";
 import React from "react";
 import { getSpotInfo as _getSpotInfo, saveSpot as _saveSpot } from "../../../service/api";
@@ -7,6 +7,7 @@ import { ISpotEditState } from "./interfacet";
 import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
 
 const Item = Form.Item;
+const Option = Select.Option;
 
 export default class SpotEdit extends React.PureComponent<any> {
     state: ISpotEditState;
@@ -178,14 +179,19 @@ export default class SpotEdit extends React.PureComponent<any> {
                                             label={"景点类型"}
                                             rules={[{ required: true, message: "请输入景点类型!" }]}
                                         >
-                                            <Input
+                                            <Select
                                                 value={spotType}
-                                                onChange={e => {
+                                                onChange={value => {
                                                     this.setState({
-                                                        spotType: e.target.value,
+                                                        spotType: value,
                                                     });
                                                 }}
-                                            />
+                                            >
+                                                <Option value={"主题乐园"}>主题乐园</Option>
+                                                <Option value={"动植物园"}>动植物园</Option>
+                                                <Option value={"城市观光"}>城市观光</Option>
+                                                <Option value={"其他"}>其他</Option>
+                                            </Select>
                                         </Item>
                                         <Item
                                             name={"spotIntro"}

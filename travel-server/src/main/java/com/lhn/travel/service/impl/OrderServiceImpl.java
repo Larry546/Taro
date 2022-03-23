@@ -30,7 +30,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                 ctype = "待支付";
                 break;
             case 2:
-                ctype = "未使用使用";
+                ctype = "未使用";
                 break;
             case 3:
                 ctype = "待评价";

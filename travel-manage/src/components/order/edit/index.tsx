@@ -1,4 +1,4 @@
-import { Button, Card, Col, DatePicker, Form, Input, message, Row } from "antd";
+import { Button, Card, Col, DatePicker, Form, Input, message, Row, Select } from "antd";
 import React from "react";
 import { formItemLayout, tailFormItemLayout } from "../../basic-component/form";
 import BreadcrumbCustom from "../../basic-component/widget/BreadcrumbCustom";
@@ -7,6 +7,7 @@ import { getOrderInfo as _getOrderInfo, updateOrder as _updateOrder } from "../.
 import moment from "moment";
 
 const Item = Form.Item;
+const Option = Select.Option;
 
 export default class OrderEdit extends React.PureComponent<any> {
     state: IOrderEditState;
@@ -130,14 +131,18 @@ export default class OrderEdit extends React.PureComponent<any> {
                                                     { required: true, message: "请输入订单状态!" },
                                                 ]}
                                             >
-                                                <Input
+                                                <Select
                                                     value={orderStatus}
-                                                    onChange={e => {
+                                                    onChange={value => {
                                                         this.setState({
-                                                            orderStatus: e.target.value,
+                                                            orderStatus: value,
                                                         });
                                                     }}
-                                                />
+                                                >
+                                                    <Option value={"待支付"}>待支付</Option>
+                                                    <Option value={"未使用"}>未使用</Option>
+                                                    <Option value={"待评价"}>待评价</Option>
+                                                </Select>
                                             </Item>
                                             <Item
                                                 name={"orderContact"}
