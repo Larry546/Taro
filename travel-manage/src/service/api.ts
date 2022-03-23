@@ -124,3 +124,13 @@ export function getOrderCount() {
     let url = "/order/count";
     return http.get(url);
 }
+
+export function getWeAppQRCode(spotId: number) {
+    let url = `/qrcode/weapp/${spotId}`;
+    return http.get(url);
+}
+
+export function getH5QRCode(spotId: number) {
+    let url = `/qrcode/h5/${spotId}`;
+    return http.get(url);
+}

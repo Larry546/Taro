@@ -5,6 +5,7 @@ import {
     Col,
     Input,
     message,
+    Modal,
     Popconfirm,
     Row,
     Space,
@@ -22,6 +23,8 @@ import {
     unDeleteSpot as _unDeleteSpot,
     deleteTicket as _deleteTicket,
     unDeleteTicket as _unDeleteTicket,
+    getWeAppQRCode as _getWeAppQRCode,
+    getH5QRCode as _getH5QRCode,
 } from "../../../service/api";
 
 export default class SpotList extends React.PureComponent<any> {
@@ -34,6 +37,9 @@ export default class SpotList extends React.PureComponent<any> {
             ticketlist: [],
             searchText: "",
             searchedColumn: "",
+            QRCodeModalVisible: false,
+            QRCodeImage: "",
+            QRCodeTitle: "",
         };
     }
 
@@ -182,8 +188,33 @@ export default class SpotList extends React.PureComponent<any> {
         }
     };
 
+    onClodeQRModal = () => {
+        this.setState({
+            QRCodeModalVisible: false,
+            QRCodeImage: "",
+            QRCodeTitle: "",
+        });
+    };
+
+    onOpenQRModal = async (type: string, spotId: number, spotName: string) => {
+        let url = "";
+        let title = `${spotName} ${type}二维码`;
+        if (type === "H5") {
+            let response = await _getH5QRCode(spotId);
+            url = response;
+        } else if (type === "WeApp") {
+            let response = await _getWeAppQRCode(spotId);
+            url = response;
+        }
+        this.setState({
+            QRCodeModalVisible: true,
+            QRCodeImage: url,
+            QRCodeTitle: title,
+        });
+    };
+
     render() {
-        const { spotlist, ticketlist } = this.state;
+        const { spotlist, ticketlist, QRCodeModalVisible, QRCodeImage, QRCodeTitle } = this.state;
 
         const columns: ColumnProps<any>[] = [
             {
@@ -257,10 +288,22 @@ export default class SpotList extends React.PureComponent<any> {
                 key: "code",
                 fixed: "right",
                 width: 150,
-                render: () => (
+                render: (_, record) => (
                     <Space size={"middle"}>
-                        <a>H5</a>
-                        <a>微信</a>
+                        <a
+                            onClick={() => {
+                                this.onOpenQRModal("H5", record.spotId, record.spotName);
+                            }}
+                        >
+                            H5
+                        </a>
+                        <a
+                            onClick={() => {
+                                this.onOpenQRModal("WeApp", record.spotId, record.spotName);
+                            }}
+                        >
+                            微信
+                        </a>
                     </Space>
                 ),
             },
@@ -433,6 +476,16 @@ export default class SpotList extends React.PureComponent<any> {
                         </div>
                     </Col>
                 </Row>
+                <Modal
+                    title={QRCodeTitle}
+                    visible={QRCodeModalVisible}
+                    okText={"好的"}
+                    cancelText={"返回"}
+                    onCancel={this.onClodeQRModal}
+                    onOk={this.onClodeQRModal}
+                >
+                    <img src={QRCodeImage} />
+                </Modal>
             </div>
         );
     }
