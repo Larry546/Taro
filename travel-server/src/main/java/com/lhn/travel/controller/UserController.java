@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lhn.travel.entity.User;
 import com.lhn.travel.service.IUserService;
-import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -66,7 +65,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Map login(@RequestBody User user) throws JSONException {
+    public Map login(@RequestBody User user) {
         Map map = new HashMap<>();
 
         String account = user.getUserAccount();
