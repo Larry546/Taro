@@ -4,7 +4,7 @@
 import axios from "axios";
 import { message } from "antd";
 
-const BASE_URL = "http://localhost:8088";
+const BASE_URL = "http://8.130.27.164:8088";
 
 class httpRequest {
     get(url: string, msg: string = "接口异常", config?: any) {

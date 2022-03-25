@@ -59,7 +59,7 @@ public class QRCodeController {
     public String getH5(@PathVariable Integer spotId) {
         String res = null;
         try {
-            String url = "https://api.pwmqr.com/qrcode/create/?url=http%3A%2F%2Flocalhost%3A8086%2F%23%2Fpages%2Fspot-detail%2Findex%3FspotId%3D" + spotId + "&down=1";
+            String url = "https://api.pwmqr.com/qrcode/create/?url=http%3A%2F%2F8.130.27.164%2F%23%2Fpages%2Fspot-detail%2Findex%3FspotId%3D" + spotId + "&down=1";
             HttpEntity entity = HttpUtil.doGet(url);
             InputStream inputStream = entity.getContent();
             byte[] bytes = IOUtils.toByteArray(inputStream);

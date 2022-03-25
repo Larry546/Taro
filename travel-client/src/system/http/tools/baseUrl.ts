@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-    let BASE_URL = "http://localhost:8088";
+    let BASE_URL = "http://8.130.27.164:8088";
     // if (process.env.NODE_ENV === "development") {
     //   //开发环境 - 根据请求不同返回不同的BASE_URL
     //   if (url.includes("/api/")) {
