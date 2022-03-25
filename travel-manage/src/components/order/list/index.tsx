@@ -172,10 +172,10 @@ export default class OrderList extends React.PureComponent<any> {
                 width: 80,
             },
             {
-                title: "使用时间",
-                dataIndex: "orderUsetime",
+                title: "创单时间",
+                dataIndex: "orderCreatetime",
                 key: "2",
-                ...this.getColumnSearchProps("orderUsetime"),
+                ...this.getColumnSearchProps("orderCreatetime"),
             },
             {
                 title: "总额",
@@ -209,9 +209,10 @@ export default class OrderList extends React.PureComponent<any> {
                 key: "5",
             },
             {
-                title: "创单时间",
-                dataIndex: "orderCreatetime",
+                title: "使用时间",
+                dataIndex: "orderUsetime",
                 key: "6",
+                ...this.getColumnSearchProps("orderUsetime"),
             },
             {
                 title: "景点ID",
