@@ -134,6 +134,19 @@ export default class Index extends PureComponent<any> {
         }
     };
 
+    getDesc = (orderStatus: string) => {
+        switch (orderStatus) {
+            case "待支付":
+                return "库存有限，请尽快完成付款";
+            case "未使用":
+                return "该订单所购门票还未使用，不要忘记使用时间哦";
+            case "待评价":
+                return "体验如何，快去评价吧";
+            default:
+                return "";
+        }
+    };
+
     render() {
         const { orderInfo, spotInfo } = this.state;
         return (
@@ -147,7 +160,7 @@ export default class Index extends PureComponent<any> {
                                     <Text>{orderInfo.orderStatus}</Text>
                                 </View>
                                 <View className="orderdetail_info_header_desc">
-                                    <Text>库存有限，请尽快完成付款</Text>
+                                    <Text>{this.getDesc(orderInfo.orderStatus)}</Text>
                                 </View>
                             </View>
                             <View className="orderdetail_info_total orderdetail_info_box">
