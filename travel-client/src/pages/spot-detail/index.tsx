@@ -316,7 +316,7 @@ export default class Index extends PureComponent<any> {
                     {recommendList && recommendList.length ? (
                         <View className="spotdetail_recommend">
                             <View className="spotdetail_recommend_title">
-                                <Text>景点推荐</Text>
+                                <Text>相似景点</Text>
                             </View>
                             <View className="spotdetail_recommend_info">
                                 {recommendList.map((item, index) => {
