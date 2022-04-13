@@ -7,7 +7,7 @@
                spot_name      AS spotName,
                spot_address   AS spotAddress,
                spot_imageURL  AS spotImageurl,
-               spot_type      AS spotTpye,
+               spot_type      AS spotType,
                favorite_id    AS favoriteId
         from t_spot,
              t_favorite,
