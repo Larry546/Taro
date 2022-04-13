@@ -67,11 +67,20 @@ export default class SpotEdit extends React.PureComponent<any> {
             spotId: this.spotId === 0 ? undefined : this.spotId,
             ...this.state,
         };
-        let res = await _saveSpot(info);
-        if (res) {
-            message.success("保存成功!");
-        } else {
-            message.error("网络错误，保存失败!");
+        try {
+            const values = await this.formref.validateFields();
+            console.log("🚀 ~ file: index.tsx ~ line 72 ~ SpotEdit ~ submit= ~ values", values);
+            let res = await _saveSpot(info);
+            if (res) {
+                message.success("保存成功!");
+            } else {
+                message.error("网络错误，保存失败!");
+            }
+        } catch (errorInfo) {
+            console.log(
+                "🚀 ~ file: index.tsx ~ line 74 ~ SpotEdit ~ submit= ~ errorInfo",
+                errorInfo
+            );
         }
     };
 

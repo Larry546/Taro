@@ -65,11 +65,20 @@ export default class OrderEdit extends React.PureComponent<any> {
             orderId: this.orderId,
             ...this.state,
         };
-        let res = await _updateOrder(info);
-        if (res) {
-            message.success("保存成功!");
-        } else {
-            message.error("网络错误，保存失败!");
+        try {
+            const values = await this.formref.validateFields();
+            console.log("🚀 ~ file: index.tsx ~ line 70 ~ OrderEdit ~ submit= ~ values", values);
+            let res = await _updateOrder(info);
+            if (res) {
+                message.success("保存成功!");
+            } else {
+                message.error("网络错误，保存失败!");
+            }
+        } catch (errorInfo) {
+            console.log(
+                "🚀 ~ file: index.tsx ~ line 74 ~ SpotEdit ~ submit= ~ errorInfo",
+                errorInfo
+            );
         }
     };
 
