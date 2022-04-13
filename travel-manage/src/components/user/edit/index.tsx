@@ -55,11 +55,20 @@ export default class UserEdit extends React.PureComponent<any> {
             userId: this.userId,
             ...this.state,
         };
-        let res = await _saveUser(info);
-        if (res) {
-            message.success("保存成功!");
-        } else {
-            message.error("网络错误，保存失败!");
+        try {
+            const values = await this.formref.validateFields();
+            console.log("🚀 ~ file: index.tsx ~ line 70 ~ OrderEdit ~ submit= ~ values", values);
+            let res = await _saveUser(info);
+            if (res) {
+                message.success("保存成功!");
+            } else {
+                message.error("网络错误，保存失败!");
+            }
+        } catch (errorInfo) {
+            console.log(
+                "🚀 ~ file: index.tsx ~ line 68 ~ UserEdit ~ submit= ~ errorInfo",
+                errorInfo
+            );
         }
     };
 
