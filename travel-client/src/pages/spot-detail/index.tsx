@@ -133,7 +133,7 @@ export default class Index extends PureComponent<any> {
 
     onCloseRequest = () => {
         this.setState({
-            request: "",
+            ticket: {},
             requestOpen: false,
         });
     };
