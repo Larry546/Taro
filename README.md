@@ -4,4 +4,4 @@
 
 ### frontend: Taro + React + TypeScript
 
-### backend: SpringBoot + MySQL
+### backend: SpringBoot + Mybatis-plus + MySQL
