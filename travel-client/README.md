@@ -10,7 +10,7 @@ Final Design of Taro + React client frontend
 npm install -g @tarojs/cli@3.4.3
 ```
 
-在 `git clone`后，`cd`到 `travel-client`目录下执行
+在 `git clone`后，`cd`到 `travel-client`下安装依赖
 
 ```
 npm install
@@ -20,4 +20,10 @@ npm install
 
 ```
 npm run dev:h5
+```
+
+打包项目，以 h5 为例
+
+```
+npm run build:h5
 ```
